@@ -1,0 +1,324 @@
+\chapter{Lösungen der Aufgaben}
+\thispagestyle{empty}
+
+\section{Schwingungen und Wellen}
+\begin{enumerate}
+	\item	Es gilt \glqq Länge gleich Zeit mal Geschwindigkeit\grqq: 
+			\begin{eqnarray}
+				\Delta l = t\cdot c\nonumber\\
+				t = \frac{\Delta l}{c}\nonumber
+			\end{eqnarray}
+			Mit der Schallgeschwindigkeit $340\frac{m}{s}$ ergibt sich 
+			\begin{displaymath}
+				t = \frac{10m}{340\frac{m}{s}} = 29.41ms
+			\end{displaymath}
+			Nach der Daumenregel ergibt sich ein Wert von $10m\cdot 3\frac{ms}{m} = 30ms$
+	\item	Die Vorzeichen der beiden Schwingungen sind genau entgegengesetzt, d.h. sie löschen sich gegenseitig aus. Mathematisch läßt sich das für sinusförmige Schwingungen wie folgt interpretieren. Die erste Schwingung definiert man durch $x_1(t) = \sin\left(2\cdot \pi \frac{t}{T_p}\right)$. Eine Verschiebung dieser Schwingung um $180^\circ$ führt zu der Schwingung $x_2(t) = \sin\left(2\cdot \pi \frac{t}{T_p}+\pi\right)$. Die Schwingung $x_2(t)$ kann nun mathematisch ausgedrückt werden durch $x_2(t) = -\sin\left(2\cdot \pi \frac{t}{T_p}\right)$, wodurch man dür das resultierend Signal $y(t)$ erhält:
+	\begin{displaymath}
+		y(t) = \sin\left(2\cdot \pi \frac{t}{T_p}\right) - \sin\left(2\cdot \pi \frac{t}{T_p}\right) = 0\nonumber
+	\end{displaymath}
+	\item	Die Periodendauer ist die Zeit, in der an einem \emp{festen Ort} der gleiche Zustand (Amplitudenwert) wiederkehrt. Die Wellenlänge hingegen gibt die minimale Entfernung zweier gleicher Schwingungszustände zu einem \emp{festen Zeitpunkt} an.
+	
+	\item	Es gilt nach Gleichung (\ref{eq:lambda}) $\lambda=\frac{c}{f}$. Somit berechnen sich folgende Wellenlängen:
+			\begin{eqnarray}
+				\lambda_{16H\!z} &=& 21.25m\nonumber\\
+				\lambda_{100H\!z} &=& 3.4m\nonumber\\
+				\lambda_{1kH\!z} &=& 0.34m\nonumber\\
+				\lambda_{10kH\!z} &=& 0.034m = 3.4cm\nonumber\\
+				\lambda_{20kH\!z} &=& 0.017m = 1.7cm\nonumber
+			\end{eqnarray}
+\begin{sloppypar}			
+	\item	Zunächst können die verschiedenen Ausbreitungsgeschwindigkeiten mit Gleichung (\ref{eq:schallgeschw}) berechnet werden. Es ergibt sich:
+\end{sloppypar}	
+			\begin{eqnarray}
+				c_{14.35^\circ } &=& 331.4\frac{m}{s}\cdot\sqrt{\frac{287.35}{273}} = 340.00\frac{m}{s}\nonumber\\
+				c_{16^\circ } &=& 331.4\frac{m}{s}\cdot\sqrt{\frac{289}{273}} = 340.97\frac{m}{s}\nonumber\\
+				c_{19^\circ } &=& 331.4\frac{m}{s}\cdot\sqrt{\frac{292}{273}} = 342.74\frac{m}{s}\nonumber\\
+				c_{22^\circ } &=& 331.4\frac{m}{s}\cdot\sqrt{\frac{295}{273}} = 344.49\frac{m}{s}\nonumber
+			\end{eqnarray}
+	
+	Im zweiten Schritt wird die Wellenlänge nach Gleichung (\ref{eq:lambda}) berechnet:
+			\begin{eqnarray}
+				\lambda_{const} &=& \frac{c}{f}\nonumber\\
+								&=& \frac{340\frac{m}{s}}{440\frac{1}{s}}\nonumber\\
+								&=& 0.77m\nonumber
+			\end{eqnarray}
+	Über die Gleichung (\ref{eq:lambda}) können nun die Frequenzen für die Temperaturen berechnet werden:
+			\begin{eqnarray}
+				f_{16^\circ } &=& \frac{340.97\frac{m}{s}}{0.77m} = 442.82H\!z\nonumber\\
+				f_{19^\circ } &=& \frac{342.74\frac{m}{s}}{0.77m} = 445.12H\!z\nonumber\\
+				f_{22^\circ } &=& \frac{344.49\frac{m}{s}}{0.77m} = 447.39H\!z\nonumber
+			\end{eqnarray}
+	\item
+
+\end{enumerate}
+
+\section{Schall und Schallfeld}
+\begin{enumerate}
+	\item	Das Nahfeld geht nach Gleichung (\ref{eq:nahzufern}) abhängig von der Wellenlänge ins Fernfeld über mit:
+		\begin{displaymath}
+			r = \frac{\lambda}{2\pi} = \frac{c}{2\pi\cdot f}
+		\end{displaymath}
+		Somit berechnet sich der Abstand $r$ für unterschiedliche Frequenzen zu:
+		\begin{eqnarray}
+			r_{50} &=& 1.08m\nonumber\\
+			r_{200} &=& 0.27m\nonumber\\
+			r_{500} &=& 0.11m\nonumber\\
+			r_{1000} &=& 0.05m\nonumber\\
+			r_{4000} &=& 0.01m\nonumber
+		\end{eqnarray}
+		
+	\item	\label{stss:2} Aus Gleichung (\ref{eq:r-gesetz}) ist bekannt, daß der Schalldruck umgekehrt proportional zur Entfernung ist. Der zu berechnende Faktor $F$ ist das Verhältnis des Schalldrucks in $30cm$ Entfernung zu dem in $180cm$ Entfernung. Es gilt also:
+	\begin{displaymath}
+		F	= \frac{\frac{1}{0.3m}}{\frac{1}{1.8m}}	= \frac{180}{30} = 6
+	\end{displaymath}
+	
+	\item	Zunächst muß der Weg berechnet werden, den der reflektierte Schall zu\-sätz\-lich zurücklegen muß. Dieser läßt sich über den bekannten \emp{Satz des Pythagoras}\index{Pythagoras, Satz des} bestimmen, der besagt, daß in einem rechtwinkligen Dreieck das Quadrat Länge der Hypotenuse $c_H$(längster Dreieckschenkel, gegenüber dem rechten Winkel) gleich der Summe der Quadrate der Längen der beiden Katheten $a_K, b_K$ sind:
+	\begin{displaymath}
+		c_{H}^2	= a_K^2 + b_K^2
+	\end{displaymath}
+	Nach einigem Überlegen ergibt sich für den Gesamtweg der Reflexion $l_R$
+	\begin{displaymath}
+		l_R	= 2\cdot\sqrt{\left[3m\right]^2 + \left[\frac{5}{2}m\right]^2}	= 7.82m
+	\end{displaymath}
+	und es folgt daraus der zusätzlich zurückgelegte Weg $\Delta l$
+	\begin{displaymath}
+		\Delta l = l_R - 5m	= 2.82m
+	\end{displaymath}
+	Mit der Beziehung \glqq Länge gleich Zeit mal Geschwindigkeit\grqq$\;$ erhält man für die Zeitverzögerung der Reflexion:
+	\begin{displaymath}
+		\Delta t	= \frac{\Delta l}{c}	= 8ms
+	\end{displaymath}
+	Der Dämpfungsfaktor berechnet sich wie in Aufgabe \ref{stss:2} über das Verhältnis der beiden Strecken:
+	\begin{displaymath}
+		F	= \frac{\frac{1}{5m}}{\frac{1}{5m + \Delta l}}	= \frac{7.82}{5} = 1.56
+	\end{displaymath}
+	\item	Als Daumenregel gilt, daß ein Hindernis den Schall reflektiert, dessen Wellenlänge kleiner ist als die Dimension des Hindernisses. Hierfür gilt die kleinere Abmessung des Hindernisses als Anhaltspunkt, in diesem Fall also $30cm$. Eine Wellenlänge von $30cm$ entspricht nach Gleichung (\ref{eq:lambda}) einer Frequenz von ca. $1100H\!z$. Höhere Frequenzen werden stark gedämpft. 
+\end{enumerate}
+
+\section{Pegel}
+\begin{enumerate}
+
+	\item	Gleichung (\ref{eq:weber}) lautet:
+	
+	\begin{displaymath}
+		dW=const.\cdot\frac{dR}{R}
+	\end{displaymath}
+	Zur Lösung dieser Differentialgleichung müssen beide Seiten integriert werden, so daß man erhält:
+	\begin{eqnarray}
+		\int{1dW}	&=& \int{const.\cdot\frac{1}{R}dR}\nonumber\\
+		\Leftrightarrow\nonumber\\
+		W + C_1 &=& const.\cdot\ln{R} + const.\cdot C_2\nonumber\\
+		\Leftrightarrow\nonumber\\
+		W &=& const.\cdot \ln{R} + \underbrace{const.\cdot C_2 - C_1}_{C}\nonumber
+	\end{eqnarray}
+	
+	\item	\label{stp:2}In den Aufgaben zu Abschnitt \ref{chap:schall} wurde schon deutlich, daß sich der Faktor zur Verringerung des Schalldrucks aus dem Verhältnis der Entfernungen berechnet. Um den Pegelwert zu berechnen, muß der Logarithmus dieses Verhältnisses berechnet werden:
+	
+	\begin{displaymath}
+		20\log{\frac{1/r}{1/2r}}	= 20\log{2} = 6.02\simeq 6\; [dB]
+	\end{displaymath}
+	
+	\item	Die Pegeldifferenz berechnet sich analog zu Gleichung (\ref{eq:sp-pegel2}):
+	\begin{eqnarray}
+		20\log{\frac{1}{1}}	&=& 0\; [dB]\nonumber\\
+		20\log{\frac{1}{\sqrt{2}}}	&=& -3.01\; [dB]\nonumber\\
+		20\log{\frac{1}{2}}	&=& -6.02\; [dB]\nonumber\\
+		20\log{\frac{1}{10}}	&=& -20\; [dB]\nonumber
+	\end{eqnarray}
+	
+	\item	Das Spannungsverhältnis läßt sich aus Gleichung (\ref{eq:spl2pressure}) herleiten:
+	
+	\begin{eqnarray}
+		10^{3/20}	&=& 1.41:1\nonumber\\
+		10^{6/20}	&=& 2.00:1\nonumber\\
+		10^{10/20}	&=& \sqrt{10}:1 = 3.16:1\nonumber\\
+		10^{20/20}	&=& 10:1\nonumber\\
+		10^{100/20}	&=& 100000:1\nonumber
+	\end{eqnarray}
+	
+	\item	Nach Gleichung (\ref{eq:vektoradd3}) ergibt sich für 4 Quellen:
+	\begin{displaymath}
+		10\cdot\log{\frac{4u_{1,eff}}{u_{1,eff}}} = 6.02\;[dB]
+	\end{displaymath}
+	Für 8 Quellen ergibt sich analog:
+	\begin{displaymath}
+		10\cdot\log{\frac{8u_{1,eff}}{u_{1,eff}}} = 9.03\;[dB]
+	\end{displaymath}
+	
+	
+	\item	Wie in Aufgabe \ref{stp:2} berechnet sich die Pegeldifferenz über das Verhältnis:
+	
+	\begin{displaymath}
+		20\log{\frac{1/60}{1/180}}	= 20\log{3} = 9.03\simeq 9\; [dB]
+	\end{displaymath}
+	
+	\item	\label{stp:7}Es handelt sich bei den Lautsprechern um eine akustische Addition, so daß gilt:
+	\begin{displaymath}
+		10\cdot\log{4}-10\cdot\log{2} = 10\cdot\log{2} = 3.01\;[dB]
+	\end{displaymath}
+	
+	\item 	Diese Aufgabe ist in der Art ihrer Berechnung und in ihrer Lösung identisch zu Aufgabe \ref{stp:7}, da es sich in beiden Fällen um eine Verdoppelung der Schallquellen und um eine akustische Addition handelt.
+	
+	\item
+	
+\end{enumerate}
+
+\section{Raumakustik}
+\begin{enumerate}
+	\item	Die Nachhallzeit $T$ berechnet sich nach Gleichung (\ref{eq:nachhall}) mit
+	\begin{displaymath}
+	  T\simeq 0.163sm^{-1}\frac{21000m^3}{1711.5m^2} = 2s
+	\end{displaymath}
+	Die Maße entsprechen grob der besetzten Berliner Philharmonie.
+	
+	\item Der Hallradius $r_H$ berechnet sich nach Gleichung (\ref{eq:hallrad}) für die o.g. Werte mit
+	\begin{displaymath}
+		r_H	= 0.057s^{1/2}m^{-1/2}\cdot\sqrt{\frac{21000m^3}{2s}}	= 5.84m
+	\end{displaymath}
+	
+	\item
+	
+	\item	Stehende Wellen können entstehen, wenn die Raumabmaße der halben Wellenlänge oder einem Vielfachen $k$ der halben Wellenlänge entsprechen. Es gilt also für die tiefste gesuchte Wellenlänge
+	\begin{eqnarray}
+		\lambda_{5}	&=& 2\cdot 5m = 10m\nonumber\\
+		\lambda_{8}	&=& 2\cdot 8m = 16m\nonumber
+	\end{eqnarray}
+	Die tiefsten Frequenzen sind dann (bei einer Schallgeschwindigkeit von $340\frac{m}{s}$)
+	\begin{eqnarray}
+		f_{5}	&=& = \frac{340m/s}{10m}	= 34H\!z\nonumber\\
+		f_{8}	&=& = \frac{340m/s}{16m}	= 21.25H\!z\nonumber
+	\end{eqnarray}
+	Da auch ganzzahlige Vielfache dieser Grundwellen als stehende Wellen auftreten, sind die auftretenden stehenden Wellen also bei den Frequenzen $k\cdot 34H\!z$ und $k\cdot 21.25H\!z$ ($k$ ist eine ganze Zahl größer $0$)
+	
+	\item	Die Seitenlängen des quadratischen Raums sind $\sqrt{2500} = 50m$. Der von der Reflexion 	zusätzliche zurückgelegte Weg berechnet sich über den \emp{Satz des Pythagoras} mit
+	\begin{displaymath}
+		\Delta l = 2\cdot\sqrt{[25m]^2 + [15m]^2} - 30m = 28.31m
+	\end{displaymath}
+	Der Laufzeitunterschied ist somit
+	\begin{displaymath}
+		\Delta t	= \frac{\Delta l}{c}	= 83.26ms
+	\end{displaymath}
+
+\end{enumerate}
+
+\section{Psychoakustik}
+\begin{enumerate}
+	\item	Der Abstand $\Delta l$, den das zweite Mikrophon weiter entfernt ist, kann wiederum über den \emp{Satz des Pythagoras} berechnet werden. Es ergibt sich:
+	\begin{displaymath}
+		\Delta l = \sqrt{[5m]^2 + [0.5m]^2} - 5m = 2.49cm
+	\end{displaymath}
+	Daraus berechnet sich der Laufzeitunterschied bei einer Schallgeschwindigketi von $340\frac{m}{s}$ mit
+	\begin{displaymath}
+		\Delta t	= \frac{\Delta l}{c}	= 73.35\mu s
+	\end{displaymath}
+	und der Pegelunterschied zu
+	
+	\begin{displaymath}
+		20\log{\frac{1/5}{1/5.0249}}	= 0.43\; [dB]
+	\end{displaymath}
+	Sowohl Laufzeitunterschied als auch Pegelunterschied sind vernachlässigbar klein.
+	
+	\item	Zunächst muß die einem Laufzeitunterschied von $1ms$ entsprechende Län\-gen\-differenz $\Delta l$ bestimmt werden:
+	\begin{displaymath}
+		\Delta l = 340\frac{m}{s}\cdot 0.001s	= 0.34m
+	\end{displaymath}
+	Die gesuchte Mikrophonbasis $B$ berechnet sich nun wie folgt:
+	\begin{eqnarray}
+		\sqrt{[5m]^2 + B^2} - 5m &=& 0.34m\nonumber\\
+		\Leftrightarrow\nonumber\\
+		\sqrt{[5m]^2 + B^2} &=& 0.34m + 5m \nonumber\\
+		\Leftrightarrow\nonumber\\
+		B &=& \sqrt{[5.34m]^2 - [5m]^2}\nonumber\\
+		\Leftrightarrow\nonumber\\
+		B &=& 1.87m\nonumber
+	\end{eqnarray}
+	
+	\item Das Signal muß infolge der Beugung einen zusätzlichen weg entsprechend des halben Kopfumfangs zurücklegen. Der Kopfumfang $K$ kann mithilfe des Radius $r$ berechnet werden mit
+	\begin{displaymath}
+		K = 2\cdot\pi\cdot r
+	\end{displaymath}
+	Somit muß der Schall einen zusätzlichen Weg $\Delta l = K/2 = \pi\cdot 0.1m = 0.31m$ zurücklegen. Bei einer Schallgeschwindigkeit $c$ von $340\frac{m}{s}$ ergibt sich somit ein Laufzeitunterschied
+	\begin{displaymath}
+		\Delta t = \frac{\Delta l}{c} = 0.9ms
+	\end{displaymath}
+	
+\end{enumerate}
+
+\section{Elektrotechnik}
+
+\section{Signalverarbeitung}
+\begin{enumerate}
+	\item Es ist gleichgültig, ob die Regelung der Dämpfung oder Verstärkung nichtlinear gemacht wird; ausschlaggebend ist, daß ausschließlich eine Skalierung des Signals stattfindet, die somit linear ist.
+\begin{sloppypar}
+	\item	Nach Gleichung (\ref{eq:guete}) berechnet sich die Güte eines Filters durch das Verhältnis von Mittenfrequenz zu Bandbreite. Daher lautet das Ergebnis:
+	\begin{itemize}
+		\item $Q_{1600}	= 2$
+		\item $Q_{3200}	= 1$
+		\item $Q_{4000}	= 0.8$
+		\item $Q_{6400}	= \frac{1}{2}$
+	\end{itemize}
+\end{sloppypar}	
+	\item	Da die Flankensteilheit des Filters $12\frac{dB}{Octave}$ beträgt, ist die Frequenz $200H\!z$ um $12dB$ gedämpft. Die Flankensteilheit könnte genauso mit $15\frac{dB}{kleine\; Dezime}$ angegeben werden. Daraus folgt, daß die gesuchte Frequenz eine kleine Dezime über $100H\!z$ liegt. Da eine kleine Dezime zur Grundfrequenz das Verhältnis $\frac{12}{5}$ aufweist, ist die gesuchte Frequenz $240Hz$.\\
+	Alternativ könnte man auch in der temperierten Stimmung rechnen: eine kleine Dezime entspricht $15$ Halbtönen; da sich die Frequenz eines Halbtones zu der Frequenz $f$ mit $f\cdot \sqrt[12]{2}$ berechnen läßt, liegt demnach die gesuchte Frequenz bei $100H\!z\cdot \left(\sqrt[12]{2}\right)^{15} = 200H\!z\cdot2^{\frac{1}{4}} = 237.84H\!z$
+	
+	\item	Die gesuchte Zeit entspricht genau der Dauer eines Schlages. Das Tempo $90B\!P\!M$ entspricht $\frac{90}{60} = 1.5\; Beats\; per\; second$. Daraus folgt, daß die Dauer eines Schlages $\frac{2}{3}s = 0.667s$ beträgt.
+	
+	\item Eine Dämpfung der Amplitude um $50\%$ entspricht einer Dämpfung um $6dB$, vgl. Abschnitt \ref{chap:pegel}
+	
+	\item Mit Erhöhung des Pre-Delays wird das Signal präsenter bzw. näher klingen, da durch die Verzögerung des (sehr weit im Raum klingenden) verhallten Signals zunächst der trockene, unverhallte Anteil des Signals wahrzunehmen ist.
+	
+\end{enumerate}
+
+\section{Mikrophone}
+
+\section{Digitaltechnik}
+\begin{enumerate}
+	\item	Insgesamt stehen einem $16bit$-Signal $65536$ verschiedene Amplitudenwerte zur Verfügung. Da ein möglicher Amplitudenwert die $0$ ist, steht keine gerade Anzahl an restlichen Werten zur Verfügung, die man auf der positiven wie negativen Seite verteilen könnte. Durch die Wahl des ersten Bits als Vorzeichenbit ergibt es sich nun, daß die positive Seite über einen Amplitudenwert weniger verfügt.
+	
+	\item	
+	\begin{itemize}
+		\item $0000\, 0000\, 1001\, 1000 \hat{=} 2^7+2^4+2^3 = 152$
+		\item $0111\, 0001\, 0010\, 1111 \hat{=} 2^{14}+2^{13}+2^{12}+2^8+2^5+2^3+2^2+2^1+2^0 = 28 975$
+		\item	$1000\, 1110\, 1101\, 0000 \hat{=} -(2^{14}+2^{13}+2^{12}+2^8+2^5+2^3+2^2+2^1+2^0)-1 = -28 976$
+		\item	$1111\, 1111\, 0110\, 0111 \hat{=} -(2^7+2^4+2^3)-1 = -153$
+	\end{itemize}
+
+	\item	Die Anzahl der möglichen Amplitudenwerte für ein $24bit$-Signal ist $2^{24} = 16 777 216$.
+	
+	\item	Der Dynamikumfang des Systems läßt sich berechnen mit $6.02dB$ mehr Dynamik pro Bit. Daher ist der Dynamikumfang eines $20bit$-Systems theoretisch $120.4dB$ und der eines $24bit$-Systems $144.5dB$. Die Werte realer Wandler liegen deutlich darunter.
+\begin{sloppypar}	
+	\item	Die Datenrate eines Mono-Audiosignals berechnet sich mit $Bits\_per\_Sample\cdot Samples\_per\_second$. Somit erhält man
+	\begin{eqnarray}
+		BR_{16,44.1}	&=& 16 \frac{bit}{Sample}\cdot 44100\frac{Sample}{s} = 705.6kbit/s\nonumber\\
+		BR_{20,48}	&=& 20 \frac{bit}{Sample}\cdot 48000\frac{Sample}{s} = 960kbit/s\nonumber\\
+		BR_{24,48}	&=& 24 \frac{bit}{Sample}\cdot 48000\frac{Sample}{s} = 1.152Mbit/s\nonumber\\
+		BR_{24,96}	&=& 24 \frac{bit}{Sample}\cdot 96000\frac{Sample}{s} = 2.304Mbit/s\nonumber\\
+		BR_{24,192}	&=& 24 \frac{bit}{Sample}\cdot 192000\frac{Sample}{s} = 4.608Mbit/s\nonumber
+	\end{eqnarray}
+\end{sloppypar}	
+	\item	Nach dem Abtasttheorem muß die Abtastrate mehr als doppelt so hoch sein wie die höchste darzustellende Frequenz. Daher gilt hier 
+	\[
+		f_S > 48kH\!z = 2\cdot 24kH\!z
+	\]	
+
+	\item	Die Zahl der maximal darstellbaren Amplitudenstufen in Bitdarstellung ist immer eine Zweierpotenz, da es sich um das Binäresystem handelt: $2bit$ können $2^2=4$ Werte darstellen, $3bit$ $2^3=8$ Werte, $4bit$ $2^4=16$ Werte etc. Soll der Wertebereich des Wortes voll ausgeschöpft werden - was sinnvoll ist -, so muß die Anzahl der Wandlerstufen einer Zweierpotenz entsprechen.
+
+	\item	Das Spektrum des Quantisierungsfehlers ist näherungsweise weiß, d.h. jede Frequenz ist gleichstark vertreten. Somit bildet das Spektrum näherungs\-weise eine horizontale (über die Frequenzen) Linie. Über die Integration über das Quadrat dieser Linie errechnet sich die Leistung des Quantisierungsrauschens. Wird die Abtastfrequenz verdoppelt, so muß das Ergebnis des Integrals gleich bleiben, da die Leistung des Rauschens nicht von der Abtastfrequenz abhängig ist; das Rauschen erstreckt sich allerdings über einen doppelt so großen Frequenzbereich, so daß die Amplitude pro Frequenz sich halbiert haben muß. Nach Tiefpaßfilterung verschwindet die obere Hälfte des Quantisierungsrauschens, so daß die Gesamtleistung des Rauschens sich halbiert hat. Aus der Halbierung der Leistung des Quantisierungsfehlers folgt eine Erhöhung des Signal-Rauschabstands um $3dB$.
+	
+	\item Jede Verdopplung der Abtastfrequenz führt zu einer Erhöhung des SNR um $3dB$. Wievielen Verdopplungen entspricht eine 128-fache Abtastfrequenz? Dies läßt sich über die Gleichung $2^x = 128$ bestimmen. Es ergibt sich:
+	\begin{displaymath}
+		x = \ld\left(128\right) = 7;
+	\end{displaymath}
+	$7$ Verdopplungen führen zu einer Erhöhung des Signal-Rauschabstands um $21dB$.
+	
+	\item
+	
+\end{enumerate}
+%\section{Konzept eines Tonstudios}
+
+%\section{Geräte im Tonstudio}
+
+%\section{Mikrophonverfahren}
+
+%\section{Produktion}

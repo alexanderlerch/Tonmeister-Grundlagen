@@ -1,0 +1,347 @@
+\chapter{Elektroakustische Wandler}
+\thispagestyle{empty}
+Der Sinn eines elektroakustischen Wandlers ist die Umwandlung einer physikalischen Größe
+    des Schallfeldes wie z.B. den Schalldruck oder die Schallschnelle in eine elektrische Größe wie z.B. eine Spannung umzuwandeln, oder umgekehrt (Schallsender). Alle in der Tonstudiotechnik
+    gebräuchlichen Wandler besitzen eine Membran, welche durch das Schallfeld in Schwingungen
+    versetzt wird, und einen elektrischen Teil, der diese mechanischen Schwingungen in
+    elektrische Schwingungen wandelt. 
+    
+\section{Mikrophone}
+Mikrophone als Schallempfänger wandeln also akustische Energie in elektrische Energie.\\
+Einfluß auf den Prozeß dieser Wandlung haben sowohl der \emp{mechanische Aufbau} als auch der \emp{elektrische Aufbau} des Mikrophons. Diesen beiden Teile werden, nach einer kurzen Erläuterung einiger grundlegender Wandlerkenngrößen, umfassend behandelt. Anschließend wird der Einfluß der Bauform auf das Mikrophons erläutert.
+
+\subsection{Charakteristische Kenngrößen}
+	\subsubsection{Pegel-Kenngrößen}
+	Die in Mikrophondatenblättern angegebenen Größen sind oft einzahlige Pegelwerte, deren Aussage im folgenden kurz beschrieben werden soll.
+\begin{itemize}
+		\item \bld{Feldübertragungsfaktor}\index{Feldübertragungsfaktor|bld}\\
+		Der Feldübertragungsfaktor gibt den Effektivwert der Ausgangsspannung an, wenn das Mikrophon einem Schalldruck von $1Pa$ bei einer Frequenz von $1kH\!z$ ausgesetzt wird (in [V] oder [dBV]).
+
+		\item	\bld{Grenzschalldruckpegel}\index{Grenzschalldruckpegel|bld}\\
+		Der Grenzschalldruckpegel eines Mikrophons ist der Schalldruckpegel, ab dem der Klirrfaktor größer als $0.5\%$ wird (in [dBSPL]).
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:klirrfaktor}
+\end{itemize}
+\end{quote}
+
+		\item	\bld{Maximaler Ausgangspegel}\index{Ausgangspegel!maximaler|bld}\\
+		Der maximale Ausgangspegel gibt den Effektivwert der Spannung am Ausgang des Mikrophons beim Grenzschalldruck an (in [V] oder [dBu]).
+
+		\item \bld{Eigenstörspannung}\index{Eigenstörspannung|bld}\\
+		Die Eigenstörspannung ist die effektive Ausgangsspannung des Mikrophons, wenn es keinem Schall ausgesetzt ist (in [V] oder [dBu]).
+		
+		\item	\bld{Ersatzgeräuschpegel}\index{Ersatzgeräuschpegel}\\
+		\item	\bld{Geräuschpegelabstand}\index{Geräuschpegelabstand}\\
+		\item	\bld{Dynamikumfang}\index{Dynamikumfang}\\
+		Der Dynamikumfang ergibt sich aus der Differenz zwischen Grenzschalldruckpegel und Ersatzgeräuschpegel.
+
+\end{itemize}
+
+	\subsubsection{Übertragungsfrequenzgang}
+		Ein wichtiges Merkmal zur Charakterisierung eines Mikrophons ist natürlich sein Übertragungsfrequenzgang\index{Übertragungsfrequenzgang} (vgl. \ref{chap:transferfunc}). Soll das Mikrophon das Schallereignis neutral übertragen, so ist natürlich ein linearer Frequenzgang  mit gleichbleibendem Feldübertragungsmaß für alle Frequenzen wünschenswert. Es werden allerdings in vielen Fällen bewußt auch Mikrophone mit Abweichungen von diesem Frequenzgang produziert und eingesetzt, da sich auf diese Weise ein anderer, gewünschter Klangeindruck erzielen läßt.
+		
+		Bei der Angabe des Übertragungsfrequenzganges eines Mikrophons wird zumeist nicht nur eine einzelne Kurve angegeben, sondern mehrere für den Schalleinfall aus verschiedenen Richtungen. Diese sind sogenannte \bld{Freifeldfrequenzgänge}\index{Freifeldfrequenzgang}.
+	
+	Freifeld/Diffusfeld
+	
+	Der Übertragungsfrequenzgang eines Mikrophons setzt sich hauptsächlich aus zwei Komponenten zusammen: die Übertragungsfunktion des \emp{mechanischen Aufbaus} und die des \emp{elektrischen Aufbaus}.	
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:transferfunc}
+\end{itemize}
+\end{quote}
+
+	\subsubsection{Richtcharakteristik}
+	Es ist anschaulich leicht vorzustellen, daß ein Mikrophon nicht unbedingt in alle Richtungen gleich empfindlich ist, d.h. bei Besprechen eines Mikrophons von hinten oder von der Seite ist das Mikrophon unter Umständen wesentlich unempfindlicher. Für verschiedene Einsatzzwecke gibt es verschiedene sogenannte \bld{Richtcharakteristiken}\index{Richtcharakteristik|bld}, denn manchmal soll die Empfindlichkeit eines Mikrophons besonders in bestimmte Richtungen hoch sein, manchmal sollen aber alle Richtungen gleich behandelt werden. Genau dieses Verhalten wird mit der Richtcharakteristik (s. Abb. \ref{fig:rc} für die geläufigsten Richtcharakteristiken) angegeben, wo eine Linie die Empfindlichkeit für verschiedene Schalleinfallsrichtungen zeigt. Bei der Darstellung der Richtcharakteristiken befindet sich in der Mitte das gedachte Mikrophon, das in die $0^\circ$-Richtung zeigt. Dann wird für jeden Winkel die Empfindlichkeit des Mikrophons aufgetragen und man erhält eine sich schließende Linie - die Richtcharakteristik.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.3]{Graph/n_rc_kugel}
+			\includegraphics[scale=0.3]{Graph/n_rc_acht}
+			\includegraphics[scale=0.3]{Graph/n_rc_niere}
+			\includegraphics[scale=0.3]{Graph/n_rc_bniere}
+			\includegraphics[scale=0.3]{Graph/n_rc_sniere}
+			\includegraphics[scale=0.3]{Graph/n_rc_hniere}
+			\caption[Mikrophon-Richtcharakteristiken]{Richtcharakteristiken von Mikrophonen; oben Kugel, Niere und Acht, unten Breite Niere, Superniere und Hyperniere} \label{fig:rc}
+			\end{center}
+		\end{figure}
+Technisch ausgedrückt wird der Feldübertragungsfaktor für jeden Einfallswinkel aufgetragen. Setzt man an einer bestimmten Einfallsrichtung den Feldübertragungsfaktor ins Verhältnis zum Feldübertragungsfaktor der $0^\circ$-Bezugsrichtung, so erhält man den sogenannten \bld{Richtungsfaktor}\index{Richtungsfaktor|bld} $\Gamma$ des Mikrophons für diesen Einfallswinkel $\theta$. Der 20-fache Logarithmus des Richtungsfaktors ist das \bld{Richtungsmaß}\index{Richtungsmaß|bld}. Somit ist das Richtungsmaß für die Bezugsrichtung immer $0dB$.
+
+Die dargestellten Richtcharakteristiken sind idealisiert. In den Datenblättern realer Mikrophone kann man deutliche Abweichungen zu den idealen Kurven sehen. Insbesondere spielt hier die Frequenzabhängigkeit der Richtcharakteristik eine große Rolle. So führen Reflexions- und Beugungseffekte am Mikrophonkorpus i.a. dazu, daß die Empfindlichkeit des Mikrophones sich verändert. Eigentlich kugelförmige Richtcharakteristiken können so beispielsweise bei höheren Frequenzen deutlich gerichtet werden. Aus diesem Grund werden von Mikrophonherstellern i.a. verschiedene Graphen für verschiedene Frequenzen angegeben.
+	
+Die Richtwirkung des Mikrophones wird teilweise auch durch einzelne Werte beschrieben, v.a. dem \bld{Bündelungsgrad}\index{Bündelungsgrad|bld} und dem \bld{Bündelungsmaß}\index{Bündelungsmaß|bld}. Der Bündelungsgrad vergleicht die Richtcharakteristik des Mikrophons mit einer Kugelcharakteristik. Je geringer die Leistung des Raumschalls im Verhältnis zu der Raumschalleistung eines Mikrophons mit Kugelcharakteristik und dem gleichen Feldübertragungsmaß ist, desto höher ist der Bündelungsgrad. \\
+
+	\bem{
+	Mathematisch berechnet sich der Bündelungsgrad $\gamma$ aus dem Richtungsfaktor $\Gamma$ in Abhängigkeit vom Einfallswinkel $\theta$:
+	\begin{equation}
+		\gamma = \frac{2}{\int_0^\pi{\Gamma^2\left(\theta\right)\sin\left(\theta\right)\;d\theta}}
+		\label{eq:buendelung}
+	\end{equation}
+	}\end{quote}
+
+Das Bündelungsmaß ist der 10fache Logarithmus des Bündelungsgrades und ist dementsprechend $0$ für Mikrophone mit Kugelcharakteristik.
+Auch einige andere, mit dem Bündelungsgrad verwandte Größen werden manchmal angegeben:
+\begin{itemize}
+	\item	\bld{Vergrößerungsfaktor}\index{Vergrößerungsfaktor|bld} (auch \emp{(relativer) Abstandsfaktor} oder \emp{Distance Factor} (DSF)): dieser Wert gibt an, wie weit der Abstand des Mikrophons zur Schallquelle im Vergleich zur Kugelcharakteristik entfernt werden kann, so daß das Verhältnis von Direkt- und Diffusschall gleich bleibt. Der Vergrößerungsfaktor berechnet sich über die Quadratwurzel aus dem Bündelungsgrad.
+	\item	\bld{Random Energy Efficiency}\index{Random Energy Efficiency|bld} (REE): aufgenommener Störschall im Verhältnis zur Kugelcharakteristik. Dieser Wert ist reziprok zum Bündelungsgrad.
+\end{itemize}
+Abb. \ref{fig:bundelung} zeigt die verschiedene Maße Bündelungsgrad, DSF und REE in der Übersicht.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/n_bundelung}
+			\caption[Maße zur Beschreibung der Richtwirkung]{Bündelungsgrad, DSF und REE für verschiedene Richtcharakteristiken} \label{fig:bundelung}
+			\end{center}
+		\end{figure}
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:hallradius}
+\end{itemize}
+\end{quote}
+	
+
+	\subsubsection{Impulsverhalten}
+	Auch wenn zwei unterschiedliche Mikrophone vergleichbare Kenndaten haben, können sie dennoch unterschiedlich klingen. Dies liegt dann meistens am unterschiedlichen \bld{Impulsverhalten}\index{Impulsverhalten|bld} der Mikrophone. Dabei wird nichts anderes als die Impulsantwort (vgl. Abschnitt \ref{chap:linsystem}) des Mikrophons gemessen. Je nach Mikrophon ist die Impulsantwort unterschiedlich lang und teilweise klanglich verfärbt. Dies kann sich deutlich auf das Klangbild auswirken, muß aber nicht unerwünscht sein. 
+	
+%\subsection{Arbeitsprinzip}
+%Geschwindigkeitsempfänger vs. Elongationsempfänger
+
+\subsection{Mikrophontypen}
+Praktisch alle gebräuchlichen Studiomikrophone verfügen über eine Membran, die von Bewegungen der Luftteilchen in Schwingung versetzt wird wie auch das menschliche Trommelfell. Abhängig davon, wie die Schwingungen in elektrische Signale umgewandelt werden spricht man von einem unterschiedlichen \bld{Arbeitsprinzip}\index{Arbeitsprinzip} des Mikrophons. Hier trennt man zwischen den \bld{Elongationsempfängern}\index{Elongationsempfänger}, bei denen die erzeugte elektrische Spannung proportional zur Auslenkung der Membran ist, und den \bld{Geschwindigkeitsempfängern}\index{Geschwindigkeitsempfänger}, bei denen diese Spannung proportional zur Geschwindigkeit der Membran ist. Im folgenden sollen die beiden wichtigsten Vertreter dieser beiden Gattungen eingeführt werden: das Kondensatormikrophon als bekanntester Elongationsempfänger und das dynamische Mikrophon als dem verbreitetsten Geschwindigkeitsempfänger.
+	\subsubsection{Kondensatormikrophon}\index{Kondensatormikrophon}
+	\paragraph{Mechanischer Aufbau\\}
+	Die Größen, die im mechanischen Aufbaus des Kondensatormikrophons die Schwingungseigenschaften und damit den Übertragungsfrequenzgang beeinflussen können, sind in Abb. \ref{fig:membran} dargestellt. Die wichtigsten sind:
+	\begin{itemize}
+		\item	die Masse der Membran,
+		\item	die Steife des Luftpolsters hinter der Membran, und 
+		\item	die Stärke der Reibung an der Membranaufhängung.
+	\end{itemize}
+	In der Mechanik spricht man in diesem Fall von einem \emp{einfachen Schwinger}.
+	
+	        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(100,30)
+
+                %boxes
+                \put(30,5){\framebox(4,20)}
+                \put(23,25){\framebox(11,4)}
+                \put(23,1){\framebox(11,4)}
+
+								%membranaufhängung
+								\put(23,6){\circle{2}}
+								\put(23,24){\circle{2}}
+
+                %lines vertical
+                \put(23,7){\line(0,1){16}}
+                
+                %fill
+                \put(30,5){\line(1,1){4}}
+                \put(30,7){\line(1,1){4}}
+                \put(30,9){\line(1,1){4}}
+                \put(30,11){\line(1,1){4}}
+                \put(30,13){\line(1,1){4}}
+                \put(30,15){\line(1,1){4}}
+                \put(30,17){\line(1,1){4}}
+                \put(30,19){\line(1,1){4}}
+                \put(30,21){\line(1,1){4}}
+                
+                \put(23,28.5){\line(1,0){11}}
+                \put(23,28){\line(1,0){11}}
+                \put(23,27.5){\line(1,0){11}}
+                \put(23,27){\line(1,0){11}}
+                \put(23,26.5){\line(1,0){11}}
+                \put(23,26){\line(1,0){11}}
+                \put(23,25.5){\line(1,0){11}}
+                
+                \put(23,4.5){\line(1,0){11}}
+                \put(23,4){\line(1,0){11}}
+                \put(23,3.5){\line(1,0){11}}
+                \put(23,3){\line(1,0){11}}
+                \put(23,2.5){\line(1,0){11}}
+                \put(23,2){\line(1,0){11}}
+                \put(23,1.5){\line(1,0){11}}
+                
+
+                %text
+                \put(39,24){\vector(-2,-1){12}}
+                \put(40,24){\footnotesize{\shortstack[l]{federndes Luftpolster}}}
+                \put(17,8){\vector(1,1){6}}
+                \put(3,5){\footnotesize{\shortstack[l]{Membran}}}
+
+                \put(5,24){\vector(1,0){16}}
+                \put(-11,20){\footnotesize{\shortstack[l]{reibende\\ Membranaufhängung}}}
+
+
+            \end{picture}
+			\end{center}
+			\caption[mechanischer Mikrophon-Aufbau]{mechanischer Aufbau eines Mikrophons}\label{fig:membran}
+        \end{figure}
+
+	Die Eigenschaften bei der Bewegung der Mikrophonmembran werden daher maßgeblich von folgenden Kräften bestimmt:
+	\begin{itemize}
+		\item	$F_m$: die Kraft, um die Membranmasse zu beschleunigen/in Bewegung zu setzen
+		\item $F_r$: die Dämpfungs- oder Reibungskraft
+		\item $F_s$: die Kraft, mit der die Steife des Lufpolsters die Schwingung beeinflußt
+	\end{itemize}
+	Die Kraft, die das System von außen in Bewegung setzt, muß gleich der Summe dieser drei Kräfte sein:
+	\begin{equation}\label{eq:F}
+		F = F_m + F_r + F_s
+	\end{equation}
+	
+	Aus dieser Gleichung läßt sich die in Abb. \ref{fig:x_vs_F} dargestellte frequenzabhängige Membranauslenkung in Abhängigkeit der Membranmasse $m$, der Dämpfungskonstante $r$ und der Federkonstante $s$ herleiten. Das Kondensatormikrophon als Elongationsempfänger ist direkt von der Auslenkung der Membran abhängig, daher kann man bei der dargestellten Kurve von der Übertragungsfunktion des mechanischen Teils des Kondensatormikrophons sprechen.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/n_mauslenkung}
+			\caption[Mikrophonmembranauslenkung ]{Übertragungsfrequenzgang eines Elongationsempfängers\index{Elongationsempfänger} in Abhängigkeit verschiedener Dämpfungswerte} \label{fig:x_vs_F}
+			\end{center}
+		\end{figure}
+	
+	\herl{
+		In der Mechanik ergibt sich für Glg. (\ref{eq:F}) 
+		\begin{eq}\label{eq:schwinger}
+			F = m\ddot{x} + r\dot{x} + sx
+		\end{eq}
+		Jeder Punkt steht hierbei für eine Ableitung. Nimmt man eine cosinusförnige Membranauslenkung an und schreibt diese als komplexe Zahl, so erhält man (mit $ x = e^{j2\pi f t}$):
+		\begin{eqnarray}
+		F &=& -m(2\pi f)^2e^{j2\pi ft}+jr2\pi f e^{j2\pi ft} + s e^{j2\pi ft}\nonumber\\
+		&=& \left(-m(2\pi f)^2 + jr2\pi f  + s\right)x
+		\end{eqnarray}
+	
+	Die gesuchte Übertragungsfunktion ist die Auslenkung $x$ durch die Kraft $F$:
+	\begin{eqnarray}
+		x/F &=& \frac{1}{-m(2\pi f)^2 + jr2\pi f + s}\nonumber\\
+		&=& \frac{1/s}{-\underbrace{\frac{m}{s}}_{:=(2\pi f_0)^2}(2\pi f)^2 + j\underbrace{\frac{r}{s}}_{:= \eta/(2\pi f_0)}2\pi f + 1}\nonumber\\
+		&=& \frac{1/s}{1 - \frac{f^2}{f_0^2} + j\eta\frac{f}{f_0}}\label{eq:m_auslenkung}
+	\end{eqnarray}
+	Aus diesem Ergebnis für die Auslenkung der Memran lassen sich folgende Schlüsse ziehen:
+	\begin{itemize}
+		\item	ist die Anregungsfrequenz $f$ sehr klein ist ist die Membranauslenkung ausschließlich von der Federsteife $s$ abhängig und verläuft näherungsweise konstant
+		\item	Es gibt eine Resonanzüberhöhung an der Stelle $2\pi f_0 = \sqrt{s/m}$.
+		\item	Die Stärke der Resonanzüberhöhung hängt von $\eta = r2\pi f_0/s$, also inbesondere von der Dämpfung $r$ ab.
+		\item	Für Frequenzen oberhalb von $f_0$ spielt praktisch nur noch der quadratische Anteil des Nenners eine Rolle. Bei diesen Frequenzen nimmt der Frequenzgang also mit $12dB/Oct$ ab.
+	\end{itemize}}\end{quote}
+	Insgesamt hat der mechanische Aufbau eines Mikrophons also eine Tiefpaßcharakteristik. Die verschiedenen Parameter werden zumeist wie folgt abgestimmt: die Masse der Membran $m$ möglichst klein, um die Resonanzfrequenz $f_0$ steigen zu lassen und damit den linearen Übertragungsbereich zu vergrößern, die Federsteife $s$ aus dem gleichen Grund möglichst groß, andererseits aber auch nicht zu groß, um den Übertragungsfaktor nicht zu sehr zu verkleinern, und die Dämpfung r eher groß, um die Resonanzüberhöhung breit und niedrig zu gestalten.
+
+	\paragraph{Elektrischer Aufbau\\}
+	Die Membran eines Kondensatormikrophones besteht aus Metall oder metallisiertem Kunststoff und stellt eine Elektrode eines Kondensators dar. Sie ist in geringem Abstand vor der elektrisch leitenden Gegenelektrode angeordnet. Jede Schwingung der Membran verändert den Abstand zwischen beiden Elektroden und damit die Kapazität dieses Kondensators, was eine Änderung der Kondensatorspannung $U_C$ und eine Änderung der Ausgangsspannung $U_A$ zur Folge hat. Das prinzipielle Schaltbild des elektrischen Teils des Kondensatormikrophons ist in Abb. \ref{fig:elekt_condmik} dargestellt. 
+	        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(50,20)
+
+                %Ausgangswiderstand
+                \put(25.5,8){\framebox(2,5)}
+
+								%membranaufhängung
+
+                %Kondensator
+                \put(10,10){\line(1,0){5}}
+                \put(10,11){\line(1,0){5}}
+                
+                %Spannungsversorgung
+                \put(19,2){\line(0,1){3}}
+                \put(20,0){\line(0,1){7}}
+                
+                %Leitung
+                \put(12.5,3.5){\line(1,0){6.5}}
+                \put(20,3.5){\line(1,0){6.5}}
+                \put(12.5,17.5){\line(1,0){14}}
+                \put(12.5,3.5){\line(0,1){6.5}}
+                \put(12.5,11){\line(0,1){6.5}}
+                \put(26.5,3.5){\line(0,1){4}}
+                \put(26.5,13.5){\line(0,1){4}}
+                
+                
+                %fill
+                %text
+                \put(16,-1.5){\vector(1,0){7}}
+                \put(18.5,-5){\footnotesize{\shortstack[c]{$U_0$}}}
+
+                \put(8.5,7){\vector(0,1){7}}
+                \put(4,9){\footnotesize{\shortstack[c]{$U_C$}}}
+
+                \put(29,14){\vector(0,-1){7}}
+                \put(30,9){\footnotesize{\shortstack[c]{$U_A$}}}
+
+            \end{picture}
+			\end{center}
+			\caption[elektrischer Kondensatormikrophon-Aufbau]{elektrisches Prinzip des elektrostatischen Wandlers}\label{fig:elekt_condmik}
+        \end{figure}
+	 
+	 Kondensatormikrophone benötigen eine Spannungsquelle $U_0$ zu Vorspannung. Diese wird oft \emp{Phantomspeisung}\index{Phantomspeisung} genannt.
+			
+			Der elektrische Aufbau des Kondensatormikrophons hat eine hochpaßähnliche Übertragungsfunktion.
+			\herl{
+				Die Kapazität $C$ des Kondensators ist abhängig vom Abstand der beiden Elektroden im Ruhezustand $d$ und der Membranauslenkung $x$, sowie von der Ruhekapazität $C_0$. Es gilt:
+				\begin{eq}\label{eq:wechselcap}
+					C = C_0\frac{1}{1-\frac{x}{d}}
+				\end{eq}
+				Die Ladung des Kondensators $Q$ verändert sich ebenfalls mit Bewegung der Membran. Die Ladung entspricht der Summe von Ruheladung $Q_0$ und Wechselladung $q$. Es ergibt sich
+				\begin{eq}\label{eq:wechsellad}
+					Q = Q_0 + q
+				\end{eq}
+				Die Spannung über dem Kondensator $U_C$ ergibt sich aus dem Quotienten von Ladung und Kapazität. Mit den Glgn. (\ref{eq:wechselcap}) und (\ref{eq:wechsellad}) ergibt sich näherungsweise:
+				\begin{eqnarray}
+					U_C &=& \frac{Q}{C}\nonumber\\
+					&=& \frac{Q_0 + q}{C_0}\left(1-\frac{x}{d}\right)\nonumber\\
+					&\approx& U_0\left(1-\frac{x}{d}\right) + \frac{q}{C_0}
+				\end{eqnarray}
+				Die Approximation ist gültig, wenn die Wechselladung $q<<Q_0$ und die Membranauslenkung $x<<d$.
+			}\end{quote}
+	\subsubsection{Dynamisches Mikrophon}\index{Dynamisches Mikrophon}
+	\paragraph{Mechanischer Aufbau\\}
+	Der mechanische Aufbau eines dynamischen Mikrophones entspricht dem des Kondensatormikrophons. Der entscheidende Unterschied ist jedoch, daß die gesuchte Ausgangsgröße nicht wie bei dem Kondensatormikrophon die Membranauslenkung, sondern die Membrangeschwindigkeit $v$ ist. Daher ergibt sich für den mechanischen Aufbau des dynamischen Mikrophons ein anderer prinzipieller Frequenzgang, der Abb. \ref{fig:v_vs_F} dargestellt ist.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/n_mgeschw}
+			\caption[Mikrophonmembrangeschwindigkeit]{Übertragungsfrequenzgang eines Geschwindigkeitsempfängers\index{Geschwindigkeitsempfänger} in Abhängigkeit verschiedener Dämpfungswerte} \label{fig:v_vs_F}
+			\end{center}
+		\end{figure}
+	
+	\herl{	
+	Da sich die Geschwindigkeit eines Körpers aus der zeitlichen Ableitung des Ortes (in diesem Fall also der Membranauslenkung) ergibt, muß die erhaltene Gleichung (\ref{eq:m_auslenkung}) zeitlich abgeleitet werden. Wie schon bei Glg. (\ref{eq:schwinger}) resultiert eine Ableitung in einer Multiplikation mit $j2\pi f$. Der resultierende Frequenzgang ist also
+	\begin{eq}
+		v/F =  \frac{j2\pi f/s}{1 - \frac{f^2}{f_0^2} + j\eta\frac{f}{f_0}}
+	\end{eq}
+	Der für Frequenzen kleiner der Resonanzfrequenz steigt die Membrangeschwindigkeit mit $6dB/Oct$ an, für größere fällt sie ebenfalls mit $6dB/Oct$. Da der in Abb. \ref{fig:v_vs_F} dargestellte Übertragungsfrequenzgang keinen linearen Teil mehr aufweisen kann, liegt es nicht mehr im Interesse des Entwicklers, die Resonanz hoch abzustimmen. Vielmehr wird die Resonanz nun in die Mitte des Frequenzbereichs gelegt und möglichst stark gedämpft, um den Frequenzgang zu linearisieren.
+	}\end{quote}
+
+	\paragraph{Elektrischer Aufbau\\}
+	
+	\subsubsection{Andere Mikrophontypen}
+
+\subsection{Bauform}
+	\subsubsection{Druckempfänger}
+	\subsubsection{Druckgradientenempfänger}
+	\subsubsection{Mischformen}
+	\herl{
+		Die Funktion des Richtungsfaktors bei für gemischte Charakteristiken lautet $\Gamma(\theta) = A + B\cos(\theta)$ mit A: Anteil der Kugelcharakteristik und B: Anteil der Achter-Charakteristik, wobei $A+B = 1$. Eingesetzt in Gleichung (\ref{eq:buendelung}) ergibt sich somit:
+		\begin{equation}
+			\gamma = \frac{2}{\int_0^\pi{\left(A + B\cos(\theta)\right)^2\sin\left(\theta\right)\;d\theta}}
+		\end{equation}
+		Für das Integral im Nenner ergibt sich
+		\begin{eqnarray}
+			&\int_0^\pi{A^2\sin(\theta)\;d\theta} + \int_0^\pi{B^2\underbrace{\cos^2(\theta)}_{=\frac{1}{2}\left(1 + \cos(2\theta)\right)}\sin(\theta)\;d\theta} + \int_0^\pi{2ABcos(\theta)\sin(\theta)\;d\theta} &= \nonumber\\
+			&\left[-A^2\cos(\theta)\right]_0^\pi + \frac{B^2}{2}\left(\int_0^\pi{\sin(\theta)\;d\theta} + \int_0^\pi{\underbrace{\cos(2\theta)\sin(\theta)}_{\frac{1}{2}\left(\sin(-\theta) + \sin(3\theta)\right)}\;d\theta} \right) + \left[AB\sin^2(\theta)\right]_0^\pi&=\nonumber\\
+			&\left[-A^2\cos(\theta)\right]_0^\pi + \frac{B^2}{2}\left[-\cos(\theta)-\frac{1}{2}\cos(-\theta)-\frac{1}{6}\cos(3\theta)\right]_0^\pi + \left[AB\sin^2(\theta)\right]_0^\pi&=\nonumber\\
+			&\left[-\left(A^2 + \frac{3B^2}{4}\right)\cos(\theta) - \frac{B^2}{12}\cos(3\theta)\right]_0^\pi &= \nonumber\\
+			&2A^2 + \frac{2B^2}{3}\nonumber
+		\end{eqnarray}
+		
+		Daraus folgt für den Bündelungsgrad:
+		\begin{equation}
+			\gamma = \frac{1}{A^2 + \frac{B^2}{3}}
+		\end{equation}
+	}\end{quote}
+	\subsubsection{Andere Bauformen}
+
+\section{Lautsprecher}
+akustischer Kurzschluß, Lautsprecherzeile
+
+\section{Zusammenfassung}
+
+\section{Aufgaben}
+\begin{enumerate}
+	\item warum 12dB/oct bei Auslenkungsübertragungsfreuenzgang?
+\end{enumerate}
+
+\nocite{wuttke, sank, goerne, bore}

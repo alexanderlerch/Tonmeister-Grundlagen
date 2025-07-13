@@ -1,0 +1,278 @@
+\chapter{Raumakustik}\label{chap:raumak}
+\thispagestyle{empty}
+
+Die Akustik eines Aufnahmeraums kann für die Klangqualität einer Aufnahme von entscheidender Bedeutung sein. Das folgende Kapitel gibt eine Übersicht über die wichtigsten Größen der Raumakustik und akustische Besonderheiten bestimmter Räume.
+
+In einem Raum erreicht nicht nur der Schall das Ohr des Hörers, der von der Schallquelle
+den direkten Weg nimmt , sondern auch vielfältige Reflexionen von Wänden, Decke, Boden,
+etc. Diese Reflexionen erzeugen einen Raumeindruck, der sich von Raum zu Raum stark
+unterscheidet. Dieser Raumeindruck, also die \textit{Akustik} des Raumes, wird dadurch
+festgelegt, wann, wie stark und wie häufig Reflexionen im Vergleich zum Direktschall beim
+Hörer eintreffen (s. Abb. \ref{fig:raumIR}). 
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=.9]{Graph/impuls}
+\caption[Reflexionsverhalten eines Raumes]{Zeitliche Folge der Reflexionen in einem Raum bei Impulsschall (aus \cite{dickr})}
+\label{fig:raumIR}
+\end{center}
+\end{figure}
+Im allgemeinen treffen die ersten Reflexionen nach dem Direktschall relativ vereinzelt ein
+und bestimmen durch ihre Verzögerung zum Direktschall und ihren Pegel stark den
+Klangeindruck des Raumes. Mit zunehmender Zeit liegen die einzelnen Reflexionen immer
+dichter beieinander und \glqq verschwimmen\grqq$\:$  zu einem abklingenden Nachhall.
+
+\bem{Tatsächlich ist die Verzögerung und Stärke der eintreffenden Reflexionen sowohl vom
+Standort des Hörers als auch von dem der Schallquelle abhängig. Das bedeutet nichts
+anderes, als daß verschiedene Punkte in einem Saal unterschiedliche Höreindrücke
+hervorrufen können. Es gibt aber doch einen mittleren Gesamteindruck des Raumes, den man
+meint, wenn man allgemein von der Akustik eines Raumes spricht.}\end{quote}
+	\ifthenelse{\equal{\value{allchaps}}{1}}
+{
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:reverb}
+\end{itemize}
+\end{quote}
+}{}
+
+\section{Nachhallzeit}\label{chap:nachhallzeit}
+Die \textbf{Nachhallzeit}\index{Nachhallzeit} $T$ ist eines der wichtigsten und
+bekanntesten Kriterien zur Beurteilung der Akustik eines Raumes. Sie als die Zeit
+definiert, in der die Schallenergie eines (eingeschwungenen) Raumes nach \glqq
+Abschalten\grqq$\:$  der Schallquelle auf den millionensten Teil, d.h. um $60dB$ abnimmt. Diese
+Zeit entspricht nicht unbedingt der vom Zuhörer tatsächlich gehörten Zeit des Ausklangs,
+der \textbf{Nachhalldauer}\index{Nachhalldauer}, da diese abhängig von der Lautstärke der
+Schallquelle ist\footnote{So ist die
+\textit{Nachhalldauer} beispielsweise für ein Fingerschnippen sicherlich geringer als für
+ein Klatschen, die
+\textit{Nachhallzeit} des Raumes bleibt aber dennoch immer die gleiche}. Abhängig vom Volumen eines Raumes
+und den Absorptionseigenschaften des Wandmaterials ergeben sich für verschiedene Räume
+stark unterschiedliche Nachhallzeiten. Der Akustiker \textit{Sabine} fand empirisch die
+\textit{Sabinesche Nachhallformel} zur näherungsweisen rechnerischen Ermittlung der
+Nachhallzeit:
+\begin{equation}\label{eq:nachhall}
+  T\simeq 0.163sm^{-1}\frac{V}{A}
+\end{equation}
+
+\begin{quote}\begin{footnotesize}
+$V$ ist das Volumen des Raumes\\ $A$ ist die sogenannte äquivalente Absorptionsfläche, d.h.
+die Summe aller Einzelflächen multipliziert mit ihrem jeweiligen Absorptionsgrad. Die Größe
+der Fläche $A$ entspricht also der Größe einer theoretischen Fläche, welche keinen Schall
+reflektiert.
+\end{footnotesize}\end{quote}
+
+\begin{sloppypar}
+Räume für unterschiedliche Anwendungen sollten auch unterschiedliche Nachhallzeiten haben.
+So muß beispielsweise ein Theater wesentlich \glqq trockener\grqq$\:$  sein als ein
+Konzertsaal, um die Sprachverständlichkeit zu erhöhen. Typische Nachhallzeiten liegen in
+Konzertsälen oft um die $2s$, in Theatern um $1.2s$ und in Kirchen sehr variabel von ca.
+$3s$ bis zu $7s$.\\
+\end{sloppypar}
+
+Der Nachhall klingt näherungsweise exponentiell ab; wenn man also den Schall\-druckpegel über
+der Zeit aufträgt, so erkennt man eine abfallende Gerade, die \textit{Nachhallgerade} (s.
+Abb. \ref{fig:rt-gerade}).
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/rt-gerad}
+\caption[Nachhall während eines Konzerts]{Nachhallaufzeichnung mit Pegelschreiber während eines Konzerts (Beethoven Op.62,
+Coriolan-Ouvertüre, Takt 9 ff) (aus \cite{raumakustik})} \label{fig:rt-gerade}
+\end{center}
+\end{figure}
+
+\section{Absorption}\index{Absorption}\label{chap:absorption}
+
+\section{Direktschallfeld und Diffusschallfeld}\label{chap:freifeld}\begin{sloppypar}
+Der \textbf{Direktschall}\index{Direktschall} ist derjenige Schall, der den direkten Weg
+vom Sender zum Hörer nimmt, also als erste Wellenfront vom Sender eintrifft. Der
+\textbf{Diffusschall}\index{Diffusschall} oder Raumschall ist der Schall, der bei seinem Eintreffen beim Hörer
+bereits eine oder mehrere Reflexionen erfahren hat. Der Direktschall nimmt nach Gleichung
+(\ref{eq:r-gesetz}) mit zunehmender Entfernung von der Schallquelle ab und bildet das sogenannte
+\textbf{Direktschallfeld}\index{Direktschallfeld} oder
+\textbf{Freifeld}\index{Freifeld}. Hingegen spricht man von \textbf{diffusem Schallfeld}\index{Diffusschallfeld} oder statistischem
+Schallfeld, wenn der Schalleinfall am Meßort aus allen Raumrichtungen gleich wahrscheinlich
+und gleich stark ist. Das bedeutet, daß im rein diffusen Schallfeld keine Lokalisation der
+Schallquelle mehr möglich ist. Der Pegel des Diffusschallfeldes ist bei längeren
+Nachhallzeiten im gesamten Raum gleich, hängt also nicht von der Entfernung zur
+Schallquelle ab (s. Abb. \ref{fig:direktdiffus}).\\
+\end{sloppypar}
+\bem{Die Begriffe Direktschallfeld und Diffusschallfeld sind nicht zu verwechseln mit
+Nahfeld und Fernfeld, sondern stehen für etwas vollkommen anderes!}
+\end{quote}
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=.9]{Graph/dirdiff}
+\caption[Direktschall, erste Reflexionen und Diffusschall am Ort des Hörers]{Direktschall, erste Reflexionen und Diffusschall am Ort des Hörers (aus
+\cite{sengpiel})} \label{fig:direktdiffus}
+\end{center}
+\end{figure}
+
+\section{Hallradius}\label{chap:hallradius}
+In einem Raum überlagern sich Direktschallfeld und Diffusschallfeld. Nahe an der
+Schallquelle ist das Direktschallfeld stark im Vergleich zum Diffusschallfeld. Je weiter
+man sich allerdings von der Quelle entfernt, desto schwächer wird der Pegel des
+Direktschalls und \glqq verschwindet\grqq$\:$  irgendwann im Diffusschall, der ja im gesamten
+Raum den gleichen Pegel hat (s. Abb. \ref{fig:hallrad}). Die Entfernung von der
+Schallquelle, bei welcher der Schallpegel des Direktschalles gleich dem des Raumschalles
+ist, wird \textbf{Hallradius}\index{Hallradius} genannt:
+\begin{equation}\label{eq:hallrad}
+  r_{H}=0.057s^{1/2}m^{-1/2}\sqrt{\frac{V}{T}}
+\end{equation}
+\begin{quote}
+\footnotesize{
+$r_{H}$ ist der Hallradius\\ $V$ ist das Volumen des Raumes\\ $T$ ist die Nachhallzeit des
+Raumes}
+\end{quote}
+
+%Vielleicht ist Dickreiter, p.37 geeigneter??
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/hallrad}
+\caption[Pegeldämpfung über der Entfernung von der Schallquelle]{Pegeldämpfung in einem trockenen Raum über der Entfernung von der Schallquelle. Der Schallpegel verhält sich für kleine Abstände nach dem 1/r-Gesetz, für große
+Abstände ist er gleich dem Diffusschallpegel (aus \cite{ahnert})} \label{fig:hallrad}
+\end{center}
+\end{figure}
+
+\begin{sloppypar}
+Bei einer Vergrößerung des Raumvolumens steigt der Hallradius also an, bei einer
+Verlängerung der Nachhallzeit verringert er sich (s. Abb. \ref{fig:hallrad2}). Die sich aus
+dieser Gleichung ergebenden Hallradien sind erstaunlich gering; so beträgt er in einem
+$100m^3$ großen Zimmer mit der Nachhallzeit $0.5s$ lediglich $81cm$.\\
+\end{sloppypar}
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/hallrad2}
+\caption[Hallradien in Abhängigkeit von Raumvolumen und Nachhallzeit]{Hallradien in Abhängigkeit von Raumvolumen und Nachhallzeit (aus \cite{webers})}
+\label{fig:hallrad2}
+\end{center}
+\end{figure}
+
+Wie schon der Name Hall\textit{radius} impliziert, gilt diese Definition nur für eine
+vollkommen ungerichtete Schallabstrahlung (Kugelschallquelle). Da die meisten Schallquellen
+in der Regel aber nicht kugelförmig abstrahlen, erweitert man Gleichung (\ref{eq:hallrad}) um
+den sogenannten \textit{Bündelungsgrad}\index{Bündelungsgrad} \footnote{Der
+Bündelungsgrad ist für eine Kugelschallquelle $1$ und wird größer, je stärker eine Quelle
+gerichtet abstrahlt.} $\gamma$ und erhält in Hauptabstrahlrichtung der Schallquelle
+\begin{equation}\label{eq:hallrad2}
+  r_{H,eff}=0.057s^{1/2}m^{-1/2}\sqrt{\gamma}\sqrt{\frac{V}{T}}.
+\end{equation}
+\begin{sloppypar}
+Dieser Wert wird als \textit{effektiver Hallradius}\index{Hallradius!effektiver},
+\textit{Hallabstand}\index{Hallabstand} oder seltener als
+\textit{Richtentfernung}\index{Richtentfernung} bezeichnet.
+\bem{Für Aufnahmen ist die Kenntnis des Hallradius eines Raumes insofern wichtig, als man schon beim Aufstellen der Mikrophone
+ansatzweise einschätzen kann, ab welcher Entfernung von der Schallquelle der Direktschall
+leiser als der Diffusschall sein wird. Mit diesem Wissen lassen sich die Mikrophone schon
+vor dem ersten Testhören an einem Ort aufstellen, der der angestrebten Aufnahmeästhetik
+bezüglich des Verhältnisses von Direktschall und Raumanteil in etwa entsprechen könnte.
+Eine solche Überlegung kann aber nur erste Anhaltspunkte für den Mikrophonstandort
+liefern.}\end{quote}
+\end{sloppypar}
+
+
+\section{Frequenzabhängigkeit des Nachhalls}
+Die Nachhallzeit\index{Nachhallzeit} wurde oben als die Zeit definiert, in der die Energie eines eingeschwungenen Raumes um $60dB$ abnimmt (s. Abschnitt \ref{chap:nachhallzeit}). Nun klingen allerdings auch Räume mit identischer Nachhallzeit oftmals sehr unterschiedlich. Die Nachhallzeit ist nämlich nicht für alle Frequenzen konstant, sondern unterscheidet sich zum Teil stark für verschiedene Frequenzen. In den meisten Räumen ist die Nachhallzeit bei tiefen Frequenzen länger als bei höheren Frequenzen. Eine Messung der frequenzabhängigen Nachhallzeit ist präziser und aussagekräftiger als die Messung der frequenzunabhängigen Nachhallzeit.
+
+
+\section{Flatterecho}
+Breitet ein Schallsignal sich derart aus, daß es über zwei (oder mehrere) Flächen wieder an
+den Ausgangspunkt zurückkehrt, so kann ein \textbf{Flatterecho}\index{Flatterecho}
+entstehen. Das bedeutet, daß der Schall immer wieder hin- und hergeworfen wird und somit -
+bei einem impulsartigem Schallereignis (Klatschen, etc.) - eine schnelle Abfolge leiser
+werdender Echos wahrzunehmen ist. Diese Echos werden i.a. als störend empfunden. Ein
+Flatterecho kann insbesondere dann entstehen, wenn zwei reflektierende Wände parallel
+zueinander stehen und die anderen Raumrichtungen stärker gedämpft sind. \\ Um ein
+Flatterecho zu beseitigen, sollte man entweder versuchen, eine der beiden
+gegenüberstehenden Wände z.B. durch einen Vorhang absorbierend zu machen, oder mit Hilfe
+von Diffusoren, großen Stellwänden etc. die Reflexionen in andere Richtungen abzulenken.
+Oft hilft auch einfach nur eine andere Plazierung der Musiker bzw. der Mikrophone.
+
+\section{Stehende Wellen}
+Trifft eine Schallwelle senkrecht auf eine Wand (Einfallsrichtung 0°), so überlagern sich
+die einfallende und die reflektierte Welle. \\ Man stelle sich nun zwei parallel stehende
+reflektierende Wände vor; entspricht eine halbe Wellenlänge oder ein Vielfaches davon genau
+dem Abstand der beiden Wände, so werden sich Direktschall und ein- bzw. mehrfach
+reflektierter Schall immer phasengleich überlagern. Lediglich die Ausbreitungsrichtung kann
+unterschiedlich sein. Es entsteht ein stationäres Schallfeld zwischen den beiden Wänden mit
+Schwingungsknoten, in denen der Schalldruck fast $0$ ist und Schwingungsbäuchen, in denen
+er maximal ist; diese sind ortsfest und verändern sich nicht über der Zeit. Dies sind
+sogenannte \textbf{stehende Wellen}\index{Welle!stehende} (s. Abb. \ref{fig:stehwelle1}); sie werden teilweise auch als \textit{Raumresonanzen} oder
+\textit{Raummoden}\index{Raummode} bezeichnet.
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/stwelle1}
+\caption[Druckverteilung in stehenden Wellen zwischen zwei Wänden]{Druckverteilung in stehenden Wellen zwischen zwei parallelen Wänden für zwei verschiedene Frequenzen (aus
+\cite{dickr})} \label{fig:stehwelle1}
+\end{center}
+\end{figure}
+
+\bem{Stehende Wellen können nicht nur zwischen zwei parallel stehenden Wänden auftreten,
+sondern auch durch mehrfache Reflexionen an verschiedenen Wänden, wenn die Bedingung
+erfüllt ist, daß der zurückgelegte Weg ein Vielfaches der halben Wellenlänge ist. Solche
+stehenden Wellen werden dann Raummoden höherer Ordnung genannt.}\end{quote}
+
+Abbildung \ref{fig:stehwelle2} zeigt den Zusammenhang zwischen Druck und Schnelle bei einer
+stehenden Welle.
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=.5]{Graph/mstwelle2}
+\caption{Druck- und Schnelleverlauf in einer stehenden Welle} \label{fig:stehwelle2}
+\end{center}
+\end{figure}
+
+
+Stehende Wellen fallen vor allem in kleineren Räumen bei tiefen Frequenzen auf. Bei hohen
+Frequenzen liegen die Schwingungsknoten und -bäuche so dicht nebeneinander, daß man sie
+nicht mehr wahrnehmen kann. Je kleiner ein Raum ist, desto weiter liegen die Frequenzen
+auseinander, bei denen sich stehende Wellen ausbilden können. Deshalb kann man stehende
+Wellen in kleinen Räumen deutlicher wahrnehmen, da sie sich nur bei sehr wenigen Frequenzen
+ausbilden, die sich vom Hörer deutlich unterscheiden lassen. Aus diesem Grund wird bei der
+akustischen Konzeption eines Raumes darauf geachtet, daß die sogenannte
+\textit{Eigenfrequenzdichte} möglichst hoch ist, d.h. daß die Frequenzen der einzelnen
+Moden möglichst so dicht nebeneinander liegen, daß die Wahrnehmung einer einzelnen Mode
+nicht mehr wahrnehmbar ist.
+
+\begin{sloppypar}
+\bem{Theoretisch tritt das Problem von stehenden Wellen erst auf, wenn der Raum mit einem
+reinen Sinuston dauerhaft angeregt wird, und nicht bei zeitlich veränderlichen
+(Musik-)Signalen. Tatsächlich kann es bei einer Aufnahme jedoch passieren, daß eine gewisse
+Baßlastigkeit oder Baßarmut auftritt, die dann durch leichtes Verrücken der Mikrophone
+verschwinden kann.}\end{quote}
+\end{sloppypar}
+
+\section{Zusammenfassung}
+Die sogenannte Akustik eines Raumes wird gekennzeichnet durch den Pegel, die Zeit und die
+Anzahl, mit der Reflexionen im Vergleich zum Direktschall beim Zuhörer eintreffen. Ein sehr
+wichtiges Kriterium für den Größeneindruck des Raumes ist die \textbf{Nachhallzeit} $T$.
+Sie ist abhängig von dem Raumvolumen und der Menge und Art von absorbierendem Material im
+Raum und entspricht im allgemeinen nicht der tatsächlich gehörten \textbf{Nachhalldauer}. Die Nachhallzeit ist \textbf{frequenzabhängig}, d.h. verschiedene Frequenzen klingen unterschiedlich schnell nach. Im allgemeinen ist die Nachhallzeit bei tiefen Frequenzen länger als bei hohen.\\
+Durch die vielfältigen Reflexionen an den Begrenzungsflächen entsteht zusätzlich zu dem von
+der Schallquelle ausgesendeten \textbf{Direktschallfeld} ein näherungsweise
+\textbf{diffuses Schallfeld}. Hier trifft der Schall von allen Seiten gleich stark und mit
+gleicher Wahrscheinlichkeit ein. Der Radius der Kugel um die Schallquelle, an dem der Pegel
+des Direkt- und des Diffusschallfeldes gleich sind, wird \textbf{Hallradius} genannt. Für
+gerichtete Schallquellen muß zusätzlich noch der Bündelungsgrad der Schallquelle
+berücksichtigt werden. Man spricht dann vom \textbf{effektiven Hallradius}. \\ Insbesondere
+in kleineren Räumen können zwischen parallel verlaufenden Wänden \textbf{stehende Wellen}
+entstehen. Diese bewirken ortsfeste Druckmaxima bzw. -mi\-ni\-ma, die vor allem bei tiefen
+Frequenzen wahrnehmbar werden.
+
+\section{Aufgaben}
+\begin{enumerate}
+\item  Berechne die Nachhallzeit für einen Raum mit dem Volumen $V=21000m^3$ und einer äquivalenten Absorptionsfläche von $1711.5m^2$.
+
+\item Berechne den Hallradius des o.g. Raums.
+
+\item	Berechne den effektiven Hallradius dieses Raums, wenn die Schallquelle eine Trompete mit einem ungefähren Bündelungsgrad von XXXX ist.
+
+\item	Berechne die Frequenzen möglicher stehender Wellen (1. Ordnung) in einem Raum mit der Grundfläche $5m\times 8m$.
+
+\item	Berechne die Verzögerung der ersten Wandreflexionen zum Direktschall in einem quadratischen Raum von $2500m^2$ Grundfläche, wenn Quelle und Hörer sich auf der Mittelachse gegenüberstehen, aber $30m$ Entfernung zueinander haben.
+
+\end{enumerate}
+

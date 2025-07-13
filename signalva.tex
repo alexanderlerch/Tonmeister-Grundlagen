@@ -1,0 +1,331 @@
+\chapter{Signalverarbeitung}
+\thispagestyle{empty}
+
+Dieses Kapitel stellt eine Einführung in die wichtigsten Begriffe der Signalverarbeitung dar. Zunächst geht es relativ theoretisch um Systembeschreibungen, anschließend geht es um einen kurzen Überblick über verschiedene Effekte und Qualitätsmerkmale.
+
+\section{Signalbeschreibungen}\label{chap:sigbesch}
+Nachdem in vorherigen Abschnitten wiederholt sowohl Darstellungen des Zeitverlaufs wie auch Frequendarstellungen von Signalen auftauchten, soll dieses Kapitel diese Darstellungen nun detaillierter erklären.
+\subsection{Zeitverlauf}\index{Zeitdarstellung}\label{chap:timedesc}
+Der \bld{Zeitverlauf} eines Signals ist die geläufigste und am einfachsten verständliche Darstellung eines Audiosignals. Nimmt man z.B. den Schalldruck eines akustischen Ereignisses an einem Ort auf, und zeichnet die Druckschwankungen über der Zeit auf, so betrachtet man den Zeitverlauf des Drucks. Dabei nimmt die Zeit nach rechts hin zu, und die Amplitude des Drucks wird nach oben aufgetragen. Nichts anderes ist auch die Wellenformdarstellung unterschiedlichster Audiobearbeitungsprogramme, wo die Änderungen der Amplitude des Signals über der Zeit dargestellt werden. Abb. \ref{fig:timeplot} zeigt beispielhaft die Zeitdarstellung eines Audiosignals.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/timesignal}
+			\caption[Zeitdarstellung eines Audiosignals]{Zeitdarstellung eines Audiosignals; diese Beispiel ist ein kurzer Ausschnitt aus einem Stück mit der Besetzung Gesang und Klavier} \label{fig:timeplot}
+			\end{center}
+		\end{figure}
+
+\subsection{Spektrum}\index{Spektrum}\index{Frequenzdarstellung}\index{Fouriertransformation}\label{chap:spectrumdesc}
+Ebenso wie mit der Zeitdarstellung eines Signals, wurde auch schon mit seiner \bld{Frequenzdarstellung}, dem Spektrum eines Signals in vorhergehenden Kapiteln gearbeitet. Beispielsweise zeigt die Abb. \ref{fig:schwingadd} links den Zeitverlauf und rechts das Frequenzspektrum von Sinusschwingungen. Je höher die Frequenz einer Schwingung ist, desto mehr rutscht der Peak dieser Schwingung auf der Frequenzachse nach rechts. Sinusförmige Schwingungen besitzen nur einen einzigen Frequenzanteil; in realen Signalen können dagegen sehr viele Frequenzen zur gleichen Zeit auftreten. Die Frequenzdarstellung wird auch Fouriertransormation des Signals genannt. Da Musiksignale sich auch über die Zeit ständig ändern, kann man allerdings aus Langzeitspektren kaum interessante Informationen sehen. Aus diesem Grund werden selten Frequenzanalysen eines kompletten längeren Signalabschnitts gemacht. Eine wichtige Eigenschaft der Fouriertransformation ist, daß die Transformation in beide Richtungen möglich ist, d.h. jedes Spektrum läßt sich genauso leicht in den Zeitverlauf umrechnen wie andersherum.\\
+Führt man eine Spektralanalyse (eines digitalen Signals) über N Samples durch, so erhält man genau $N/2$ komplexe Spektralwerte, die gleichförmig über das Spektrum verteilt sind. Nimmt man beispielsweise $1024$ Signalwerte eines Signals der Abtastfrequenz $48k\!Hz$, so hat man eine zeitliche Auflösung von $21.3ms$ und eine Frequenzauflösung von $46.9H\!z$. Je gröber also die zeitliche Auflösung wird, desto feiner wird die Frequenzauflösung und umgekehrt. Dies ist wichtig, denn das Signal sollte in sich innerhalb eines Analysefensters nicht zu sehr ändern. Abb. \ref{fig:spektrum} zeigt die verschiedene Darstellungsmöglichkeiten der komplexen Werte des schon in Abb. \ref{fig:timeplot} verwendeten Signals. Dieses Signal ist eigentlich schon viel zu lang, um eine Frequenzanalyse davon durchzuführen, aus diesem Grund ist das Ergebnis auch nicht sonderlich interessant zu betrachten. Abb. \ref{fig:dbSpektrum} ist die geläufige Darstellungsweise eines Signalspektrum; hier wir der Betragsfrequenzgang in Dezibel gezeigt. Da der Signalausschnitt jedoch für eine FFT-Analyse eigentlich zu lang ist, gibt es noch weitere Darstellungsmöglichkeiten, in der Zeit- und Frequenzverlauf in gewisser Hinsicht vereint werden, z.B. das sogenannte Spektrogramm\index{Spektrogramm}, das in Abb. \ref{fig:specgram} dargestellt ist, oder eine Pseudo-3D-Grafik wie in Abb.\ref{fig:3dsignal}.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/fftsignal}
+			\caption[FFT eines Audiosignals]{Frequenzspektrum eines Audiosignals, links als Real- und Imaginärteil, rechts mit Betrag- und Phasenspektrum} \label{fig:spektrum}
+			\end{center}
+		\end{figure}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/fftdbsignal}
+			\caption[Betragsfrequenzgang]{Betragsfrequenzgang eines Audiosignals in dB; gebräuchlichste Frequenzdarstellung} \label{fig:dbSpektrum}
+			\end{center}
+		\end{figure}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/specgramsignal}
+			\caption[Spektrogramm eines Audiosignals]{Spektrogrammdarstellung eines Audiosignals; die roten Bereiche besitzen die höchste Amplitude} \label{fig:specgram}
+			\end{center}
+		\end{figure}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/3dsignal}
+			\caption[3D-Frequenz/Zeitverlaufsdarstellung]{Pseudo-3D-Darstellung eines Frequenzverlaufs über der Zeit} \label{fig:3dsignal}
+			\end{center}
+		\end{figure}
+
+\subsection{Amplitudendichteverteilung}\label{chap:adv}
+	Die Amplitudendichteverteilung\index{Amplitudendichteverteilung} (ADV oder englisch: PDF für Probability Density Function) gibt an, wie wahrscheinlich bzw. wie häufig bestimmte Amplitudenwerte in einem Signal vorkommen. Dabei werden alle möglichen Amplituden auf der Abzisse (\emp{x-Achse}) aufgetragen, und die Häufigkeit jedes einzelnen Wertes auf der Ordinate (\emp{y-Achse}). Da ein Sprach- oder Musiksignal meistens ebenso viel positive wie negative Signalwerte besitzt, ist die ADV solcher Signale symmetrisch zur Ordinate. Bestünde ein Signal nur aus positiven Werten, so wäre auf der negativen Abszisse nur der Wert $0$ aufgetragen. Sind in einem Signal die kleineren Amplitudenwerte häufiger als große, so wird die ADV nach außen hin abflachen. Dies ist praktisch bei allen Sprach- und Musiksignalen der Fall. Damit die ADV sich für identische Signale, die aber unterschiedliche Länge haben, nicht unterscheidet, wird sie zumeist auf die Anzahl der betrachteten Signalwerte normiert. Dies führt dann dazu, daß die Summe aller normierten ADV-Werte $1$ ergibt.
+	\bem{Die beschriebene Funktion ist eigentlich nur eine Näherung der ADV, nämlich eine \emp {Häufigkeitsverteilung}(HV)\index{Häufigkeitsverteilung}. Lediglich die Verallgemeinerung dieser HV-Messung für kontinuierliche Amplitudenwerte alle Signalausdehnungen liefert dann die ADV bzw. die tatsächliche Wahrscheinlichkeitsdichtefunktion. Dennoch wird eine solche Häufigkeitsverteilung im folgenden unter der Bezeichnung ADV verwendet.}
+	\end{quote}
+	\bem{Da auf der Ordinate die Häufigkeit von Amplitudenwerten aufgetragen ist, kann kein Wert der ADV jemals negativ werden.}
+	\end{quote}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/pdfsignal}
+			\caption[ADV eines Musiksignals]{Amplitudendichteverteilung eines Musiksignals} \label{fig:pdfplot}
+			\end{center}
+		\end{figure}
+
+\section{Systembeschreibungen}
+Der Begriff System\index{System} kann in der Signaltheorie für praktisch jedes signalverarbeitende Gerät verwendet werden. Beispiele aus der Tontechnik sind Effekte wie Delay und Hallgerät ebenso wie ein normaler Verstärker oder ein Kompressor (vgl. Abschnitt \ref{chap:fx}). Ebenso kann aber auch jeder Raum als System verstanden werden, der jedes akustische Signal verhallt. Der Begriff System steht also erstmal für eine black box mit einem vom Eingangsaudiosignal abhängigen Ausgang.
+
+Der Begriff System kann also recht abstrakt für ziemlich viele Dinge stehen. Parameter, die ein System in seiner Grundfunktionalität beschreiben, sind vor allem die sog. \emp{Linearität}\index{Linearität} und die \emp{Zeitvarianz}\index{Zeitvarianz}. Ein System wird linear genannt, wenn es bestehende Signalanteile (z.B. Frequenzbänder) des Eingangssignals verstärkt oder dämpft, während ein sog. nichtlineares System dem Signal zuvor nicht enthaltene Signalanteile hinzufügt. Beispielsweise sind Verstärker oder Filter lineare Systeme, während ein Verzerrer oder ein Exciter nichtlineare Systeme sind.
+\bem{In der Realität besitzt jedes analoge System wie Verstärker und Filter auch einen nichtlinearen Anteil. Dieser Anteil soll dann möglichst klein sein; ein Beispiel für die Messung der Auswirkung nichtlinearer Systemanteile (Verzerrungen\index{Verzerrung}) ist die Klirrfaktormessung (vgl. Abschnitt {chap:klirrfaktor}).}\end{quote}
+Ein weiteres wichtiges Merkmal von Systemen ist ihre Zeitabhängigkeit. Ändern sich die Eigenschaften des Systems mit der Zeit, so nennt man das System zeitvariant, andernfalls zeitinvariant. Ein Filter ist ein zeitinvariantes System (wenn man nicht gerade die Filterparameter verändert), während ein Kompressor ein zeitvariantes System ist.
+
+\subsection{Lineare Systeme}\index{System!lineares}\label{chap:linsystem}
+	Lineare Zeitinvariante System lassen sich in zwei Darstellungen beschreiben, dem \emp{Übertragungsfrequenzgang}\index{Übertragungsfrequenzgang} (auch Transferfunktion\index{Transferfunktion}) $H(f)$ und der \emp{Impulsantwort}\index{Impulsantwort} $h(t)$. Dabei gilt, daß die Übertragungsfunktion die Fouriertransformation, das Spektrum, der Impulsantwort ist. Die Impulsantwort eines Systems ist - wie der Name schon sagt - die Antwort des Systems auf einen sehr kurzen Impuls, z.B. ist die Impulsantwort eines Raumes nach einem kurzen lauten Händeklatschen näherungsweise wahrzunehmen. Die Impulsantwort eines idealen Systems ist ein unendlich kurzer Impuls; der Übertragungsfrequenzgang eines idealen Systems ist ein horizontal verlaufendes Spektrum, d.h. daß jede Frequenz das System unverändert passieren kann.
+	
+\subsubsection{Faltung}\label{chap:faltung}
+Mit Hilfe der Transferfunktion\index{Übertragungsfrequenzgang}\index{Transferfunktion} $H(f)$ läßt sich das Spektrum des Ausgangs $Y(f)$ aus dem Spektrum des Eingangs $X(f)$ berechnen:
+\begin{equation}
+	Y(f) = X(f)\cdot H(f)
+\end{equation}
+Da sich Spektrum und Zeitsignal beliebig ineinander überführen lassen, ist der Ausgang eines linearen Systems aufgrund seiner Übertragungsfunktion\index{Übertragungsfrequenzgang}\index{Transferfunktion} leicht zu bestimmen. Am Beispiel eines Filters, der alle höheren Frequenzen aus dem Signal herausfiltert (Tiefpaßfilter), läßt sich das veranschaulichen: alle Frequenzen über der Grenzfrequenz $f_G$ werden abgeschnitten, während die darunterliegenden Frequenzanteile das System unbeeinflußt passieren. Damit enthält das Ausgangssignal keine hohen Frequenzen mehr.\\
+
+Wie im Frequenzbereich über Multiplikation läßt sich im Zeitbereich der Ausgang eines Systems $y(t)$ mit der sog. \emp{Faltung}\index{Faltung} (auch: Convolution) bestimmen. Bei der Faltungsoperation (eines Signals $x(t)$ mit einer Impulsantwort\index{Impulsantwort} $h(t)$) wird das Signal an jedem Zeitpunkt mit der Impulsantwort multipliziert und das Ergebnis über alle Zeitpunkte aufsummiert. Die Faltung wird in der Literatur i.a. mit einem Stern gekennzeichnet:
+\begin{equation}
+	y(t) = x(t)\;*\;h(t)
+\end{equation}
+
+
+\subsection{Nichtlineare Systeme}\index{System!nichtlineares}
+Nichtlineare System können dem Signal bisher noch nicht vorhandene Anteile hinzufügen. Das bedeutet, nichtlineare System führen zu \emp{Verzerrungen}. Zu nichtlinearen Systemen gibt es keine so einfach zu verallgemeinernde Beschreibung wie für lineare Systeme; einen nichtlinearen Effekt kann man auf vielerlei Weise erreichen. Ein typisches Beispiel sind Übersteuerungen; aber Nichtlinearlitäten werden auch bewußt eingesetzt, z.B. bei Distortioneffekten, beim Kompressor oder beim Exciter.
+
+\section{Grundlegende Signalformen bei der Signalsynthese}
+Um ein besseres Gefühl für Frequenzdarstellungen eines Signals zu bekommen, ist in Abb. \ref{fig:sig_spec} die Zeit- und Frequenzdarstellung von in der Klangsynthese häufig verwendeten tonalen Signalgrundformen dargestellt. Dabei handelt es sich um ein Sinussignal, ein Rechtecksignal, ein Sägezahnsignal und ein Dreiecksignal.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/signals}
+			\caption[Grundsignale]{Sinus-, Rechteck-, Sägezahn-, und Dreiecksignal, links als Zeitsignal, rechts das Spektrum mit Achsenskalierung in Vielfachen der Grundfrequenz} \label{fig:sig_spec}
+			\end{center}
+		\end{figure}
+Es ist deutlich zu sehen, daß die unterschiedlichen Signalverläufe in der Zeitdarstellung sich auch deutlich auf den Spektralverlauf \glqq auswirken\grqq.
+
+\bem{Als Daumenregel kann man davon ausgehen, daß der Anteil an hohen Frequenzen immer mehr zunimmt, je plötzlichere oder größere Sprünge ein Signalverlauf vorweist.}\end{quote}
+
+Eine weitere sehr wichtige, aber nicht so einfach definierbare Signalform ist das Rauschen. Die technische Definition des Rauschen besagt, daß es zu allen anderen Signalen inkohärent ist. Dies bedeutet z.B., daß theoretisch die Addition von zwei gleichlauten Rauschen immer nur eine Pegelerhöhung von $3dB$ ergeben kann. \\
+Im Zusammenhang mit Rauschen werden oft Farben als nähere Bezeichnung für Rauschen verwendet, wie z.B. \emp{weißes Rauschen} oder \emp{rosa Rauschen}. Diese Farben beschreiben den Frequenzverlauf des Rauschen und sind damit auch so eine Art Klangfarbenbeschreibung des Rauschens. 
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/noise}
+			\caption[verschiedene Rauschen]{weißes, rosa, und braunes Rauschen, links als Zeitsignal, rechts das Spektrum} \label{fig:noise_spec}
+			\end{center}
+		\end{figure}
+Abb. \ref{fig:noise_spec} zeigt verschiedenfarbige Rauschen als Zeitsignal und in Frequenzdarstellung. Ihre Energie nimmt hin zu hohen Frequenzen folgendermaßen ab:
+\begin{itemize}
+	\item weißes Rauschen\index{weißes Rauschen}: 0dB/Octave
+	\item rosa Rauschen\index{Rosa Rauschen}: 3dB/Octave
+	\item braunes Rauschen\index{Braunes Rauschen}: 6dB/Octave
+\end{itemize}
+
+\section{Geräte der Signalverarbeitung}\label{chap:fx}
+In diesem Abschnitt sollen die typischen Tonstudiogeräte in Ihrer Funktionsweise beschrieben werden.
+	\subsection{Fader}\label{chap:fader}
+	Ein \bld{Fader} ist einfach nur ein Stellregler, mit dem die Amplitude eines Signals verändert werden kann. Fader findet man z.B. in Mischpulten. Sie verwenden praktisch immer eine dB-Skala, die im Bereich um 0dB besonders fein aufgelöst ist. Ein Fader ist ein lineares System und - wenn der Fader nicht bewegt wird - zeitinvariant.
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:amplitude}
+	\item Abschnitt \ref{chap:pegel}
+\end{itemize}
+\end{quote}
+
+	
+	\subsection{Filter}\label{chap:filter}
+	\bld{Filter}\index{Filter} (auch \emp{Entzerrer}\index{Entzerrer}) sind die mit am häufigsten im Tonstudio eingesetzten Werkzeuge zur Klangbearbeitung und -verarbeitung.
+	
+	Einfache Filter zur Klangbearbeitung kennt man zum Beispiel von der Stereoanlage oder einfacher Musiksoftware, wo sich Bässe, Mitten und Höhen anheben bzw. absenken lassen. Genau das ist die Aufgabe eines Filters bzw. Entzerrers: die Anhebung oder Dämpfung bestimmter Frequenzbereiche. Für verschiedene Einsatzbereiche müssen Filter verschiedene Übertragungsfunktionen haben; der Verlauf dieser Übertragungsfunktionen bestimmt den \emp{Filtertyp}. 
+		
+	Bevor die einzelnen Filtertypen kurz vorgestellt werden, müssen kurz einige Begriffe eingeführt werden:
+	\begin{itemize}
+	
+	
+		\item	\emp{Grenzfrequenz}\index{Grenzfrequenz}\index{Filter!Grenzfrequenz} $f_G$: Bei einseitigen Filtern die Frequenz (in $H\!z$), ab der die Übertragungsfunktion eines Filter um mehr als $\pm3dB$ von $0dB$ abweicht.
+		\item	\emp{Mittenfrequenz}\index{Mittenfrequenz}\index{Filter!Mittenfrequenz} $f_C$: Bei symmetrischen Filtern die Frequenz (in $H\!z$), um die die Übertragungsfunktion des Filters symmetrisch ist.
+		\item	\emp{Bandbreite eines Filters}\index{Bandbreite eines Filters} $B_G$: Bei symmetrischen Filtern die Breite des Frequenzbandes (in $H\!z$) in dem die Übertragungsfunktion um weniger als $\pm3dB$ von $0dB$ abweicht
+		\item	\emp{Güte}\index{Güte}\index{Filter!Güte} $Q$: Bei symmetrischen Filtern ist die Güte ein aussagekräftigere Darstellung der Bandbreite. Die Güte wird berechnet durch das Verhältnis von 
+		\begin{eq}\label{eq:guete}
+			\frac{f_C}{B_G}
+		\end{eq}.
+		 Ist also die Bandbreite des Filters gleich der Mittenfrequenz, so nimmt die Güte den Wert $1$ an. Ist die Bandbreite schmaler als die Mittenfrequenz, so wird die Güte größer als $1$ und andersherum. Die Güte ist dimensionslos.
+		\item	\emp{Flankensteilheit}\index{Flankensteilheit}\index{Filter!Flankensteilheit} $F$: Gibt in der Pseudo-Einheit $\left[\frac{dB}{Octave}\right]$ an, wie steil die abfallende Flanke der Übertragungsfunktion fällt. Typische Werte sind ganzzahlige Vielfache von $6$ wie $6$, $12$, $18$ und $24\frac{dB}{Octave}$.
+	\end{itemize}
+	
+	Filter teilt man je nach Verlauf des Betragsfrequenzganges in verschiedene Kategorien ein. Die wichtigsten sind:
+	\begin{enumerate}
+	
+		\item	\bld{Tiefpaß-Filter}\index{Tiefpaß-Filter}\index{Filter!Tiefpaß-}:\\
+		Tiefe Frequenzen bis zur Grenzfrequenz $f_G$ passieren das Filter (nahezu) unverändert, höhere Frequenzen werden zunehmend gedämpft. Die Stärke der Dämpfung nimmt mit der Flankensteilheit zu. Ein typischer Wert für die Flankensteilheit der meisten Tiefpaß-Filter liegt bei $12\frac{dB}{Octave}$. Die einstellbaren Parameter eines Tiefpasses können sein: \emp{Grenzfrequenz}, \emp{Flankensteilheit}
+				
+		\item	\bld{Hochpaß-Filter}\index{Hochpaß-Filter}\index{Filter!Hochpaß-}:\\
+		Alle Frequenzen über der Grenzfrequenz $f_G$ passieren das Filter (nahezu) unverändert, Frequenzen darunter werden gedämpft. Je tiefer die Frequenz ist, desto stärker ist die Dämpfung, die mit der Flankensteilheit zunimmt. Das Hochpaß-Filter ist das Gegenstück zum Tiefpaßfilter, aus diesem Grund können die einstellbaren Parameter wie beim Tiefpaß \emp{Grenzfrequenz} und \emp{Flankensteilheit} sein. \\
+		Sonderfälle des Hochpaß-Filters sind der \emp{Trittschallfilter}\index{Trittschallfilter}\index{Filter!Trittschall-}, dessen Grenzfrequenz meist zwischen $50$ und $180H\!z$ liegt und der zur Unterdrückung von Rumpelgeräuschen dient, und der \emp{DC-Block-Filter}\index{DC-Block-Filter}\index{Filter!DC-Block-} mit einer Grenzfrequenz um die $20Hz$ zur Unterdrückung des Gleichanteils in einem Signal.
+		
+		\item	\bld{Shelving-Filter}\index{Shelving-Filter}\index{Filter!Shelving-}(manchmal auch Kuhschwanz-Filter):\\
+		 Das Shelving-Filter scheint sich für den Anwender zunächst ähnlich zu verhalten wie Tiefpaß- oder Hochpaßfilter. Ab einer bestimmten Grenzfrequenz können Frequenzen angehoben oder abgesenkt werden. Der Unterschied zu den beiden oben genannten Filtertypen ist jedoch, daß diese Anhebung/Verstärkung oder Absenkung/Dämpfung für alle Frequenzen ab der Grenzfrequenz gleichstark ist und nicht mit zu-bzw. abnehmender Frequenz zunimmt. Je nachdem, ob die Anhebung oder Absenkung ober- oder unterhalb der Grenzfrequenz stattfindet, spricht man von \emp{Höhenshelving} oder \emp{Tiefenshelving}. Die einstellbaren Parameter eines Shelvingfilters sind \emp{Grenzfrequenz} und \emp{Anhebung/Dämpfung} in $dB$.
+		
+		\item	\bld{Peak-Filter}\index{Peak-Filter}\index{Präsenz-Filter} \index{Filter!Peak-}\index{Filter!Präsenz-}(manchmal auch Präsenz-Filter):\\
+		 Die Aufgabe des Peakfilters ist die Anhebung oder Absenkung eines bestimmten Frequenzbandes. Dazu kann i.a. die \emp{Mittenfrequenz} des zu bearbeitenden Frequenzbandes und die \emp{Güte} (und dadurch die Bandbreite) des Filters eingestellt werden. 
+		
+		\item	\bld{Bandpaß-Filter}\index{Bandpaß-Filter}\index{Filter!Bandpaß-}: Das Bandpaß-Filter kann als Reihenschaltung von Tiefpaß mit hoher Grenzfrequenz und Hochpaß niedriger Grenzfrequenz interpretiert werden. Es läßt nur Frequenzen innerhalb eines bestimmten Frequenzbandes passieren. Einstellbare Parameter sind die \emp{Mittenfrequenz}, die \emp{Bandbreite} und die \emp{Flankensteilheit} des Bandpasses.
+		
+		\item	\bld{Bandsperre-Filter}\index{Bandsperre-Filter}\index{Filter!Bandsperre}:\\
+		 Die Bandsperre ist das genaue Gegenteil des Bandpasses; alle Frequenzen, die nicht innerhalb eines bestimmten Frequenzbandes liegen, können das Filter (nahezu) ungehindert passieren. Frequenzen innerhalb des Frequenzbandes werden unterdrückt. Die einstellbaren Parameter sind wie beim Bandpaß die \emp{Mittenfrequenz}, die \emp{Bandbreite} und die \emp{Flankensteilheit}.
+		
+		\item	\bld{Notch-Filter}\index{Notch-Filter}\index{Filter!Notch-}:\\
+		 Das Notchfilter kann aus Anwendersicht als Spezialfall der Bandsperre mit einem sehr schmalen Frequenzband interpretiert werden. Alle Frequenzen bis auf eine ganz spezielle können das Filter (nahezu) ungehindert passieren, diese Frequenz wird komplett herausgefiltert. Als Parameter läßt sich zumeist nur die \emp{Mittenfrequenz} einstellen, manchmal auch die \emp{Güte} des Filters.\\
+		 Der Einsatzzweck eines Notch-Filters ist zum Beispiel das Herausfiltern von störendem Netzbrummen von einer Aufnahme. Dabei werden meistens mehrere Notchfilter eingesetzt, deren Mittenfrequenzen ganzzahlige Vielfache der Grundfrequenz sind, da Netzbrummen normalerweise nicht nur aus einem sinusförmigen Signal besteht.\\
+		 Die Phasenverschiebungen um die Mittenfrequenz sind bei einem Notch-Filter sehr stark, und das gefilterte Signal sollte nach der Bearbeitung daraufhin überprüft werden.
+		 
+	\end{enumerate}
+	Verschiedene dieser Filter (v.a. Tiefpaß und Bandpaß) gibt es auch als sogenannte \emp{Resonanz-Filter}\index{Resonanz-Filter}\index{Filter!Resonanz}. Diese zeichnen sich dadurch aus, daß sie an der Grenzfrequenz bzw. der Mittenfrequenz noch eine starke (regelbare) Anhebung haben. Dadurch wird klanglich diese Frequenz betont, was insbesondere bei Filterungen interessant ist, wo zeitliche Veränderungen der Grenzfrequenz/Mittenfrequenz als musikalisches Stilmittel eingesetzt werden.
+	
+	Filter unterschiedlicher Hersteller klingen im allgemeinen unterschiedlich. Diese Klangunterschiede sind das Resultat unterschiedlicher Herangehensweise beim Filterentwurf. Bei analogen Filtern spielen auch die verwendeten Bauteile eine Rolle. Diskussionsstoff liefert oft auch der Phasenfrequenzgang eines Filters. Hier läßt sich nicht abschließend sagen, welchen Einfluß dieser auf die empfundene Qualität eines Filters hat. Filter mit linearen Phasengang sind in der Analogwelt nicht realisierbar. Ein Filter ist ein lineares System und - wenn die Parameter nicht geändert werden - zeitinvariant.
+	
+	Mit dem Einsatz von Filtern lassen sich auch andere Effekte erreichen, wie z.B. der \bld{Phaser}\index{Phaser}-Effekt. Dieser Effekt lässt sich erreichen durch eine Reihenschaltung mehrerer Notch-Filter mit unterschiedlichen Mittenfrequenzen. Dieser Mittenfrequenzen werden durch einen Oszillator leicht moduliert. Die starken Phasenverschiebungen um die Mittenfrequenz des Notchfilters führen bei der Addition mit dem Originalsignal zu Interferenzen (vgl. Abschnitt \ref{chap:phaseshift}, die sich zeitlich mit der Frequenz des Oszillators verändern.
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:local}
+	\item Abschnitt \ref{chap:ton_klang}
+	\item Abschnitt \ref{chap:phaseshift}
+\end{itemize}
+\end{quote}
+	
+	\subsection{Delay und Delay-basierte Effekte}\index{Delay}\label{chap:delay}
+		Das \bld{Delay} ist ein Effekt, der schon seit langer Zeit insbesondere im Pop-/Rock\-bereich eingesetzt wird. Im einfachsten Fall wird dieser Effekt erzeugt, indem das Eingangssignal verzögert wird und gedämpft dem Originalsignal hinzugemischt wird. Je nach Intensität des verzögerten Signals und der Verzögerungszeit entsteht so oft der Eindruck eines Echos\index{Echo} (vgl. Abschnitt \ref{chap:firstfront} zur Echoschwelle). Auch wenn man diesen einfachen Fall schon als Delayeffekt bezeichnen kann, so sind die i.a. eingesetzten Delayeffekte noch etwas ausgefeilter. Der typische Delayeffekt ist rückgekoppelt, d.h. der Ausgang des Effekts wird (etwas gedämpft) wiederum auf ein Verzögerungsglied gegeben. Auf diese Art und Weise erreicht man ein ständig leiser werdendes Ausklingen. Abhängig von den Einstellungen (Zeit der Verzögerung, Dämpfung des verzögerten Signals) läßt sich die Länge und die Dichte des Effekts von einem beatweise wiederholen bis zum hallähnlichen Nachklang variieren. \\
+Ein Delay ist i.a. ein lineares System und meistens zeitinvariant.
+
+Andere Effekte bauen auf der zeitlichen Veränderung der Verzögerungszeit auf. Der \bld{Flanger\index{Flanger}} arbeitet zumeist mit einer Zeit $<15ms$, die kontinuierlich - beispielsweise sinusförmig - moduliert werden. Die Modulationsgeschwindigkeit liegt in der Größenordnung von $1H\!z$.\\
+Der \bld{Chorus}\index{Chorus} ähnelt dem Funktionsprinzip des Flangers sehr. Hier wird aber nicht nur ein verzögertes Signal auf das Originalsignal addiert, sondern mehrere mit unterschiedlichen Delayzeiten (meistens zwischen $10$ und $25ms$). Die Verzögerungszeiten werden dabei ständig leicht verändert. Im Gegensatz zum Flanger sind diese kleinen Änderungen zufällig, und werden nicht vom einem deterministischen Signal wie einem Sinus hervorgerufen.\\
+Flanger und Chorus sind lineare zeitinvariante Systeme. Klanglich ist der Phaser\index{Phaser} ein verwandter Effekt.
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:firstfront}
+\end{itemize}
+\end{quote}
+		
+	\subsection{Hallgerät}\label{chap:reverb}\index{Hall}\index{Hallgerät}
+		Aufgabe eines \bld{Hallgerätes} ist es, das Eingangssignal in einer Weise zu verarbeiten, daß es mit einem räumlichen Eindruck versehen wird, wie eine Schallquelle in einem Raum. Technisch gesprochen versucht ein Hallgerät die Raumimpulsantwort eines Raumes nachzubilden, und das Eingangssignal mit dieser zu falten. Es existieren auch Hallgeräte, die auf real gemessenen Rauminpulsantworten beruhen, und die das Eingangssignal mit dieser Impulsantwort falten. Zur Optimierung des Halls für das spezielle Eingangssignal und die Anwendung werden meistens die unterschiedlichsten Räume als Presets angeboten, die dann mit verschiedenen Parametern angepaßt werden können. Die wichtigsten Parameter sind hierbei die Nachhallzeit\index{Nachhallzeit}, verschiedene Filterparameter insbesondere zur Tiefenanhebung/-absenkung oder Hochpaßfilterung und das sogenannte Pre-Delay\index{Pre-Delay}, mit dem sich eine Verzögerung des verhallten Signals erzielen läßt.\\
+Ein Hallgerät ist ein lineares System und - wenn die Parameter nicht geändert werden - zeitinvariant.
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:raumak}
+	\item Abschnitt \ref{chap:faltung}
+\end{itemize}
+\end{quote}
+
+	\subsection{Dynamikbearbeitung}\label{chap:dynamics}
+		Geräte zur Dynamikbearbeitung\index{Dynamikbearbeitung} regeln im allgemeinen die Verstärkung/Dämpfung für ein bestimmtes Eingangssignal automatisch in Abhängigkeit des Eingangspegels. Dazu kann man bei fast allen Geräten die sogenannte \emp{Attack Time}\index{Attack Time} und \emp{Release Time}\index{Release Time} einstellen. Die Attack Time ist eine Zeitkonstante zur Einstellung der Reaktionszeit des Systems auf plötzliche Peaks oder laute Passagen, während über die Release Time die Reaktionszeit beim Wechsel von lauten hin zu leisen Passagen einstellbaren ist. Bekannte Geräte zur Dynamikbearbeitung sind:
+		\begin{enumerate}
+			\item	\bld{Noise Gate}\index{Noise Gate}:\\
+				Die Aufgabe eines Noise Gates ist, bei Signalen mit einem geringeren Pegel als der eingestellten \emp{Threshold} kein Signal auszugeben, bei lauteren Signalen das Signal allerdings unverändert zu lassen. Dies geschieht über einen pegelabhängigen \emp{Gain Factor} der sich allerdings nicht unmittelbar ändert. Oft lassen sich auch über die \emp{Attack Time} und die \emp{Release Time} die Reaktionszeiten des Systems einstellen. Zu kurze Zeiten führen hierbei oft zu einem zerstückelten Klang, während zu lange Reaktionszeiten entweder dazu führen, daß der Anfang relevanter, laute, Passagen fehlt oder das Gate bei nichtgewollten Signalen mit kleinem Pegel zur spät \glqq zumacht\grqq.
+			\item \bld{Limiter}\index{Limiter}:\\
+				Ein Limiter soll starke Peaks eines Signals kontrollieren (insbesondere um Übersteuerungen zu vermeiden), das Eingangssignal und seinen Dynamikbereich aber möglichst unverändert lassen. Hierzu muß die Reaktionszeit des Systems insbesondere für die Detektion von lauten Signalanteilen möglichst kurz sein. Wird der Eingangspegel des Signals bei gleichen Limitereinstellungen angehoben, so resultiert dies sowohl in einer Lautstärkeerhöhung des Signals als auch in einigen zusätzlichen hohen Frequenzenanteilen.
+			\item	\bld{Compressor}\index{Compressor} und \bld{Expander}\index{Expander}:\\
+			  Compressoren sind mit die am häufigsten eingesetzten Geräte zur Dynamikbearbeitung. Sie werden zur Eingrenzung des Dynamikumfangs benutzt. Signalanteile mit kleinem Pegel passieren das System unbeeinflußt, während hohe Pegel oder laute Teile entsprechend der Kompressorkennlinie gedämpft werden. Durch Anhebung des Eingangspegels kann so ein lauteres Signal mit geringem Dynamikumfang erreicht werden.\\
+			  Expander tun genau das Gegenteil von Kompressoren; sie senken leise Signalanteile im Pegel ab, während sie laute Signalanteile anheben. Das Resultat ist eine \glqq lebendigere\grqq$\;$ Klangcharakteristik.
+				
+		\end{enumerate}
+		Es gibt eine ganze Reihe Effektgeräte oder PlugIns, die prinzipiell zur Familie der Dynamikprozessoren gehören, aber aufgrund von Modifikationen im Algorithmus und anderen Gründen anders genannt werden. Mögliche Namen sind z.B. Finalizer, Maximizer, etc. 
+
+Die Geräte zur Dynamikbearbeitung sind i.a. nichtlineare und zeitvariante Systeme.
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:ss-pegel}
+	\item Abschnitt \ref{chap:lautstaerke}
+\end{itemize}
+\end{quote}
+
+	\subsection{Verzerrer und Enhancer}
+	\subsection{andere Effekte}
+		Ein sog. \bld{De-Esser}\index{De-Esser} wird zur Verarbeitung von Sprache und Gesang verwendet. Bei diesen Signalen werden die Zisch- und S-laute oft als zu dominant und störend empfunden. Die Aufgabe eines De-Essers ist es, diese Signalanteile, die meistens im Bereich zwischen $2$ und $6kH\!z$ liegen, zu dämpfen. Hierzu wird meistens ein Filter verwendet, dessen Dämpfung abhängig von der Signalamplitude in diesem Frequenzbereich ist.\\
+		
+Röhrensimulation, Tape Saturation	
+
+\section{Qualitätsmerkmale}
+	Die Einschätzung der Qualität von verwendetem Equipment kann sehr wichtig sein. Wenn man selbst keine Messungen durchführen kann oder will, ist man zumeist auf Tests in Fachzeitschriften und die Herstellerangaben angewiesen. Die dabei häufig angegebenen Daten sollen in diesem Abschnitt kurz erläutert werden. 
+
+\subsection{Übertragungsfrequenzgang}\label{chap:transferfunc}	
+	Der \bld{Übertragungsfrequenzgang}\index{Übertragungsfrequenzgang} eines Gerätes ist v.a. bei Verstärkern oder (elektroakustischen) Wandlern von Interesse, da diese - im Gegensatz zu Effekten - das Signal möglichst wenig beeinflussen sollen. Angestrebt wird daher ein möglichst linearer Frequenzgang über einen möglichst großen Frequenzbereich. Die Linearität wird dabei meist durch die maximale Abweichung (wie z.B. $\pm0.5dB$) vom idealen (horizontal) verlaufenden Frequenzgang angegeben. Dazu wird der Frequenzbereich (z.B. $15H\!z$ - $22kH\!z$ angegeben, für den diese maximale Abweichung gilt. Diese Angaben lassen allerdings keine Rückschlüsse auf den Phasengang des Systems zu.
+	
+	Die (Hersteller-)Angabe eines Frequenzganges ist umso aussagekräftiger, je höher die Auflösung der dB-Skala ist. Manchmal wird der Frequenzgang auf einer Skala mit dermaßen hoher Auflösung gezeigt, daß eine Aussage über seine Linearität gar nicht mehr möglich ist. Auch durch Verdickung der aufgetragenen Linie wirkt der Frequenzgang für das Auge des flüchtigen Betrachters zunächst linear, obwohl er das nicht sein muß.
+
+\subsection{Dynamikumfang}
+	Der \bld{Dynamikumfang}\index{Dynamikumfang} eines Systems ist leicht vereinfacht gesagt der Pegelwert, um den ein vollausgesteuertes Signal gedämpft werden kann, bis es im Grundrauschen des Systems verschwindet. Dieser Wert berücksichtigt keine nichtlinearen Verzerrungen und wird in dB angegeben. Dieser Wert ist vergleichbar zum Signal-Rauschabstand (SNR)\index{Signal-Rauschabstand} eines Systems.
+	
+\subsubsection{Bewertungsfilter}
+	Das Ohr hat, wie in Abschnitt \ref{chap:lautstaerke} beschrieben, keinen linearen Frequenzgang. Die spektrale Verteilung des Systemrauschens bei der Messung des Dynamikumfangs wird bei einer Messung wie oben beschrieben allerdings nicht berücksichtigt. Wenn das Rauschen beispielsweise sehr starke Anteile oberhalb von $12kH\!z$ hätte, so würden diese genauso stark gewichtet wie Anteile um $3kH\!z$, was nicht dem subjektiven menschlichen Lautstärkeempfinden entspräche.\\
+	Aus diesem Grund gibt es die sogenannten \bld{Bewertungsfilter}\index{Bewertungsfilter}\index{Filter!Bewertungs-} oder \bld{Gewichtungsfilter}\index{Gewichtungsfilter}\index{Filter!Gewichtungs-}, welche grob den Verlauf der Kurven gleicher Lautstärkepegel approximieren. Die in der Tonmeßtechnik am häufigsten verwendete Bewertungskurve ist die sogenannte \emp{A-Bewertung}, da diese der Empfindlichkeit des Ohres für geringe Pegel nachempfunden ist. Die B- und C-Kurven sind für Messungen bei mittlerem bzw. hohem Pegel gedacht. Werte, die mit A-Bewertung gemessen wurden, werden durch ein angehängtes A kenntlich gemacht, z.B. $95dB(A)$\index{Dezibel!dB(A)} oder $110dB(C)$\index{Dezibel!dB(C)}. Zu beachten ist, daß A-bewertete Messungen praktisch immer \glqq bessere\grqq$\,$ Ergebnisse liefern als unbewertete.\\
+	Als alternative Bewertungskurve zu der A-Bewertung existiert noch die CCIR-Bewertungskurve. 
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:ss-pegel}
+\end{itemize}
+\end{quote}
+
+\subsection{Klirrfaktor}\label{chap:klirrfaktor}
+	Der \bld{Klirrfaktor}\index{Klirrfaktor} (englisch: \emp{THD} für \emp{Total Harmonic Distortion}) eines Systems ist ein Maß für seine nichtlinearen Verzerrungen. Ein nichtlineares System erzeugt Verzerrungen bei Frequenzen, die ganzzahligen Vielfachen der Eingangsfrequenz entsprechen. Zur Messung des Klirrfaktors wird an den Eingang des Systems ein Sinussignal (meistens der Frequenz $1000H\!z$ gelegt. Der Klirrfaktor $k$ berechnet sich dann mit
+	\begin{equation}
+		k = \sqrt{k_2^2 + k_3^2},
+	\end{equation}
+	wobei die Summanden das Verhältnis des Spannungswertes bei der n-fachen Grundfrequenz und der Gesamtspannung des Systems $U_{ges}$ sind:
+	\begin{equation}
+		k_n = \frac{U_n}{U_{Ges}}
+	\end{equation}
+	Der Pegel des Sinustons ist von immenser Bedeutung für die Aussagekraft der Messung. Im allgemeinen wächst der Klirrfaktor mit zunehmendem Eingangspegel, so daß die Messung möglichst bei Vollaussteuerung durchgeführt werden sollte.
+	
+	Manchmal wird statt des Klirrfaktors auch das sogenannte \emp{Klirrdämpfungsmaß}\index{Klirrdämpfungsmaß} $a_k$ angegeben:
+	\begin{equation}
+		a_k = 20\log\left(\frac{1}{k}\right)
+	\end{equation}
+	
+	
+\subsection{Total Harmonic Distortion and Noise}
+	Die Messung des \bld{THD+N}\index{Total Harmonic Distortion and Noise}-Wertes ist wie der Klirrfaktor ein Maß für die nichtlinearen Verzerrungen, berücksichtigt aber auch das Rauschen des Testsystems. Im Falle eines idealen linearen Systems (ohne nichtlineare Verzerrungen) entsprechen die THD+N-Werte dem Dynamikumfang des Systems.
+	
+\subsection{Modulationsverzerrungen}
+		Durch eine nichtlineare Verzerrung entstehen nicht nur harmonische Vielfache der Grundfrequenz, sondern auch sogenannte Summen- und Differenztöne, die bei der Klirrfaktormessung nicht berücksichtigt werden. Die Stärke dieser Verzerrungen versucht man mit dem kaum mehr gebräuchlichen \bld{Intermodulationsfaktor}\index{Intermodulationsfaktor}, für dessen Messung die Summe der Spannungen an den Frequenzen der Summen- und Differenztöne gebildet wird, oder mit dem sog. \bld{Differenztonfaktor}\index{Differenztonfaktor} zu messen. Der Differenztonfaktor gibt das Verhältnis von der Spannung bei den Differenztonfrequenzen zu der Gesamtspannung an. Es können verschiedene Ordnungen des Differenztonfaktors angegeben werden:
+		\begin{eqnarray}
+			d_2 &=& \frac{U_{f_2-f_1}}{\sqrt{2}\cdot U_{Ges}} \\
+			d_3 &=& \frac{U_{2f_2-f_1} + U_{2f_1-f_2}}{\sqrt{2}\cdot U_{Ges}} 
+		\end{eqnarray}
+Die Differenz von $f_2$ und $f_1$ sollte dabei $70H\!z$ betragen.
+
+\subsection{Übersprechdämpfung}	
+	Die \bld{Übersprechdämpfung}\index{Übersprechdämpfung} eines mehrkanaligen Systems gibt an, mit welcher Dämpfung in dB das Audiosignal eines Kanals auf dem anderen zu hören ist. Übersprechen sollte in digitalen Geräten nicht auftreten.
+
+\subsection{Hörtests}\label{chap:listtest}
+	Mit den beschriebenen Merkmalen lassen sich zeitvariante Systeme kaum in Ihrer Qualität beurteilen. Desweiteren sind auch Systeme vorstellbar, die technisch schlechtere Meßwerte aufweisen, aber dennoch subjektiv besser klingen. Um solche Qualitätskriterien besser in den Griff zu bekommen, kann man Hörtests durchführen, bei denen die Testhörer die Qualität (u.U im Vergleich zu einem Referenzsignal) aufgrund ihres subjektiven Eindrucks beurteilen. Insbesondere für Systeme wie AD/DA-Wandler (vgl. Abschnitt \ref{chap:wandler}) oder Codierungsverfahren (vgl. Abschnitt \ref{chap:codecs}) sind solche Hörtests von Bedeutung. 
+	
+	Die Durchführung von Hörtests ist aber zumeist sehr aufwendig, wenn die Ergebnisse aussagekräftig sein sollen. In der Vorbereitung muß man sich genaue Gedanken machen über die Auswahl des Testmaterials, die Auswahl und Menge der Testhörer, die Testmethode (Bewertungsskala, Referenzsignal, etc.), die Testbedingungen wie z.B. die verwendeten Kopfhörer oder Lautsprecher und die Akustik des Raums und letztendlich auch die Methode zur statistischen Auswertung dieser Tests. Aufgrund dieser Komplexität bei Planung und Durchführung eines Hörtests sowie um Ergebnisse unterschiedlicher Hörtests miteinander vergleichbar zu machen, gibt es internationale Standards, die sich mit genau dieser Thematik auseinandersetzen (s. z.B. \cite{bs.1116}).
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:wandler}
+	\item Abschnitt \ref{chap:codecs}
+\end{itemize}
+\end{quote}
+
+\section{Zusammenfassung}
+	Es existieren verschiedene Möglichkeiten, ein Audiosignal und seine Eigenschaften darzustellen. Die wichtigsten sind der \bld{Zeitverlauf}, bei dem die Amplitudenwerte über der Zeit aufgetragen werden, verschiedene Formen des \bld{Spektrums}, wo meistens die Amplitude einer bestimmten Frequenz für alle im Signal enthaltenen Frequenzen angezeigt wird, und die Darstellung in Form der \bld{Amplitudendichteverteilung}, wo die Häufigkeit bestimmter Amplitudenwerte über das Signal bestimmt wurden.\\
+	Jedes Gerät in der Tontechnik, sei es ein Effektgerät, ein Mischpult, ein Mikrophon oder ein Lautsprecher, selbst ein Raum kann technisch als \bld{System} interpretiert werden. Für Systeme sind die übergeordnetsten Kategorien \bld{Linearität}/bld{Nichtlinearität} und \bld{Zeit(in-)varianz}. Nichtlineare Systeme fügen im Gegensatz von linearen Systemen neue Frequenzanteile in ein Signal ein. Der Ausgang von linearen und zeitinvarianten Systemen läßt sich über die sogenannte \bld{Faltung} berechnen.\\
+Es existieren Studiogeräte für die unterschiedlichsten Einsatzbereiche. Diese können sowohl linear als auch nichtlinear, sowohl zeitinvariant als auch zeitvariant sein.\\
+Bei der Messung von Audioqualität ist es von großer Wichtigkeit, die von Hersteller angegebenen Werte richtig zu interpretieren. Die wichtigsten Punkte sind hier der lineare \bld{Übertragungsfrequenzgang}, der \bld{Dynamikumfang} und geringe \bld{nichtlineare Verzerrungen}.
+
+\section{Aufgaben}
+\begin{enumerate}
+	\item Warum ist ein Fader ein lineares System, obwohl seine Skala doch nichtlinear ist?
+	
+	\item	Berechne die Güte $Q$ eines Filters mit der Mittenfrequenz $3.2kH\!z$ mit folgenden Bandbreiten:
+		\begin{itemize}
+			\item	$1600H\!z$,
+			\item	$3200H\!z$,
+			\item	$4000H\!z$
+			\item	$6400H\!z$
+		\end{itemize}
+	
+	\item	Ab welcher Frequenz ist bei einem Tiefpaß mit der Grenzfrequenz $100H\!z$ und der Flankensteilheit $12\frac{dB}{Octave}$ die Dämpfung größer als $15dB$?
+	
+	\item	Auf welche Zeitspanne muß die Verzögerungszeit eines Delayeffekts gestellt werden, wenn der Effekt \glqq im Takt\grqq$\;$ klingen soll und das Musikstück ein Tempo von 90 Schlägen pro Minute (BPM = Beats per minute) besitzt?
+	
+	\item Auf wieviel Prozent muß der Anteil des Rückkopplungszweiges eines Delayeffekts gesetzt werden, wenn der Pegel jeder Rückkopplung um $6dB$ abnehmen soll?
+	
+	\item Mit dem Pre-Delay verzögert man das verhallte Signal gegenüber dem trockenen, unverhallten Signal. Wird bei Erhöhung des Pre-Delays der Gesamteindruck eher nach hinten, in die Tiefe des Raums rutschen oder im Gegenteil präsenter bzw. näher klingen?
+	
+	\item Compressor-Einstellung
+	
+\end{enumerate}
+
+\nocite{zoelzer, eargle}

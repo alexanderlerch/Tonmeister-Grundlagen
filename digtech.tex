@@ -1,0 +1,667 @@
+\chapter{Digitaltechnik}
+\thispagestyle{empty}
+
+Die Digitaltechnik und die digitale Signalverarbeitung stellen in den meisten Studios die wichtigsten Komponenten des Tonstudioalltags. Dieses Kapitel gibt eine Einführung in die Digitaltechnik und ein Übersicht über die verschiedensten mit Tontechnik oder Audiosignalverarbeitung verknüpften Applikationen.
+
+
+\section{Binäre Zahlendarstellung}
+
+	Digitale Systeme arbeiten nicht mit der uns geläufigen dezimalen Zahlendarstellung, sondern mit der sogenannten \bld{binären Zahlensdarstellung}\index{Zahlendarstellung!binäre}. Hervorstechendstes Merkmal dieses Systems ist, daß es ausschließlich auf zwei Ziffern basiert: $0$ und $1$.
+	
+	Die sogenannte \bld{Wortbreite}\index{Wortbreite} $W$ eines digitalen Systems besagt, wie viele solcher einzelnen Ziffern, die im folgenden \emp{Bits} genannt werden, zu einem Wort und damit zu einer Zahl zusammengefügt werden. Bei einer Wortbreite von $16bit$, wie sie auf einer CD zu finden ist, bilden somit immer 16bit eine Zahl bzw. einen Amplitudenwert. Jedes einzelne Bit kann zwei verschiedene Zustände annehmen, d.h. insgesamt können $2\cdot2\cdot2\cdot\dots\cdot2\cdot2\cdot2 = 2^{16} = 65536$ verschiedene Zahlen dargestellt werden.
+	
+	Die dargestellte Zahl berechnet sich mit Hilfe von Zweierpotenzen: beispielsweise steht die binäre Zahl $1001\,1011$ mit der Wortbreite $8bit$ für die dezimale Zahl $1\cdot2^7 + 0\cdot2^6 +0\cdot2^5 +1\cdot2^4 +1\cdot2^3 +0\cdot2^2 +1\cdot2^1 +1\cdot2^0 = 155$. Eine Änderung an der Stelle mit der höchsten Potenz (links) führt die größten Veränderungen herbei, daher wird dieses Bit das \emp{Most Significant Bit (MSB)}\index{Most Significant Bit} genannt. Analog dazu führen Änderungen im Bit rechts die kleinsten Änderungen herbei; es wird \emp{Least Significant Bit (LSB)}\index{Least Significant Bit} genannt.
+	
+	Wie man sieht, lassen sich hier positive Zahlen von $0$ bis $255$ darstellen; im Falle von realen Audiosignalen bewegt sich die Amplitude des Signals um den Nullpunkt herum, d.h. es treten positive wie negative Amplitudenwerte auf. Dem wird dadurch Rechnung getragen, daß das MSB als eine Art Vorzeichen-Bit interpretiert wird; ist es $0$, so ist die Zahl positiv, im anderen Falle negativ. Das führt bei $16bit$ Wortbreite zu dem Zahlenbereich $-32768$ bis $32767$. Die Aufteilung des Zahlenbereichs geschieht so, daß die positiven Zahlen genauso behandelt werden wie im vorzeichenlosen Fall, die negativen aber von der negativen Maximalamplitude hochgezählt werden. 
+	\bsp{Es werden einige Beispiele in vorzeichenbehafteter Binärdarstellung mit 4 Bit Wortbreite gegeben:
+		\begin{table}[!hbt]
+			\begin{center}
+				\begin{tabular}{c|c}
+					\textbf{Binär} & \textbf{Dezimal}\\\hline
+					$0001$			& $1$\\
+					$0101$			& $5$\\
+					$0111$			& $7$\\
+					$1000$			& $-8$\\
+					$1001$			& $-7$\\			
+					$1111$			& $-1$\\			
+				\end{tabular}
+			\end{center}
+		
+			\caption[Binärwerte mit Vorzeichen]{Beispiel für vorzeichenbehaftete Binärwerte der Wortbreite 4 Bit}
+			\label{tab:binaer_4bit}
+		\end{table}
+	}\end{quote}
+\bem{
+Der Binärwert eines vorzeichenbehafteten Signals nicht immer so einfach zu berechnen, wie man auf den ersten Blick meinen würde. Falls das Vorzeichenbit nicht gesetzt ist, kann die Zahl wie oben gezeigt berechnet werden; im Fall einer negativen Zahl müssen folgende Schritte durchgeführt werden:
+\begin{enumerate}
+	\item	die Bitfolge in ihre \emp{Komplementärdarstellung} zu \emp{invertieren}, d.h. aus jeder $0$ eine $1$ zu machen und umgekehrt (Beispiel: $1001\,0111\,1100\,0001 \rightarrow 0110\,1000\,0011\,1110$, 
+	\item	die resultierende positive Zahl wie oben erläutert zu bestimmen (Beispiel: $0110\,1000\,0011\,1110$ entspricht der dezimalen Zahl $26686$),
+	\item die Zahl mit einem negativen Vorzeichen zu versehen (Beispiel: $26686\rightarrow -26686$),
+	\item $1$ von der Zahl zu subtrahieren (Beispiel: Endergebnis ist $-26687$)
+\end{enumerate}}\end{quote}
+	
+\begin{sloppypar}
+	\bem{Das erläuterte Zahlenformat kann nur ganzzahlige Werte darstellen, es wird \bld{Festkommaformat}\index{Festkommaformat} (auch Fixed-Point-Format) genannt. Gerade im Audiobereich wird aber zum Teil auch mit einem anderen Format gearbeitet, dem sogenannten \bld{Fließkommaformat}\index{Fließkommaformat} (auch Floating-Point-Format oder Gleitkommaformat). Hier werden nur Nachkommastellen und ein Exponent abgespeichert. Der Vorteil dieses Formats für Audiobearbeitung ist, daß sehr kleine Zahlen sehr genau dargestellt werden können, sehr große Zahlen hingegen ungenauer. Dies entspricht dem menschlichen Hörvermögen recht gut. \\
+	Das Floating-Point-Format wird im allgemeinen bei der Audiobearbeitung auf dem Computer und in einigen Hardwaresystemen verwendet. Zur Übertragung und Speicherung findet es normalerweise keinen Einsatz.
+	}\end{quote}
+\end{sloppypar}
+	
+\section{Digitalisierung eines Analogsignals}	
+\subsection{Abtastung}\index{Abtastung}\label{chap:sampling}
+Wenn wir den Verlauf einer Spannung oder des Schalldrucks betrachten, sehen wir \emp{kontinuierliche} Veränderungen des Signals über der Zeit. Solche kontinuierlichen Veränderungen kennzeichnen \emp{analoge} Signale. Wir können uns einen kurzen Zeitabschnitt betrachten und immer weiter hineinzoomen, ohne daß der Verlauf des Signals jemals unterbrochen wird. Ein solcher unterbrechungsfreier Zeitverlauf ist in der Digitaltechnik nicht darstellbar, da hierzu unendlich viele Punkte dargestellt werden müßten. Stattdessen wird das analoge Signal in bestimmten Zeitabständen abgetastet und es werden nur die einzelnen Amplitudenwerte zum Abtastzeitpunkt gespeichert. Die Frequenz dieser Abtastung wird \bld{Abtastrate}\index{Abtastrate} (englisch: \bld{Sample Rate}) genannt, ihre Einheit ist natürlich [$H\!z$]. Abbildung \ref{fig:sampling} zeigt einen kleinen Ausschnitt eines kontinuierlichen (analogen) Signals und die resultierende abgetastete Folge.
+
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/sampling}
+			\caption[Abtastung eines analogen Signals]{Vergleichende Darstellung eines kontinuierlichen und eines abgetasteten Signalverlaufs, oben: kontinuierlicher Zeitverlauf, unten entsprechender abgetasteter Zeitverlauf} \label{fig:sampling}
+			\end{center}
+		\end{figure}
+
+\subsubsection{periodisches Spektrum}
+	Eine wichtige Eigenschaft der Abtastung läßt sich an einem Beispiel veranschaulichen; dazu betrachten wir mehrere Sinusschwingungen, die mit einer Frequenz von $6k\!Hz$ abgetastet werden. Die Originalsignale und die abgetasteten Signale für die Frequenzen $1k\!Hz$, $7k\!Hz$ und $13k\!Hz$ sind in Abb. \ref{fig:periodic_sample} dargestellt, während die Abb. \ref{fig:periodic_sample2} die Originalsignale und abgetasteten Signale für die Frequenzen $1k\!Hz$, $5k\!Hz$, $11k\!Hz$ und $17k\!Hz$ zeigt.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/periodic_sample}
+			\caption[Abtastung von Sinusschwingungen unterschiedlicher Frequenz (1)]{Darstellung von analogem und abgetastetem Zeitverlauf von Sinusschwingungen der Frequenzen $1k\!Hz$, $7k\!Hz$ und $13k\!Hz$, die Abtastfrequenz ist $6kH\!z$; oben: kontinuierlicher Zeitverlauf, unten entsprechender abgetasteter Zeitverlauf} \label{fig:periodic_sample}
+			\end{center}
+		\end{figure}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/periodic_sample2}
+			\caption[Abtastung von Sinusschwingungen unterschiedlicher Frequenz (2)]{Darstellung von analogem und abgetastetem Zeitverlauf von Sinusschwingungen der Frequenzen $1k\!Hz$, $5k\!Hz$, $11k\!Hz$ und $17k\!Hz$, die Abtastfrequenz ist $6kH\!z$; oben: kontinuierlicher Zeitverlauf, unten entsprechender abgetasteter Zeitverlauf} \label{fig:periodic_sample2}
+			\end{center}
+		\end{figure}
+
+Abb. \ref{fig:periodic_sample} zeigt deutlich, daß die abgetasteten Signale bei diesen bestimmten Frequenzen identisch sind. Die abgetasteten Signal aus Abb. \ref{fig:periodic_sample2} sind zwar nicht identisch, haben aber die gleiche Frequenz und Amplitude, lediglich eine andere Phasenlage. Mit Hilfe dieser Beispiele ist man einer der wichtigsten Eigenschaften abgetasteter Signale auf der Spur, die lautet: \bld{die Spektren abgetasteter Signale sind periodisch mit der Abtastfrequenz}.
+
+\herl{Ohne zu sehr ins mathematische Detail gehen zu wollen, läßt sich der Weg der Herleitung wie folgt beschreiben: die Abtastung eines Signals läßt sich darstellen als die Multiplikation des analogen Signals mit einem Signal, das genau an den Abtastwerten den Wert $1$ hat und an allen anderen Stellen den Wert $0$. Der Verlauf dieses Abtastsignals erinnert an einen Kamm, die Abstände der einzelnen Zähne (\glqq$1$\grqq) des Kamms entsprechen dem Abtastintervall. Es läßt sich nun zeigen, daß die Frequenztransformation eines solchen Signals ebenfalls wie solcher Kamm aussieht, wobei der Abstand der Zähne dieses Kamms nun der Abtastfrequenz entspricht. In Abschnitt \ref{chap:faltung} wurde darauf hingewiesen, daß eine Multiplikation zweier Signale im Zeitbereich einer Faltung der Frequenzdarstellungen dieser Signale entspricht. Es wird nun also das Spektrum des analogen Signals gefaltet mit dem kammförmigen Signal. Diese Faltung führt dazu, daß das Spektrum des analogen Signals periodisch mit der Abtastfrequenz wieder auftaucht.
+}\end{quote}
+
+	\subsubsection{Abtasttheorem und Aliasing}
+	Aus der Periodizität des Spektrums des abgetasteten Signals folgt eine wichtige Eigenschaft; die (hohen) Frequenzen der periodischen Spektren können sich überlappen. Tun sie dies, so läßt sich nicht mehr unterscheiden, ob es sich um Frequenzen des Originalspektrums handelt oder um  hineingespiegelte Frequenzen. Es zeigt sich, daß sich die periodischen Spektren nicht überlappen, wenn die Bandbreite des Signals kleiner als die halbe Abtastfrequenz ist. Dies ist das sogenannte \bld{Abtasttheorem}\index{Abtasttheorem}. Wird es nicht eingehalten (die sog. \emp{Unterabtastung}\index{Unterabtastung}, so entstehen \glqq Spiegelfrequenzen\grqq, die sehr unangenehm klingen können. Dieser Effekt wird \bld{Aliasing}\index{Aliasing} genannt. Aus diesem Grund befindet sich vor jedem AD-Wandler ein Tiefpaßfilter, der (möglichst) alle Frequenzanteile oberhalb der halben Abtastfrequenz herausfiltert und somit die Einhaltung des Abtasttheorems gewährleistet. Dieses Filter wird \emp{Antialiasingfilter}\index{Antialiasingfilter} genannt. Die Güte dieses Filters kann großen Einfluß auf die Wandlergüte haben (siehe Abschnitt \ref{chap:rec_sample}).
+	\bem{
+	Ein anschauliches Beispiel einer Unterabtastung im visuellen findet man in vielen Westernfilmen. Die Speichenräder einer Kutsche drehen sich mit der erwarteten Geschwindigkeit und Richtung, solange die Kutsche langsam fährt. Übersteigt die Speichengeschwindigkeit allerdings die halbe Abtastfrequenz der Kamera, so nimmt die wahrgenommene Geschwindigkeit des Rades wieder ab.}
+	\end{quote}
+
+	\subsubsection{Rekonstruktion des Signals}\label{chap:rec_sample}
+	Zur Rekonstruktion des analogen Signals aus dem abgetasteten Signal muß das abgetastete Signal tiefpaßgefiltert werden, um die periodischen Fortsetzungen des Spektrums \glqq herauszufiltern\grqq. Das Tiefpaßfilter hat die Aufgabe, nur die Signalfrequenzen kleiner als die halbe Abtastfrequenz passieren zu lassen. Es wird \emp{Rekonstruktionsfilter}\index{Rekonstruktionsfilter} genannt. Theoretisch ist ein analoges Signal, welches unter Berücksichtigung des Abtasttheorems gesampelt wurde, ohne Verlust wieder rekonstruierbar. Leider gilt dies aber nur für den Fall, daß sowohl Antialiasingfilter als auch Rekonstruktionsfilter ideal sind, d.h. alle Frequenzen bis zur halben Abtastfrequenz ungehindert passieren lassen, aber keine Frequenzanteile oberhalb der halben Abtastfrequenz. Ein solches Filter ist praktisch nicht zu realisieren, sondern wird bei vorhandenen Wandlern nur mehr oder weniger gut approximiert.
+
+	\bem{Als Entdecker des Abtasttheorem werden oft Nyquist oder Shannon genannt. Nyquist war wohl der erste, der das Abtasttheorem ca. 1930 veröffentlichte, während Shannon nach dem 2. Weltkrieg eine Generalisierung des Abtasttheorems publizierte. Daher werden als gleichbedeutend mit Begirff Abtasttheorem manchmal auch die Begriffe Nyquisttheorem und Shannontheorem verwendet.}
+	\end{quote}
+%        \begin{figure}[!hbt]
+%			\begin{center}
+%            \begin{picture}(50,90)
+
+                %boxes
+%                \put(0,50){\framebox(40,10){\footnotesize{Antialiasing-Filter}}}
+%                \put(0,30){\framebox(40,10){\footnotesize{Abtastung}}}
+%                \put(0,10){\framebox(40,10){\footnotesize{Rekonstruktions-Filter}}}
+
+                %lines vertical
+%                \put(20,70){\vector(0,-1){10}}
+%                \put(20,50){\vector(0,-1){10}}
+%                \put(20,30){\vector(0,-1){10}}
+%                \put(20,10){\vector(0,-1){10}}
+ 
+                %text
+%                \put(23,63){\footnotesize{\shortstack[c]{kontinuierliches Eingangssignal}}}
+%                \put(23,43){\footnotesize{\shortstack[c]{tiefpaßgefiltertes Eingangssignal}}}
+%                \put(23,23){\footnotesize{\shortstack[c]{abgetastetes Eingangssignal}}}
+%                \put(23,3){\footnotesize{\shortstack[c]{tiefpaßgefiltertes Eingangssignal}}}
+%                
+%            \end{picture}
+%			\end{center}
+%			\caption[Verarbeitungsschritte bei Abtastung]{Notwendige Verarbeitungsschritte vor und %nach der Abtastung eines Signals}\label{fig:flowchart_sampling}
+%        \end{figure}
+
+
+\subsection{Quantisierung}\index{Quantisierung}
+Ebenso wie ein digitales Signal keinen kontinuierlichen Zeitverlauf haben kann (s. Abschnitt \ref{chap:sampling}), kann es auch keinen kontinuierlichen Amplitudenverlauf besitzen, da nur einzelne Werte abgespeichert werden können. Dies bedeutet, daß die Amplitude - ebenso wie die Zeit bei der Abtastung - in bestimmte Abschnitte oder besser Stufen eingeteilt werden muß. Dieser Vorgang wird \bld{Quantisierung}\index{Quantisierung} genannt. Eine kontinuierlich steigende Amplitude wird durch den Quantisierungsvorgang auf eine Treppenfunktion abgebildet. Diese Treppenfunktion wird auch als Quantisierungskennlinie bezeichnet und ist in Abb. \ref{fig:quant} rechts dargestellt.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/quant}
+			\caption[Quantisierungskennlinie]{links: Amplitudenkennlinie bei amplitudenkontinuierlicher Über\-tragung, jeder Eingangsamplitudenwert wird auf den exakt gleichen Ausgangsamplitudenwert abgebildet; rechts: Amplitudenkennlinie bei Quantisierung mit 16 Amplitudenstufen, bestimmte Amplitudenbereiche der Eingangsamplitude werden auf einzelne feste Werte abgebildet} \label{fig:quant}
+			\end{center}
+		\end{figure}
+Wie an dieser Abbildung veranschaulicht, ist das Prinzip der Quantisierung, bestimmte Amplitudenbereiche auf einzelne \emp{quantisierte} Werte abzubilden. Die Quantisierungskennlinie ist damit eine treppenförmige Funktion. Je mehr einzelne Stufen erlaubt werden, desto kleiner werden die Stufen und desto ähnlicher wird das quantisierte Signal dem originalen kontinuierlichen Signal. Die Anzahl der Stufen bestimmt die Zahl der zur Speicherung eines Wertes benötigten Bits. $16$ Stufen lassen sich mit $4$ Bit darstellen; im Fall der Abb. \ref{fig:quant} handelt es sich also um einen $4$-Bit-Quantisierer. Wortbreite\index{Wortbreite} eines digitalen Signals und Anzahl der Quantisierungsstufen sind also direkt ineinander überzuführen: um ein digitales Signal der Wortbreite $16$ Bit zu erhalten, muß die Anzahl der Stufen $65536$ betragen. Soll die Wortbreite voll ausgenutzt werden, so müssen Minimal- und Maximalamplitude (oder -spannung) des Signals und Eingangsminimal- und Maximalspannung des Quantisierers übereinstimmen. Je geringer die Aussteuerung des Eingangssignals ist, desto größer wird der Quantisierungsfehler verglichen zum Eingangssignal. Andererseits muß eine Übersteuerung des Quantisierers unter allen Umständen vermieden werden, da die Übersteuerungsartefakte, zu sehr unangenehmen Verzerrungen führen können.
+
+\subsubsection{Quantisierungsfehler}
+	Die Abtastung eines Signals ist theoretisch ohne Verluste rückgängig zu machen, bei der Quantisierung allerdings ist dies auch in der Theorie nicht möglich. Bei jeder Quantisierung wird unvermeidlich ein Fehler gemacht, der sog. \bld{Quantisierungsfehler}\index{Quantisierungsfehler} $q$ (auch Quantisierungsrauschen\index{Quantisierungsrauschen}). Dieser berechnet sich aus der Differenz zwischen dem Originalsignal $x$ und dem quantisierten Signal $x_q$ für einen beliebigen Zeitwert $t$.
+	\begin{equation}
+		q(t) = x(t) - x_q(t)
+	\end{equation}
+Es wird i.a. davon gesprochen, daß dieser Fehler dem Signal hinzugefügt wird; tatsächlich ergibt ja die Subtraktion von $x(t)-q(t)$ das quantisierte Signal $x_q(t)$. Abb. \ref{fig:quanterror} zeigt den Quantisierungsfehler eines mit $4$ Bit quantisierten optimal ausgesteuerten Sinussignals.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/quanterror}
+			\caption[Quantisierungsfehler eines optimal ausgesteuerten Sinussignals]{links oben: das kontinuierliche Originalsignal; rechts oben: das mit einer Auflösung von $4$ Bit quantisierte Signal; unten: der dabei gemachte Quantisierungsfehler} \label{fig:quanterror}
+			\end{center}
+		\end{figure}
+Es ist anschaulich klar, daß der Quantisierungsfehler kleiner wird, wenn die Zahl der Stufen bei gleichbleibender Maximalamplitude erhöht wird, denn der Betrag der Amplitude des Quantisierungsfehlers kann maximal eine halbe Stufenhöhe $\Delta$ betragen. Mit diesem Wissen läßt sich der (theoretische) Rauschabstand eines Quantisierers berechnen. Da die Stufenhöhe $\Delta$ durch die Wortbreite $W$ des resultierenden digitalen Signals bestimmt wird, kann man den Rauschabstand $SNR$ direkt auf die Wortbreite des Signals zurückführen und gelangt zu der Beziehung:
+\begin{equation}\label{eq:quanterror}
+	SNR = 6.02\cdot W + const.\;\;[dB]
+\end{equation}
+Die Konstante $const.$ ist abhängig von Eingangssignal; sie ist für ein Sinussignal $1.76dB$ und für ein Sprach- bzw. Musiksignal im Bereich $-7$ bis $-8dB$. Als Daumenregel klingt die Gleichung (\ref{eq:quanterror}) so: \emp{Wird die Wortbreite eines Quantisierers um 1 Bit erhöht, so gewinnt man 6dB Rauschspannungsabstand}.
+\herl{
+Die Maximalamplitude des Quantisierungsfehlers ist $\frac{\Delta}{2}$. Geht man davon aus, daß alle Amplitudenwerte zwischen den Maximalausschlägen des Quantisierers gleichhäufig vorkommen (das ist als Näherung erlaubt, wenn die Stufenanzahl groß ist), so kann die Leistung des Quantisierungsfehlers berechnet werden mit
+\begin{equation}
+	\sigma_q^2 = \int^{\frac{\Delta}{2}}_{-\frac{\Delta}{2}}{\frac{1}{\Delta}x^2\,dx} = \frac{\Delta^2}{12}
+\end{equation}
+Der $SNR$ berechnet sich aus dem Quotienten von Signalleistung zu Fehlerleistung. Als Beispiel nehmen wir nun eine optimal ausgesteuerte Sinusschwingung. Die Amplitude entspricht daher der Hälfte der Zahl der Stufen $2^W$ multipliziert mit der Stufenhöhe $\Delta$. Daraus folgt:
+\begin{equation}
+	\sigma_{Sinus}^2 = \int_0^{2\pi}{\left(Amplitude\cdot \sin(x)\right)^2\;dx}\frac{(Amplitude)^2}{2} = \frac{({2^W}\cdot\Delta)^2}{8}
+\end{equation}
+Somit ergibt sich für den Signalrauschabstand des Quantisierers:
+\begin{eqnarray}
+	SNR &=& 10\log\left(\frac{\sigma_{Sinus}^2}{\sigma_q^2}\right)\nonumber\\ 
+	&=& 10\log\left(\frac{({2^W}*\Delta)^2\cdot 12}{8\cdot\Delta^2}\right)\nonumber\\
+	&=& 10\log\left(2\right)\cdot 2\cdot W + 10\log\left(\frac{3}{2}\right)\nonumber\\
+	&=& 6.02 \cdot W + 1.76\;\;[dB]\nonumber
+\end{eqnarray}
+}\end{quote}
+
+\subsubsection{Oversampling}
+Um die Qualität einer Digitalisierung zu verbessern, wird oftmals mit sog. \bld{Oversampling}\index{Oversampling} gearbeitet. Oversampling bedeutet, daß das Audiosignal mit einer höheren Frequenz abgetastet wird als benötigt wird bzw. als am Ausgang des Wandlers auftritt. Es gibt v.a. zwei Gründe für diese Überabtastung. Der erste Grund ist die effiziente technische Realisierung: um maximale Audiobandbreite bis nah an die halbe Abtastfrequenz ohne aufwendiges Antialiasingfilter realisieren zu können, wird die Abtastrate so hochgesetzt, daß ein einfaches Antialiasingfilter genügt um das Abtasttheorem zu erfüllen. Anschließend wird das Signal im digitalen Bereich tiefpaßgefiltert, so daß es die Anforderungen des Abtasttheorems für die eigentlich gewollte Abtastfrequenz erfüllt.\\
+Dieses Vorgehen hat einen erwünschten Nebeneffekt, welcher der zweite Grund für die temporäre Erhöhung der Abtastfrequenz ist: der Signal-Rauschabstand\index{Signal-Rauschabstand} (SNR) kann verbessert werden. Das ist zunächst überraschend, da die Abtastrate zunächst nur die Bandbreite des digitalisierten Signals beeinflußt, nicht den SNR. Zwei wichtige Eigenschaften bei der Digitalisierung führen jedoch zu einer Erklärung:
+\begin{itemize}
+	\item	Die Gesamtleistung des Quantisierungsrauschens ist unabhängig von der Abtastfrequenz.
+	\item	Das Quantisierungsrauschen ist näherungsweise weißes Rauschen, das über die gesamte Bandbreite des Signals gleichmäßig verteilt wird.
+\end{itemize}
+Wenn also die Gesamtleistung des Quantisierungsfehlers gleich bleibt, obwohl die Abtastfrequenz erhöht wird, dann wird bei Erhöhung der Abtastfrequenz die durchschnittliche Leistung in einem bestimmten Frequenzbereich sinken, da es sich über einen größeren Frequenzbereich erstrecken kann. Wendet man anschließend den oben angesprochenen digitalen Antialiasingfilter an, so wird der Anteil des Quantisierungsrauschen über der endgültigen halben Abtastfrequenz \glqq weggefiltert\grqq, und der SNR steigt. Man gewinnt mit solchen Oversamplingverfahren pro Frequenzverdopplung ca. $3dB$ Signal-Rauschabstand.
+
+\subsubsection{Dither\index{Dither}}
+Das Verhältnis bzw. der Signal-Rauschabstand des quantisierten Signals wird schlechter je geringer das Signal ausgesteuert wird. Doch eine schlechte Aussteuerung führt nicht nur zu höherem Rauschpegel, sondern kann einen weiteren Effekt haben - das Quantisierungsrauschen ist kein weißes Rauschen mehr wie bei hohen Amplituden, sondern wird abhängig vom Eingangssignal Abbildung \ref{fig:3stepquant} zeigt ein mit drei Stufen quantisiertes Signal und dessen Quantisierungsfehler. Der hier eingeführte Quantisierungsfehler hört sich an wie sehr störende Verzerrungen und ist besonders deutlich bei niedriger Aussteuerung und tiefen Signalfrequenzen. Diese sind zwar bei hochauflösenden Wandlern mit großem Dynamikumfang kaum mehr hörbar, sollen aber bei niedriger auflösenden Wandlern oder bei Wortbreitenkonvertierungen wie z.B. $24bit$ nach $16bit$ oder niedriger möglichst vermieden werden. 
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/3stepquant}
+			\caption[Quantisierungsfehler bei einer 3-stufigen Quantisierung]{oben: Originalsignal, mitte: 3-stufig quantisiertes Signal, unten: Quantisierungsfehler} \label{fig:3stepquant}
+			\end{center}
+		\end{figure}
+Eine naheliegende Idee ist nun, das Signal etwas \glqq analoger\grqq$\;$ zu machen, indem vor dem Quantisierungsprozeß einfach ein Rauschen addiert wird. Dieses Rauschen wird \bld{Dither}\index{Dither} genannt. \\
+Zunächst naheliegend scheint die Annahme, dieses Rauschen müßte so stark sein, daß es die o.g. Verzerrungen akustisch verdeckt; das muß aber \emp{nicht} der Fall sein. Vielmehr genügt ein schwaches Rauschen, das zu einer nicht mehr deterministischen, gleichbleibenden Abfolge der ausgewählten Quantisierungsstufen führt, sondern zu einer eher zufälligen. Wenn beispielweise am Eingang eine Gleichspannung von $1.3mV$ anläge, der Quantisierer das Signal allerdings in $1mV$-Schritten quantisiert, dann wird das quantisierte Signal bei einem ungeditherten Eingang konstant bei $1mV$ liegen. Wird das Eingangssignal hingegen gedithert, so wird es manchmal bei $2mV$, häufiger bei $1mV$ und sehr selten bei anderen Quantisierungswerten liegen. Tatsächlich wird dann aber beim quantisierten ein Mittelwert von $1.3mV$ feststellbar sein, d.h. im Mittel ist die geditherte Quantisierung genauer, da beliebige Quantisierungswerte möglich gemacht werden. Abbildung \ref{fig:ditherquant} zeigt das obige Beispiel mit einem hinzugefügten Dithersignal. Abbildung \ref{fig:ditherquantfreq} zeigt die Spektren des quantisierten Signals und des gedithert quantisierten Signals.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/ditherquant}
+			\caption[Quantisierungsfehler bei einer leicht geditherten Quantisierung]{oben: gedithertes Originalsignal, mitte: grob-stufig quantisiertes Signal, unten: Quantisierungsfehler bei gedithertem Eingang} \label{fig:ditherquant}
+			\end{center}
+		\end{figure}
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/ditherfreq}
+			\caption[Spektrum eines geditherten Signals]{Spektrum eines mit und ohne Dither quantisierten Signals; oben: ungedithert quantisiertes Signal, unten: gleichförmig gedithert quantisiertes Signal} \label{fig:ditherquantfreq}
+			\end{center}
+		\end{figure}
+	\bsp{Die Wirkung des Dithering läßt sich leicht anhand eines Beispiels veranschaulichen. Hält man sich eine Hand mit leicht geöffneten Fingern vor die Augen, so wird ein Großteil des Gesichtsfeldes von den Fingern abgedeckt, und nur durch die Zwischenräume läßt sich etwas erkennen. Bewegt man diese Hand allerdings sehr schnell, so lassen sich - wenn auch etwas undeutlich - auch die Bereiche erkennen, die zuvor von den Fingern verdeckt waren.}\end{quote}
+	
+	Die Erfahrung hat gezeigt, daß Ditheramplituden im Bereich der halben bis zur $1.5$-fachen Stufenbreite zu besten Ergebnissen führen.\\
+	Das Ditherspektrum ist zumeist entweder weiß oder leicht hochpaßgefiltert. Eine Hochpaßfilterung führt in den meisten Fällen zu einer subjektiven Qualitätsverbesserung, da die Rauschleistung etwas aus dem Hörbereich herausgeschoben wird.\\
+	Ein wichtiger Aspekt des Ditherrauschens ist seine Amplitudendichteverteilung\index{Amplitudendichteverteilung} (ADV), d.h. die Wahrscheinlichkeit unterschiedlicher Signalwerte. Das \glqq reale\grqq$\;$ zur Amplitudendichteverteilung ist die Häufigkeitsverteilung, die eine Näherung der ADV darstellt (vgl. Abschnitt \ref{chap:adv}). Wenn alle Signalwerte gleichhäufig vorkommen, spricht man von gleichverteiltem Rauschen\index{Rauschen!gleichverteiltes} und die Amplitudendichteverteilung ist rechteckförmig. Man ist aber i.a. der Meinung, daß ein gleichverteiltes Rauschen nicht zu optimalen Dithering-Ergebnissen führt, während ein dreieckförmig verteiltes Rauschen\index{Rauschen!dreieckförmig verteiltes} zu einem besseren Höreindruck führt. Abbildung \ref{fig:dither} zeigt die Zeitverläufe und die Amplitudendichteverteilungen von gleich- und dreieckförmig verteiltem Rauschen.
+    \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/dither}
+			\caption[Ditherformen]{Zeitverläufe (links) und Amplitudendichteverteilungen (rechts) von Rauschen; oben: gleichverteilt, unten: dreieckfömig verteilt} \label{fig:dither}
+			\end{center}
+		\end{figure}
+Teilweise kann man auch anders geformte Dither verwenden; z.B. gibt es häufig gaußförmige Rauschen. Eine gaußförmige Verteilung sieht glockenförmig aus.\\
+Die Verwendung unterschiedlicher Ditherformen führt auch zu unterschiedlichem Rauschpegel. Der eingefügte Rauschpegel bewegt sich bei den o.g. Ditheramplituden zwischen $3$ und $6dB$.
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:adv}
+\end{itemize}
+\end{quote}
+
+\subsubsection{Noise-Shaping}
+\begin{sloppypar}
+\bld{Noise-Shaping}\index{Noise-Shaping} ist eine Methode, die Qualität eines Wandlers oder einer Wortbreitenkonvertierung zu erhöhen. Der Quantisierungsfehler, der bei normaler Quantisierung näherungsweise ein weißes Spektrum hat, wird spektral geformt. Idealerweise wird dabei die Rauschleistung von Frequenzbereichen hoher Gehörempfindlichkeit (wie z.B. $2-4kH\!z$, vgl. Abschnitt \ref{chap:lautstaerke}) in Bereiche geringerer Empfindlichkeit verschoben (zumeist hohe Frequenzbereiche). Diese Frequenzverschiebung wird durch eine Rückkopplung des Quantisierungsfehlers erreicht, je nachdem wieviele Koeffizienten diese Rückkopplung hat, spricht man von Noise-Shaping verschiedener Ordnungen. Im Fall von Noise-Shaping erster Ordnung wird der Quantisierungsfehler festgestellt und vom darauffolgenden Sample subtrahiert. Dadurch entsteht eine Verschiebung des Quantisierungsfehlers hin zu höheren Frequenzen. Komplexere Verschiebungen, die verschiedene Frequenzbereiche unterschiedlich gewichten, lassen sich nur mit Noise-Shaping höherer Ordnung bewerkstelligen. Es ist natürlich ein naheliegender Gedanke, den Spektralverlauf des Quantisierungsrauschens so zu gewichten, daß er optimal der Ruhehörschwelle angepaßt ist, ein es existieren in der Tat einige solche System auf dem Markt. Welche Systeme nun besser sind und welche schlechter, sollte aber mit kritischem Material (z.B. Ausklingvorgänge) selbst getestet werden.
+\end{sloppypar}
+Noise-Shaping wird meistens in Zusammenhang mit Dither\index{Dither} verwendet, um unerwünschte Effeke bei der Rückkopplung des Quantisierungsfehlers zu vermeiden.
+
+Wortbreitenkonvertierungen und damit auch Noise-Shaping sollten möglichst nur einmal am Ende der Verarbeitungskette eingesetzt werden.
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:filter}
+\end{itemize}
+\end{quote}
+
+
+\subsection{Wandler}\label{chap:wandler}
+\subsubsection{Analog-Digital-Wandler}
+\subsubsection{Digital-Analog-Wandler}
+
+\section{Digitale Filter}
+
+	\bld{Digitale Filter}\index{Filter!digitale} lassen sich ausschließlich durch \glqq Verzögerungsglieder\grqq$\;$ und gewichtete Addition realisieren. Das bedeutet, daß jeder einzelne Abtastwert um bestimmte Zeiten verzögert wird, mit unterschiedlichen Faktoren multipliziert wird und mit anderen, ebenfalls verzögerten und gewichteten Abtastwerten aufaddiert wird. Warum sich Filter auf diese Art realisieren lassen, verdeutlicht man sich am besten anhand von Beispielen. Zuvor sollen die verwendeten Bestandteile der Filtergraphen\index{Filtergraph} kurz erläutert werden. Ein Pfeil zeigt immer die Richtung des Signalflusses an. Ein Kreis symbolisiert eine Rechenoperation: befindet sich ein $+$ im Kreis, so werden zwei Signale aufaddiert, befindet sich ein $x$ im Kreis, so wird das Signal mit der nebenstehenden Konstante (\emp{Filterkoeffizient}\index{Filterkoeffizient}) multipliziert. Ein Kästchen mit dem Inhalt $z^{-n}$ bedeutet, daß der eingehende Abtastwert um $n$ Abtasttakte verzögert wird.
+	
+	\begin{quote}\footnotesize \textbf{Beispiel 1}\\ 
+        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(50,30)
+
+                %boxes
+                \put(25,5){\framebox(7,6){\footnotesize{$z^{-1}$}}}
+
+                %lines horizontal
+                \put(5,20){\vector(1,0){20}}
+                \put(30,20){\vector(1,0){10}}
+                \put(45,20){\vector(1,0){10}}
+                
+                \put(15,8){\vector(1,0){10}}
+                \put(32,8){\vector(1,0){8}}
+
+                %lines vertical
+                \put(15,20){\line(0,-1){12}}
+                \put(42.5,10.5){\vector(0,1){7}}
+                
+                %circles
+                \put(27.5,20){\circle{5}} \put(26.5,19){{{x}}}
+%                \put(42.5,20){\circle{5}} \put(41,19){{{+}}}
+                \put(41,19){$\oplus$}
+                \put(42.5,8){\circle{5}} \put(41.5,7){{{x}}}
+                
+                \put(15,20){\circle*{1}}
+
+                %text
+                \put(26,24){\footnotesize{\shortstack[c]{$1/2$}}}
+                \put(46,5){\footnotesize{\shortstack[c]{$1/2$}}}
+
+                \put(4,22){\footnotesize{\shortstack[c]{x(n)}}}
+                \put(52,22){\footnotesize{\shortstack[c]{y(n)}}}
+
+            \end{picture}
+			\end{center}
+			\caption[Filter Beispiel 1]{Filter Beispiel 1}\label{fig:digfil_bsp1}
+        \end{figure}
+        
+        Hier wird jeder einzelne Abtastwert mit $0.5$ multipliziert und mit dem vorhergehenden, ebenfalls mit $0.5$ multiplizierten Abtastwert addiert. Eine hypothetische Samplefolge $x(n)=[1\;110\;51\;20\;30\;0]$ führt also zu einem Ausgang $y(n)=[0.5\;55.5\;80.5\;35.5\;25\;15]$. Wie lassen sich nun die Eigenschaften eines solchen Filters bestimmen? Die Impulsantwort läßt sich einfach auf die gleiche Art bestimmen, wie das schon mit der Samplefolge geschehen ist. Als Eingangssignal dient dazu eine einzelne $1$ (ein \emp{Impuls}). Man erhält als Impulsantwort also $[0.5\;0.5]$.\\
+        Der Frequenzgang läßt sich natürlich berechnen, für so ein einfaches Beispiel allerdings auch relativ einfach abschätzen. Dafür stellen wir uns am Eingang des Filters ein Sinussignal variabler Frequenz vor. Bei sehr tiefen Frequenzen wissen wir, daß sich aufeinanderfolgende Abtastwerte stark ähneln. Da am Ausgang des Filters der Mittelwert des aktuellen und des vorhergehenden Abtastwertes erscheint (aus diesem Grund heißt ein solches Filter auch Moving-Average- (MA-)Filter), hat dieses Filter für tiefe Frequenzen kaum Auswirkungen. Für höhere Eingangsfrequenzen unterscheiden sich aufeinanderfolgende Werte zunehmend, so daß das Filter dämpfend auf das Signal wirkt. Ist das Eingangssignal des Filters im Grenzfall ein Sinussignal mit der halben Abtastfrequenz, so ist der Mittelwert zwischen zwei aufeinanderfolgenden Abtastwerten und damit auch der Ausgang des Filters immer $0$. Somit handelt es sich in diesem Beispiel um ein \emp{Tiefpaßfilter}. 
+        \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/filter1}
+			\caption[Impulsantwort und Übertragungsfunktion von Filter Bsp.1]{Impulsantwort, Betragsfrequenzgang und Phasenfrequenzgang von Beispielfilter Nr.1} \label{fig:filter1}
+			\end{center}
+		\end{figure}
+		
+		Abbildung \ref{fig:filter1} zeigt die Impulsantwort, den Betragsfrequenzgang und den Phasenfrequenzgang dieses Filters. Deutlich zu erkennen ist die Tiefpaßcharakteristik, die allerdings erst bei sehr hohen Frequenzen deutlich zum Tragen kommt. Der Phasenfrequenzgang ist linear.
+
+	\end{quote}
+
+
+	\begin{quote}\footnotesize \textbf{Beispiel 2}\\ 
+        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(50,30)
+
+
+                %boxes
+                \put(25,5){\framebox(7,6){\footnotesize{$z^{-1}$}}}
+
+                %lines horizontal
+                \put(5,20){\vector(1,0){20}}
+                \put(30,20){\vector(1,0){10}}
+                \put(45,20){\vector(1,0){10}}
+                
+                \put(15,8){\vector(1,0){10}}
+                \put(32,8){\vector(1,0){8}}
+
+                %lines vertical
+                \put(15,20){\line(0,-1){12}}
+                \put(42.5,10.5){\vector(0,1){7}}
+                
+                %circles
+                \put(27.5,20){\circle{5}} \put(26.5,19){{{x}}}
+                \put(42.5,20){\circle{5}} \put(41,19){{{+}}}
+                \put(42.5,8){\circle{5}} \put(41.5,7){{{x}}}
+                
+                \put(15,20){\circle*{1}}
+
+                %text
+                \put(26,24){\footnotesize{\shortstack[c]{$1/2$}}}
+                \put(46,5){\footnotesize{\shortstack[c]{$-1/2$}}}
+
+                \put(4,22){\footnotesize{\shortstack[c]{x(n)}}}
+                \put(52,22){\footnotesize{\shortstack[c]{y(n)}}}
+
+            \end{picture}
+            \end{center}
+            \caption[Filter Beispiel 2]{Filter Beispiel 2}\label{fig:digfil_bsp2}
+        \end{figure}
+        
+        Dieses Filter gleicht dem aus Beispiel 1 bis auf eine kleine Änderung genau. Lediglich der Faktor im Verzögerungsteil ist nun $-0.5$ statt $0.5$. Die Impulsantwort lautet dementsprechend $[0.5\;-0.5]$. Wie schon im Beispiel 1 läßt sich der Frequenzgang des Filters schätzen. Für sehr tiefe Frequenzen mit ähnlichen aufeinanderfolgenden Abtastwerten ist der Ausgang des Filters stark gedämpft. Sind die aufeinanderfolgenden Abtastwerte gleich, so ist der Ausgang des Filters $0$. Mit zunehmender Eingangsfrequenz nimmt auch die Amplitude des Ausgangs zu, bis er bei der halben Abtastfrequenz maximal wird. Es handelt sich also um ein \emp{Hochpaßfilter}.
+        
+        \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/filter2}
+			\caption[Impulsantwort und Übertragungsfunktion von Filter Bsp.2]{Impulsantwort, Betragsfrequenzgang und Phasenfrequenzgang von Beispielfilter Nr.2} \label{fig:filter2}
+			\end{center}
+		\end{figure}
+		
+		Abbildung \ref{fig:filter2}, in der Impulsantwort, Betragsfrequenzgang und Phasenfrequenzgang des Filters gezeigt werden, bestätigt die Herleitung der Impulsantwort und des Betragsfrequenzgangs. Der Phasefrequenzgang ist wie in Beispiel 1 linear.
+	\end{quote}
+
+	\begin{quote}\footnotesize \textbf{Beispiel 3}\\ 
+        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(50,30)
+
+
+                %boxes
+                \put(25,5){\framebox(7,6){\footnotesize{$z^{-11}$}}}
+
+                %lines horizontal
+                \put(5,20){\vector(1,0){20}}
+                \put(30,20){\vector(1,0){10}}
+                \put(45,20){\vector(1,0){10}}
+                
+                \put(15,8){\vector(1,0){10}}
+                \put(32,8){\vector(1,0){8}}
+
+                %lines vertical
+                \put(15,20){\line(0,-1){12}}
+                \put(42.5,10.5){\vector(0,1){7}}
+                
+                %circles
+                \put(27.5,20){\circle{5}} \put(26.5,19){{{x}}}
+                \put(42.5,20){\circle{5}} \put(41,19){{{+}}}
+                \put(42.5,8){\circle{5}} \put(41.5,7){{{x}}}
+                
+                \put(15,20){\circle*{1}}
+
+                %text
+                \put(26,24){\footnotesize{\shortstack[c]{$1/2$}}}
+                \put(46,5){\footnotesize{\shortstack[c]{$1/2$}}}
+
+                \put(4,22){\footnotesize{\shortstack[c]{x(n)}}}
+                \put(52,22){\footnotesize{\shortstack[c]{y(n)}}}
+
+            \end{picture}
+            \end{center}
+            \caption[Filter Beispiel 3]{Filter Beispiel 3}\label{fig:digfil_bsp3}
+        \end{figure}
+        
+        Auch dieses Beispiel weißt große Ähnlichkeit mit Beispiel 1 auf. Die Filterkoeffizienten sind identisch, das Verzögerungsglied verzögert hingegen nicht mehr nur um einen Abtasttakt, sondern um $11$. Wenn wir uns den Betragsfrequenzgang wie bei den obigen Beispielen herleiten, kommen wir zu dem Schluß, daß immer eine ganz bestimmte Frequenz und deren ganzzahlige Vielfache unterdrückt werden. Es handelt sich also um ein \emp{Kammfilter}.
+        
+        \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/filter3}
+			\caption[Impulsantwort und Übertragungsfunktion von Filter Bsp.3]{Impulsantwort, Betragsfrequenzgang und Phasenfrequenzgang von Beispielfilter Nr.3} \label{fig:filter3}
+			\end{center}
+		\end{figure}
+	
+	Abbildung \ref{fig:filter2} zeigt die Impulsantwort, den Betragsfrequenzgang und den Phasenfrequenzgang des Filters. Auch wenn es nicht so aussieht, ist auch in diesem Beispiel die Phase linear, lediglich die Darstellung kann Vielfache von $\frac{\pi}{2}$ nicht von $\frac{\pi}{2}$ selbst unterscheiden.
+	\end{quote}
+
+
+	\begin{quote}\footnotesize \textbf{Beispiel 4}\\ 
+        \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(80,30)
+                %boxes
+                \put(42.5,5){\framebox(7,6){\footnotesize{$z^{-1}$}}}
+
+                %lines horizontal
+                \put(10,20){\vector(1,0){5}}
+                \put(20,20){\vector(1,0){7.5}}
+                \put(32.5,20){\vector(1,0){37.5}}
+                
+                \put(42.5,8){\vector(-1,0){10}}
+                \put(57.5,8){\vector(-1,0){8}}
+
+                %lines vertical
+                \put(57.5,20){\line(0,-1){12}}
+                \put(30,10.5){\vector(0,1){7}}
+                
+                %circles
+                \put(17.5,20){\circle{5}} \put(16.5,19){{{x}}}
+                \put(30,20){\circle{5}} \put(28.5,19){{{+}}}
+                \put(30,8){\circle{5}} \put(29,7){{{x}}}
+                
+                \put(57.5,20){\circle*{1}}
+
+                %text
+                \put(15,24){\footnotesize{\shortstack[c]{$0.1$}}}
+                \put(23,3){\footnotesize{\shortstack[c]{$0.9$}}}
+
+                \put(4,22){\footnotesize{\shortstack[c]{x(n)}}}
+                \put(67,22){\footnotesize{\shortstack[c]{y(n)}}}
+
+            \end{picture}
+            \end{center}
+            \caption[Filter Beispiel 4]{Filter Beispiel 4}\label{fig:digfil_bsp4}
+        \end{figure}
+        
+        In dem vierten und letzten Beispiel liegt eine andere Filterstruktur vor: der Verzögerungspfad ist nun rückgekoppelt, d.h. daß jeder Ausgangswert wieder gewichtet mit einem Eingangswert addiert wird. In den bisherigen Beispielen hatte im Gegensatz dazu der Ausgangswert keinen Einfluß auf den folgenden Ausgangswert. Die Impulsantwort wird aufgrund der Rückkopplung niemals ganz abklingen (jedenfalls bei unendlicher Rechengenauigkeit), also unendlich ausgedehnt sein. Wäre der Faktor im Rückopplungszweig größer als $1$, so wird das Filter instabil und liefert immer größere Werte.\\
+        Der Amplitudenfrequenzgang dieses Filters läßt sich anschaulich nicht mehr so leicht herleiten wie in den obigen Beispielen. Wir sehen allerdings, daß der Rück\-kopplungs\-zweig stärker den Ausgangswert bestimmt als der Eingang des Filters. Verändert sich also der Eingang des Filters nicht oder nur sehr langsam, so wird der Ausgang des Filters dem Eingang ähnlich sein. Ändert sich der Eingang hingegen schnell, so werden sich diese Änderungen nur wenig Auswirkungen auf den Ausgang haben. Also liegt die Vermutung nahe, daß es sich in diesem Beispiel wiederum um ein \emp{Tiefpaßfilter} handelt. Abbildung \ref{fig:filter4} bestätigt diese Annahme. Der Phasengang ist nicht linear, der Betragsfrequenzgang dieses Tiefpaßfilters unterscheidet sich deutlich von dem aus Beispiel $1$.
+        
+        \begin{figure}[!hbt]
+			\begin{center}
+			\includegraphics[scale=0.5]{Graph/filter4}
+			\caption[Impulsantwort und Übertragungsfunktion von Filter Bsp.4]{Impulsantwort, Betragsfrequenzgang und Phasenfrequenzgang von Beispielfilter Nr.4} \label{fig:filter4}
+			\end{center}
+		\end{figure}
+
+	\end{quote}
+	
+	Die ersten drei Beispiele sind Filter mit endlich langer Impulsantwort, aus diesem Grund werden sie als \bld{FIR}-Filter\index{FIR-Filter} (FIR steht für \emp{Finite Impulse Response}\index{Finite Impulse Response}) bezeichnet. Da FIR-Filter keine Rückkopplungszweig besitzen, stellen die FIR-Filterkoeffizienten auch die Impulsantwort des Filters dar. Beispiel 4 hingegen ist ein Filter mit (zumindest theoretisch) unendlich langer Impulsantwort, Filter dieser Art werden \bld{IIR}-Filter\index{IIR-Filter} (IIR für \emp{Infinite Impulse Response}\index{Infinite Impulse Response}) genannt.\\
+	Die Information, wie ein Filter denn nun tatsächlich klingt, verbirgt sich ausschließlich in den Koeffizienten bzw. der Berechnung der Koeffizienten (jedenfalls wenn man nichts falschmacht). Hier kann eine kleine Änderung schon deutliche klangliche Konsequenzen nach sich ziehen.
+	
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:filter}
+\end{itemize}
+\end{quote}
+	
+\subsection{Filterstrukturen}\index{Filterstruktur}\index{Filter!Struktur}
+Die Elemente eines IIR-Filters lassen sich auf unterschiedliche Art und Weise anordnen. Unterschiedliche Strukturen können unterschiedliche Vor- und Nachteile zur Folge haben, beeinflußt werden v.a.
+\begin{itemize}
+	\item	Rechenaufwand,
+	\item	Rechengenauigkeit und die
+	\item	Größe des benötigten Speichers.
+\end{itemize}
+Eine Änderung der Filterstruktur sollte, wenn korrekt durchgeführt, keine Auswirkungen auf die Audioqualität des Filters haben.
+
+\section{Speichermedien}
+\subsection{Magnetbänder}
+\subsection{Optische Medien}
+
+
+
+\section{Übertragungstechnik/Fehlerbehandlung}
+\subsection{Fehlerquellen bei der Übertragung}
+\subsection{Jitter}
+\subsection{Kanalcodes}
+\subsubsection{Fehlerrobustheit}
+\subsubsection{Fehlererkennung}
+\subsubsection{Fehlerbehandlung}
+
+\section{Codierungsverfahren}\label{chap:codecs}
+
+	Die für hochqualitative Audioübertragung oder -speicherung benötigte Bandbreite bzw. der Speicherplatz liegen sehr hoch. Aus diesem Grund ist man bemüht, die Menge der Daten zu reduzieren, ohne die Qualität (stark) zu beeinflussen. Dies ist Aufgabe von \bld{Audiocodierungsverfahren}\index{Audiocodierungsverfahren}\index{Codierungsverfahren} (auch \emp{Audiokompressionsverfahren}\footnote{Nicht zu verwechseln mit Compressoren (s. Abschnitt \ref{chap:dynamics}), die nichts mit Datencodierung zu tun haben)}). Diese spielen in vielen Bereichen in zunehmenden Maße eine bedeutende Rolle, auch wenn man dies nicht nicht immer wahrnimmt (was ja auch der Sinn dieser Verfahren ist). So sind sie nicht nur im Internet mit ihrem sehr prominenten Vertreter \emp{MP3} (MPEG-1 layer 3) vertreten, sondern werden auch in der Telefonie, beim Rundfunk und im Fernsehen, im Kino, auf DVDs und auch in alltäglichen Geräten wie z.B. dem MiniDisc-Recorder eingesetzt. Aus diesem Grund ist es auch für Toningenieure und Tonmeister sinnvoll, sich mit den Stärken und Schwächen dieser Verfahren auseinanderzusetzen.
+	
+	Wie schon gesagt ist es Sinn und Zweck von Codierungsverfahren, die Datenmenge zur Übertragung oder Speicherung möglichst ohne hörbare Fehler (sogenannte \bld{Artefakte}\index{Artefakte}) für den Anwender zu gestalten. Damit dies gut funktioniert, sind teilweise recht komplexe Algorithmen erforderlich, die im folgenden ansatzweise beschrieben werden sollen.
+	
+\subsection{Überblick über Codierungsverfahren}
+Eigenschaften von Codierungsverfahren (Bitrate\index{Bitrate}, Kompressionsrate\index{Kompressionrate}, CBR\index{Constant Bitrate}/VBR\index{Variable Bitrate}
+\subsection{Wo können Bits gespart werden}
+	Es stellt sich natürlich die Frage, wieso Codierungsverfahren, die Neun Zehntel oder mehr der Daten einsparen, überhaupt so gut funktionieren können. Wandelt man z.B. ein $16bit$-Signal in ein $8bit$-Signal um, was lediglich einer Kompressionsrate von 1:2 entspricht, so hört man schon deutliche Artefakte. Der Kompressionsgewinn der Codierungsverfahren beruht einerseits auf Eigenschaften des Audiosignals selbst, andererseits auf Eigenschaften des menschlichen Gehörs.
+	
+	Das Audiosignal besitzt Eigenschaften, die bekannt sind und die keine neue Information liefern. So ist z.B. fast allen Signalen zueigen, daß niedrige Amplitudenwerte wesentlich häufiger auftreten als hohe. Auch ist es z.B. im Falle eines positiven Amplitudenwertes sehr viel wahrscheinlicher, daß der darauffolgende Wert ebenfalls positiv ist als daß er negativ ist. Solche Eigenschaften nutzt die \bld{Redundanzcodierung}\index{Redundanzcodierung} aus, indem nur nicht-redundante Information übertragen oder gespeichert wird. Dabei gehen keine Daten/Informationen verloren.
+
+\subsection{Redundanzcodierung}
+Da bei der Redundanzcodierung\index{Redundanzcodierung} keine Daten oder Informationen verloren gehen, handelt es sich um ein \emp{verlustloses} (lossless) Codierungsverfahren. Da eine bitgenaue Rekonstruktion des Signals möglich ist, kann auch mehrfache Codierung und Decodierung die Signalqualität nicht verschlechtern. Ein etabliertes verlustloses Codierungsverfahren auf dem PC ist beispielsweise das ZIP-Verfahren, das Packprogramm genannt wird. \\
+Verlustlose Verfahren haben neben dem Vorteil der Verlustlosigkeit auch zwei wichtige Nachteile:
+\begin{itemize}
+	\item	die Kompressionsrate ist mit Faktor $1.5-4$ relativ gering
+	\item	die Ausgangsbitrate ist materialabhängig und kann nicht konstant gehalten werden
+\end{itemize}
+Redundanzcodierungsverfahren arbeiten heutzutage zumeist nach dem Prä\-dik\-tions\-prinzip; aufgrund der letzten Abtastwerte wird versucht, die kommenden Abtastwerte vorherzusagen. Der dabei gemachte Fehler ist zum ursprünglichen Audiosignal meistens sehr klein. Nun muß nur noch der Prädiktionsfehler und einige Information zur Signalvorhersage beim Empfänger übertragen werden, was wesentlich effizienter ist.
+
+\subsection{Irrelevanzcodierung}
+Die Verfahren der \bld{Irrelevanzcodierung}\index{Irrelevanzcodierung} versuchen, für das menschliche Gehör wichtige Signalanteile von unwichtigen Signalanteilen zu trennen, und die unwichtigen Anteile gar nicht oder sehr verrauscht zu übertragen. Dabei sind je nach Verfahren Kompressionsraten von $1:4-1:30$ erzielbar. Zudem ist es mit verlustbehafteten Verfahren meistens auch möglich, eine feststehende Bitrate zu erzielen, was für die Signalübertragung große Bedeutung haben kann. Im allgemeinen hat der Decoder keinen Einfluß auf die Qualität des encodierten und wieder decodierten Signals, diese wird meist ausschließlich von Encoder bestimmt.
+
+\subsubsection{Grundsätzlicher Aufbau verlustbehafteter Verfahren}
+	Abb. \ref{fig:irr_coding} zeigt den prinzipiellen Aufbau der meisten wahrnehmungsangepaßten Codierungsverfahren. 
+	
+    \begin{figure}[!hbt]
+			\begin{center}
+            \begin{picture}(140,130)
+
+                %boxes
+                \put(0,60){\framebox(30,15){\footnotesize{\shortstack[c]{Psychoakustisches\\ Modell}}}}
+                \put(40,60){\framebox(30,15){\footnotesize{Filterbank}}}
+                \put(40,35){\framebox(30,15){\footnotesize{\shortstack[c]{Spectral\\ Processing}}}}
+                \put(40,10){\framebox(30,15){\footnotesize{\shortstack[c]{Quantisierung\\ und\\ Noiseless Coding}}}}
+                \put(80,10){\framebox(30,65){\footnotesize{\shortstack[c]{Bitstream\\-Formatierung}}}}
+
+                %thin vectors horizontal
+                \put(15,42.5){\vector(1,0){25}}
+                \put(15,17.5){\vector(1,0){25}}
+                \put(70,42.5){\vector(1,0){10}}
+                \put(70,67.5){\vector(1,0){10}}
+
+                %thin lines vertical
+                \put(15,17.5){\line(0,1){42.5}}
+                
+                %thick vectors horizontal
+                \linethickness{0.5mm}
+                \put(70,17.5){\vector(1,0){10}}
+                \put(110,42.5){\vector(1,0){5}}
+                
+
+                %thick vectors vertical
+                \put(15,85){\vector(0,-1){10}}
+                \put(55,90){\vector(0,-1){15}}
+                \put(55,60){\vector(0,-1){10}}
+                \put(55,35){\vector(0,-1){10}}
+                
+                %thick lines horizontal
+                \put(15,85){\line(1,0){40}}
+
+                %text
+                \put(58,85){\footnotesize{\shortstack[c]{Eingangssignal}}}
+                \put(112,36){\footnotesize{\shortstack[c]{codierter\\ Ausgangsbitstream}}}
+
+            \end{picture}
+			\end{center}
+			\caption[Irrelevanzcodierung]{typischer Ablauf eines wahrnehmungsangepaßten Codierungsverfahrens, die dicken Pfeile markieren den Fluß der Audioinformationen, die dünnen den Fluß der Kontrolldaten}\label{fig:irr_coding}
+        \end{figure}
+	
+	
+	Da das Codierungsverfahren versucht, wichtige (relevante) Signalanteile von unwichtigen zu trennen, ist eine umfassende Analyse des Eingangssignals nötig. Diese geschieht im sogenannten \bld{psychoakustischen Modell}\index{Modell!psychoakustisches}. Diese Analyse sowie die spätere Codierung werden im Frequenzbereich durchgeführt, wobei die Transformation mittels einer \bld{Filterbank}\index{Filterbank} durchgeführt wird. Dabei werden wichtige Eigenschaften des Gehörs wie die Verdeckungseffekte (vgl. Abschnitt \ref{chap:masking}) und die Frequenzauflösung des Gehörs modelliert. Das Ergebnis des psychoakustischen Modells sagt dann den anderen Codierungstools, welche Frequenzbänder besonders wichtig sind, und welche vernachlässigbar sind. Vor der eigentlichen Quantisierung des Signals kommen - abhängig vom jeweils betrachteten Codierungsverfahren - noch einige Tools, welche die Codierungseffizienz noch weiter steigern. Beispiele sind die Ausnutung von Redundanzen zwischen zwei Stereokanälen, die Prediktion von Spektralwerten sowie die Veränderung der zeitlichen Struktur des Quantisierungsrauschens. 
+	
+	Der letzte und wichtigste Schritt des Codierungsverfahrens ist die Quantisierung. Basierend auf der Analyse des psychoakustischen Modells versucht der \bld{Quantisierer}\index{Quantisierer}, wichtige Spektralanteile hochauflösend zu quantisieren und unwichtigere sehr grob zu quantisieren. Die Quantisierung im Zusammenhang mit der nachgeschalteten Redundanzcodierung der quantisierten Werte resultiert dann in dem Codierungsgewinn.
+	
+\subsubsection{Typische Artefakte}
+	\begin{itemize}
+		\item	Bandbegrenzung
+		\item	Pre-Echo
+		\item	Quantisierungsrauschen
+		\item	Zwitschern
+		\item	Verzerrungen
+		\item	Aliasing
+		\item	Schwankungen/Verzerrungen des Stereobildes
+	\end{itemize}
+	
+\subsubsection{Qualitätsbeurteilung}
+	Die Qualität eines Codierungsverfahrens ist neben dem Algorithmus selbst abhängig von
+	\begin{itemize}
+		\item	dem verwendeten Eingangssignal,
+		\item	dem verwendeten Encoder (es können mehrere verschiedene Encoder exisitieren, die auf dem gleichen Algorithmus beruhen), 
+		\item und den verwendeten Encodieroptionen.
+	\end{itemize}
+	Es gibt für jeden Encoder kritische und unkritische Testsignale. Bei unkritischen Testsignalen kann die Qualität selbst bei niedrigen Ausgangsbitraten sehr gut sein. Zur Qualitätsbeurteilung eines Verfahrens sollten möglichst kritische Testsequenzen ausgesucht werden, damit die Stärken und Schwächen (vielleicht auch im Vergleich mit anderen Verfahren) deutlich hervortreten. 
+	
+	Auch wenn verschiedene Encoder auf dem gleichen Prinzip beruhen, bedeutet das nicht automatisch, daß die resultierende Qualität gleich ist. Hier sollte man gegebenenfalls verschiedene Encoder vergleichen.
+	
+	Mit ein wenig Tuning an den Encodieroptionen läßt sich die Encodierungsqualität oftmals signifikant im Hinblick auf das verwendete Eingangssignal und die angestrebte Ausgangsbitrate optimieren. 
+	
+	Die etablierten Verfahren zur Qualitätsmessung versagen im Zusammenhang mit Codierungsverfahren. Dies hat v.a. drei Gründe:
+	\begin{itemize}
+		\item die hohe Zeitinvarianz der Codierungsverfahren, die ca. alle $10-20ms$ ihr Übertragungsverfahren ändern können
+		\item	die Ausgangsqualität hängt stark vom Eingangssignal ab,
+		\item	durch die intensive Ausnutzung von psychoakustischen Erkenntnissen wird bewußt Rauschen insbesondere in verdeckten Frequenzbereichen eingeführt; wird der Pegel dieses Rauschens mit einfachen Mitteln wie dem SNR gemessen, so wird die \glqq Unhörbarkeit\grqq$\,$ dieses Rauschens nicht berücksichtigt.
+	\end{itemize}
+	Es existieren zwar Systeme, die versuchen, die Qualität von Codierungsverfahren objektiv zu messen, diese können allerdings bisher nur mit gewissen Einschränkungen verwendet werden. Somit bleibt als einzige und letzte Alternative zur Qualitätsbeurteilung von Codierungsverfahren nur die subjektive Qualitätsbeurteilung. Will man die Ergebnisse dieser subjektiven Beurteilung etwas objektivieren, so bleibt nur der aufwendige Hörtest (s. Abschnitt \ref{chap:listtest}).	
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:listtest}
+\end{itemize}
+\end{quote}
+	
+	
+\subsubsection{Encodieroptionen}
+	Dieser Abschnitt soll einen kurzen Überblick über die geläufigsten Encodieroptionen bieten und kurz ihre Auswirkungen skizzieren.\\
+	Die naheliegensten und am häufigsten benutzten Encodieroptionen sind \emp{Bitrate}\index{Bitrate} und/oder \emp{Qualitätsstufe}. Je höher die Bitrate, desto besser klingt i.a. das encodierte Signal. Daher beeinflussen sich diese beiden Parameter oft gegenseitig. Viele Encoder haben einen sog. \emp{VBR}\index{Variable Bitrate}-Modus, für den lediglich noch die gewünschte Qualität selektiert wird und kein Einfluß mehr auf die Ausgangsbitrate genommen werden kann.\\
+	Über die einstellbare Grenzfrequenz des Tiefpaßfilters läßt sich eine Tiefpaßfilterung vor dem eigentlichen Encodiervorgang durchführen. Ein Tiefpaßfilter hilft dem Encoder unter Umständen, Zwischterartefakte zu vermeiden.\\
+	Unterschreitet ein Encoder seinen optimalen Bitratenbereich, kann sich die Qualität rapide mit sinkender Bitrate verschlechtern. Durch ein Downsampling des Eingangsbereichs läßt sich die Kompressionsrate wieder etwas verringern, so daß die empfundene Qualität steigt.\\
+	Bei sehr niedrigen Bitraten sinkt die Qualität oft so rasch, daß der Verzicht auf die Stereo-/Multichannelinformation sinnvoller ist als die deutlich hörbaren Codierungsartefakte in Kauf zu nehmen. Bei einem Downmix von Stereo nach Mono halbiert sich die Kompressionsrate, so daß der Encoder wieder Spielraum zur Qualitätsoptimierung hat.
+
+\subsubsection{Auswahlkriterien von Codierungsverfahren}
+Es existiert kein Audiocodierungsverfahren, das in jedem Einsatzbereich uneingeschränkt eingesetzt werden kann. Abhängig von Einsatzbereich lassen sich unterschiedliche Kriterien benennen, die im folgenden stichpunktartig dargestellt und erläutert werden sollen.
+\begin{itemize}
+
+	\item	\bld{Audioqualität}: Die Qualität des codierten und wieder decodierten Signals ist sicherlich i.a. das wichtigste Kriterium bei der Auswahl des Codierungsverfahren und hängt mehr oder weniger direkt mit vielen der nachfolgenden Punkte zusammen. Ein sehr wichtiger Punkt im Zusammenhang mit der Qualität wurde schon weiter oben angeführt: die Qualität ist bei zeitgemäßen Codierungsverfahren immer abhängig vom Eingangssignal, somit kann auch die Wahl des Codierungsverfahren vom zu codierenden Signal abhängen. Ist die Audioqualität das einzige Kriterium, so ist einem verlustloses Verfahren der Vorzug zu geben.
+	
+	\item	\bld{Bitrate}: Bitrate und Qualität haben direkt aufeinander Einfluß. Als Daumenregel kann man festhalten, daß die Qualität mit höherer Bitrate steigt. Verschiedene Verfahren sind immer auf bestimmte Bitraten ausgelegt und erzielen bei diesen Bitraten die besten Ergebnisse; bei abweichenden Bitraten können sie deutlich schlechter klingen als andere Verfahren. Es spielt ebenfalls eine Rolle, ob ein Verfahren eine \emp{konstante} oder \emp{variable} Bitrate erlaubt. Beispielsweise sind Verfahren mit variabler Bitrate für Streaminglösungen eher ungeeignet.
+	
+	\item	\bld{Komplexität}: Die Komplexität eines Verfahrens zeigt sich in der erforderlichen Rechenleistung für eine Codierung/Decodierung. Je komplexer ein Verfahren ist, desto mehr steigt die Auslastung des Rechners/Chips. Als Daumenregel gilt hier: je komplexer ein Verfahren ist, desto besser ist die Qualität.
+	\bem{Im allgemeinen sind die Decoder wesentlich weniger aufwendig als die Encoder. Aus diesem Grund sind Decoder billiger und einfacher zu realisieren (z.B. portabel), während Encoder u.U. hohen Entwicklungsaufwand kosten}\end{quote}
+	
+	\item	\bld{Delay}: In Einzelfällen, insbesondere im Falle zweiseitiger Kommunikation wie z.B. mit dem Telefon ist auch das Encodierungs-/Decodierungsdelay ein wichtiges Auswahlkriterium. Wenn dieses Delay groß ist wie z.B. bei den meisten MPEG-Verfahren, leidet der Gesprächsfluß unter dieser Einschränkung. Mit steigendem Delay steigt meistens auch die Qualität eines Verfahrens leicht an.
+	
+	\item	\bld{Verbreitung}: Je verbreiteter ein Verfahren ist, desto mehr Menschen kön\-nen codierte Dateien ohne große Probleme abspielen. Will man also z.B. Demodateien für möglichst viele Hörer zugänglich machen, so ist die Wahl eines (im angestrebten Zielmarkt) sehr verbreiteten Verfahrens sinnvoll.
+	
+	\item	\bld{Kosten}: Die Kosten für die Benutzung eines Verfahrens schwanken. Teilweise dürfen Verfahren kostenlos benutzt werden, teilweise muß man vor der Benutzung eine Lizenz erwerben (meistens im Kaufpreis enthalten). Es kann sogar vorkommen, daß pro encodiertem Material Lizenzgebühren an den Rechteinhaber fällig werden.
+	
+	\item	\bld{Zukunftssicherheit}: Gerade bei der Anwendung von Codierungsverfahren für Archivierungen spielt die Frage der Zukunftssicherheit eines Verfahrens eine wichtige Rolle, denn funkionsfähige Decoder müssen auch noch in mehreren/vielen Jahren zur Verfügung stehen. Anhaltspunkte dafür sind zum Beispiel, ob das Verfahren international standardisiert ist, ob es sich um einen internationalen de facto-Standard handelt und ob im Internet Quelltexte zu dem Verfahren zur Verfügung stehen.
+	
+	\item	\bld{Rechtssicherheit}: Auf den meisten Verfahren liegen mehrere Patente. Es existieren teilweise Codierungsverfahren, die diese Patente verletzen, den Anwender aber nicht darauf aufmerksam machen. Auch wenn die Patente im Moment nicht verfolgt werden, muß das nicht heißen, daß diese Verfahren auch in Zukunft bedenkenlos benutzt werden können.
+\end{itemize}
+
+
+
+\section{Zusammenfassung}
+Die Zahlendarstellung in digitalen Systemen ist \bld{binär}, sie besteht ausschließlich aus den Symbolen $0$ und $1$. Die \bld{Wortbreite}\index{Wortbreite} eines Signals oder eines Systems beschreibt, wieviele Bits benötigt werden, um einen Wert darzustellen.\\
+Bei der Konvertierung eines analogen Signal in ein digitales Signal muß das analoge Signal abgetastet und quantisiert werden. Die Abtastung findet in äquidistanten Abständen, die durch die \bld{Abtastrate}\index{Abtastrate} festgelegt werden, statt. Es ist wichtig, daß das \bld{Abtasttheorem}\index{Abtasttheorem} berücksichtigt wird, das als maximal erlaubte Frequenz die halbe Abtastfrequenz erlaubt. Die \bld{Quantisierung}\index{Quantisierung} bildet die kontinuierliche Amplitude des Eingangssignals auf Quantisierungsstufen ab, deren Zahl von der Wortbreite abhängt. Der erzielte SNR hängt direkt mit der Wortbreite zusammen; als Daumenwert gilt ein Gewinn von $6dB$ SNR pro zur Wortbreite hinzugefügtem Bit.\\
+Zur Erhöhung Qualität der Quantisierung, sowohl bei der A/D-Wandlung wie auch bei späterer Wortbreitenreduktion, können Methoden wie \bld{Dithering}\index{Dithering} (Hinzufügen von Rauschen minimaler Leistung) und/oder \bld{Noise-Shaping}\index{Noise-Shaping} (spektrale Formung des Quantisierungsfehlers) verwendet werden.
+
+
+\section{Aufgaben}
+\begin{enumerate}
+\item	Warum reicht der Zahlenbereich bei $16bit$ von $-32768$ bis $32767$ und nicht bis $32768$?
+
+\item	Berechne die Amplitudenwerte für folgende Binärzahlen (vorzeichenbehaftet):
+	\begin{itemize}
+	\item $0000\, 0000\, 1001\, 1000$
+	\item $0111\, 0001\, 0010\, 1111$
+	\item	$1000\, 1110\, 1101\, 0000$
+	\item	$1111\, 1111\, 0110\, 0111$
+	\end{itemize}
+	
+\item	Wieviele unterschiedliche Amplitudenwerte können mit $24bit$ Wortbreite dargestellt werden?
+
+\item	Wie groß ist der Dynamikumfang eines Systems mit $20bit$ bzw. $24bit$ Wortbreite theoretisch?
+
+\item Berechne die Datenrate eines
+	\begin{itemize}
+	\item	$16bit$-Stereosignals der Abtastrate $44.1kH\!z$
+	\item	$20bit$-Stereosignals der Abtastrate $48kH\!z$
+	\item	$24bit$-Stereosignals den Abtastraten $48kH\!z$, $96kH\!z$, $192kH\!z$
+	\end{itemize}
+
+\item Mit welcher Frequenz muß ein Signal mindestens abgetastet werden, damit alle Frequenzen zwischen $0H\!z$ und $24kH\!z$ theoretisch fehlerfrei rekonstruiert werden können?
+
+\item Warum ist die Zahl der Quantisierungsstufen immer eine Zweierpotenz (2,...,256,65536)?
+
+\item	Warum kann die Verdopplung der Abtastfrequenz bei Oversampling zu einem Gewinn von $3dB$ beim SNR führen?
+
+\item	Wieviele dB SNR-Gewinn lassen sich theoretisch durch 128-fach Oversampling erzielen?
+
+\item	CD Speicherdichte - Computer vs. Audio
+
+\item Kompressionrate vs. Bitrate vs. Abtastrate
+
+\item Gibt es einen Zusammenhang zwischen Audiokompressionsverfahren und Compressoren? Wenn ja, wo liegt dieser?
+\end{enumerate}
+
+\nocite{pohlmann, watkinson}

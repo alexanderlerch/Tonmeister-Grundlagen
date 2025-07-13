@@ -1,0 +1,271 @@
+\chapter{Schall und Schallfeld}\label{chap:schall}
+\thispagestyle{empty}
+
+Nachdem im vorigen Kapitel die Begriffe Schwingung und Welle erläutert wurden, wird dieses Kapitel die wichtigen Größen für Schall einführen, und auf die Besonderheiten der Schallausbreitung eingehen. 
+
+\section{Schallschnelle und Schalldruck}
+\thispagestyle{empty}
+Wie bereits in Abschnitt \ref{chap:wellen} beschrieben, breitet sich eine Schallwelle mittels
+Hin- und Herbewegung von Luftteilchen in Ausbreitungsrichtung aus. Die Geschwindigkeit, mit
+der die Teilchen sich bewegen, hat mit der Schallgeschwindigkeit $c$, mit der sich eine
+Welle fortpflanzt, \textit{nichts} zu tun. Die Geschwindigkeit, mit der einzelne Teilchen
+um den Ort pendeln, an dem sie sich in Ruhe befänden, wird
+\textbf{Schallschnelle v}\index{Schallschnelle|{bld}} genannt.
+
+\bsp{ Die Schallschnelle eines Teilchens ist \textit{keine} konstante Größe. Sie ist an dem
+ursprünglichen Ruhepunkt des Teilchens am größten und bei der maximalen Auslenkung gleich
+Null. Zur Veranschaulichung kann man sich ein schwingendes Teilchen also wie ein
+schwingendes Pendel vorstellen. Das bedeutet auch, daß die Luftteilchen nicht mit der Welle
+mitwandern.}\end{quote}
+
+Die Luftteilchen schwingen in Ausbreitungsrichtung und regen ihrerseits Nachbarteilchen zum
+Schwingen an. Somit folgt eine Schwankung der Dichte und damit Änderungen des Drucks. Diese
+Druckänderungen bezeichnet man als
+\textbf{Schalldruck}\index{Schalldruck|{bld}} $p$. Der Schalldruck wird vom Ohr wahrgenommen; das
+Ohr ist ein Schalldruckempfänger.
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/ausbrtg}
+\end{center}
+\caption[Ausbreitung einer Welle und Schalldruck]{Ausbreitung einer Welle und Schalldruck (aus \cite{webers})\label{fig:longitud}}
+\end{figure}
+Der Schalldruck hat einen Wert für einen bestimmten Punkt im Raum, die Schallschnelle
+hingegen hat zudem noch eine Richtung, weswegen man sie als Vektor schreibt.
+
+\begin{sloppypar}
+Schallschnelle und Schalldruck sind Wechselgrößen, d.h. sie ändern sich ständig. Man möchte
+sie aber gerne durch jeweils einen einzelnen Wert ausdrücken. Hierfür hat sich der
+sogenannte \bld{Effektivwert}\index{Effektivwert|{bld}}(englisch: RMS für Root Mean Square) eingebürgert. Streng ist dieser
+definiert durch\end{sloppypar}
+\begin{equation}\label{eq:effektivp}
+  p_{eff}=\sqrt{\lim_{T \rightarrow \infty} \frac{1}{T}\int_{T}\left[p(t)\right]^2 \,dt}\; \left[Pa\right],
+\end{equation}
+für einfache periodische Signale (mit der Periodendauer T) kann man ihn aber auch durch
+\begin{equation}\label{eq:effektivp2}
+  p_{eff}=\sqrt{\frac{1}{T}\int_{T}\left[p(t)\right]^2 \,dt}\;\left[Pa\right]
+\end{equation}
+berechnen. Ebenso läßt sich der Effektivwert der Schallschnelle ermitteln.
+\bem{Man meint,
+wenn von Schalldruck oder Schallschnelle als absoluten Größen die Rede ist, fast immer den
+Effektivwert (auch wenn das nicht explizit erwähnt wird), denn auf diese Weise lassen sich
+diese Wechselgrößen als einzelne Werte behandeln.}
+\end{quote}
+\bem{Gegenüber dem statischen Luftdruck ist der Schalldruck außerordentlich klein. Der
+atmosphärische Druck beträgt $10^5Pa$ \footnote{$1Pa=1\frac{N}{m^2}$}, während der
+Schalldruck bei mittlerer Lautstärke ca. $1/10Pa$ beträgt. Der maximal erträgliche
+Schalldruck, die Schmerzschwelle, liegt bei ca. $100Pa$.}
+\end{quote}
+
+\section{Entfernungsabhängigkeit des Schalldrucks}
+\begin{sloppypar}
+Der Schalldruck nimmt mit zunehmender Entfernung ab, eine weit entfernte Schallquelle wird
+wesentlich leiser wahrgenommen als eine nahe (wenn beide gleichstark abstrahlen). Es läßt
+sich zeigen, daß der Schalldruck umgekehrt proportional zur Entfernung $r$
+ist\footnote{Dies gilt für Kugelschallquellen. Für andere Schallquellen nimmt der
+Schalldruck bis zu einer bestimmten Entfernung langsamer ab, und verhält sich dann wie im
+Kugelschallfeld.}, d.h.
+\begin{equation}\label{eq:r-gesetz}
+  p\sim \frac{1}{r}.
+\end{equation}
+
+Das bedeutet also, \textit{daß sich bei jeder Entfernungsverdopplung der Schalldruck
+halbiert}. Diese Gesetzmäßigkeit nennt man oft \textbf{1/r-Gesetz}\index{Gesetz!1/r-|{bld}}. Sie
+folgt direkt als Lösung der sogenannten Wellengleichung, die man für eine Kugelschallquelle
+aufstellen kann.
+\end{sloppypar}
+\bem{Prinzipiell gilt dieses Gesetz genau wie die im folgenden Abschnitt \ref{chap:nahfern} erläuterte Abhängigkeit der
+Schallschnelle von der Entfernung nur im sogenannten Freifeld (s. Abschnitt
+\ref{chap:freifeld}), d.h. nicht in normalen Räumen, sondern nur im Freien oder im
+reflexionsarmen Raum. Näherungsweise kann man aber auch in normalen Räumen von dieser
+Gesetzmäßigkeit ausgehen, allerdings nur in Nähe der Schallquelle (s. Abschnitt
+\ref{chap:freifeld}. }\end{quote}
+
+\section{Nahfeld und Fernfeld/ Entfernungs\-ab\-hän\-gig\-keit der Schallschnelle}\label{chap:nahfern} Als Lösung der Wellengleichung für die Schallschnelle
+ergibt sich eine etwas komplexere Beziehung als für den Schalldruck. Ist man weit von der
+Schallquelle entfernt, so nimmt der Betrag der Schallschnelle genauso wie beim Schalldruck
+mit $1/r$ ab. Nahe an der Schallquelle nimmt die Schnelle aber nicht nur mit $1/r$, sondern
+mit $1/r^2$ ab. Man unterscheidet je nach Verhalten der Schnelle zwischen
+\textbf{Nahfeld}\index{Nahfeld|{bld}} ($1/r^2-Abnahme$) und \textbf{Fernfeld}\index{Fernfeld|{bld}} (Abnahme mit $1/r$).
+
+\herl{Man erhält als Lösung der Wellengleichung für den Betrag der Schnelle
+\begin{equation}\label{eq:schnellebetrag}
+  |\mathbf{v}|\sim \frac{1}{r}\sqrt{1+\left(\frac{\lambda}{2\pi r}\right)^2}
+\end{equation}
+\begin{quote}
+\scriptsize{$r$ ist der Abstand zur Kugelschallquelle,\\ $\lambda$ ist die Wellenlänge des
+abgestrahlten Schalls}
+\end{quote}
+Der Betrag der Schallschnelle ist also sowohl von der Entfernung, als auch von der
+abgestrahlten Wellenlänge abhängig. Man erkennt, wenn man für $r$ große Werte einsetzt, daß
+die Summe unter der Wurzel sehr nahe bei $1$ liegt. Dies bedeutet, daß man für große Werte
+von $r$ (d.h. große Abstände von der Schallquelle) die Beziehung
+\begin{equation}\label{eq:schnellefern}
+   |\mathbf{v}|\sim \frac{1}{r}\sqrt{1}
+\end{equation}
+erhält, also die gleiche Abnahme wie beim Schalldruck. Setzt man für $r$ allerdings sehr
+kleine Werte ein, so kann man die $1$ der Summe unter der Wurzel vernachlässigen und erhält
+\begin{equation}\label{eq:schnellenah}
+   |\mathbf{v}|\sim \frac{1}{r^2}.
+\end{equation}
+Den Übergang zwischen Nahfeld und Fernfeld findet man, wenn der zweite Summand
+${\frac{\lambda}{2\pi r}}^2$ die gleiche Größenordnung hat wie der erste Summand, also
+ungefähr bei $\frac{\lambda}{2\pi r}=1$. Der Punkt des Übergangs ist also frequenzabhängig,
+oder anders ausgedrückt: die Ausdehnung des Nahfeldes ist abhängig von der abgestrahlten
+Wellenlänge.}
+\end{quote}
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=0.5]{Graph/n_nahfeld}
+\caption[Verlauf der Schallschnelle über dem Abstand $r$]{Verlauf der Schallschnelle über dem Abstand $r$ von der Schallquelle für zwei
+verschiedene Frequenzen} \label{fig:nahfern}
+\end{center}
+\end{figure}
+
+Bei tiefen Frequenzen muß man wesentlich weiter von der Schallquelle entfernt sein, um sich
+im Fernfeld zu befinden, als für höhere. Den Übergang von Nah- zu Fernfeld findet man, wie
+in der Herleitung erwähnt, im Abstand
+\begin{equation}\label{eq:nahzufern}
+  r=\frac{\lambda}{2\pi}.
+\end{equation}
+Ein weiterer Unterschied zwischen Nah- und Fernfeld ist von Bedeutung. Im Fernfeld befinden
+sich Schalldruck und Schallschnelle in Phase, während sie im Nahfeld um bis zu 90°
+zueinander phasenverschoben sind.
+
+\bem{Für Mikrophone, die keine reinen Schalldruckempfänger sind, sondern auf die
+Schallschnelle ansprechen, ist das Wissen um Nah- und Fernfeld einer Schallquelle von
+Bedeutung. Schnelleempfänger liefern einerseits eine um 90° zu Druckempfängern verschobene
+Ausgangsspannung, andererseits erhält man bei solchen Mikrophonen im Nahfeld eine sehr
+starke Anhebung der tiefen Frequenzen. Dies wird
+\emp{Nahbesprechungseffekt}\index{Nahbesprechungseffekt} genannt. Dazu in Abschnitt ?????? mehr.
+}\end{quote}
+
+\section{Schalleistung}
+Die Stärke des Schalldrucks an einem bestimmten Punkt im Raum ist durch die \glqq
+Stärke\grqq$\:$  der Schallquelle bestimmt. Es ist von Interesse, die Stärke einer Schallquelle
+unabhängig vom Abstand des Hörers und den räumlichen Gegebenheiten angeben zu können. Die
+\textbf{Schalleistung $P_{ak}$}\index{Schalleistung|{bld}}, also die abgestrahlte Energie pro
+Sekunde, ist eine Größe, die dies ermöglicht. Ihre Einheit ist Watt [W]. Sie ist
+\begin{equation}\label{eq:schalleistung}
+  P=p_{eff}^2= \lim_{T \rightarrow \infty}\frac{1}{T}\int_{T}{\left[p(t)\right]^2 \,dt}\;[W].
+\end{equation}
+
+
+\section{Schallintensität}
+Die \textbf{Schallintensität}\index{Schallintensität|{bld}} ist die Schalleistung, die durch eine
+senkrecht zur Ausbreitungsrichtung stehende Fläche strömt.
+\begin{equation}\label{eq:intensitaet}
+  \mathbf{J}=\frac{1}{T}\int_0^T{p(t)\cdot \mathbf{v}(t)\,dt}\;\left[\frac{W}{m^2}\right]
+\end{equation}
+Für eine Kugelschallquelle gilt für
+die Intensität in Abhängigkeit des
+\mbox{Abstandes $r$}
+\begin{equation}\label{eq:intensikugel}
+  J(r)=\frac{P_{ak}}{4\pi r^2}\;\left[\frac{W}{m^2}\right]
+\end{equation}
+
+\section{Gestörte Schallausbreitung}
+In den vorigen Abschnitten wurde davon ausgegangen, daß die Schallwelle sich ungestört
+ausbreiten kann, also auf keine Hindernisse stößt. In Räumen gibt es eine Vielzahl von
+Hindernissen, die den Schall an ungestörter Ausbreitung hindern, insbesondere natürlich die
+Wände. Je nach Art und Beschaffenheit des Hindernisses entstehen verschiedene Phänomene. Im
+folgenden soll kurz auf diese eingegangen werden.
+
+\subsection{Reflexion}
+Trifft eine Schallwelle auf eine ebene Fläche, die groß im Verhältnis zu ihrer Wellenlänge
+ist, so wird sie reflektiert. Hierfür gilt - genau wie in der Optik - das bekannte Gesetz
+Einfallswinkel = Ausfallswinkel, das besagt, daß die unter einem Winkel $\theta$ (die
+$0^\circ $-Achse steht senkrecht auf der Wand) auf die Wand treffende Welle mit einem Winkel
+$-\theta$ wieder reflektiert wird. Schall verhält sich hier also wie ein Strahl (s.
+Abb. \ref{fig:reflex}).
+
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/reflex2}
+\caption[Reflexion einer Ebenen Welle]{Reflexion einer Ebenen Welle mit Einfallswinkel $\alpha$ an einer Wand (aus \cite{webers})} \label{fig:reflex}
+\end{center}
+\end{figure}
+\begin{sloppypar}
+Je nach Material der Wand sind die Reflexionen allerdings nicht mehr mit dem eintreffenden
+Schall identisch. Vielmehr reflektieren verschiedene Wandmaterialien verschiedene
+Frequenzen unterschiedlich gut. Beispielsweise reflektiert eine harte Steinwand den
+eintreffenden Schall fast verlustlos, während eine mit Stoff bespannte Wand hohe Frequenzen
+dämpfen wird.\\
+\end{sloppypar}
+Die Eigenschaft eines (Wand-)materials, nicht die gesamte Schallenergie zu reflektieren,
+sondern nur einen Teil, kann mit dem \textbf{Absorptionsgrad}\index{Absorptionsgrad|{bld}}
+$\alpha$ beschrieben werden. Der Absorptionsgrad eines Materials, das keinen Schall
+reflektiert, sondern alles absorbiert, ist $\alpha=1$; für eine verlustfrei reflektierende
+Wand wäre $\alpha=0$. Für reale Materialien kann der Absorptionsgrad also Werte zwischen
+$0$ und $1$ annehmen.
+
+
+\bem{Bei verlustbehafteter Reflexion (s.o.) spricht man von \textit{Schalldämpfung}\index{Schalldämpfung|{bld}}. Wenn
+man sich dagegen beispielsweise nicht im gleichen Raum wie das Schallereignis aufhält,
+sondern im Nebenraum, so erreicht den Hörer nur die Schallenergie, die weder reflektiert
+noch absorbiert, sondern durchgelassen wurde. Diese Eigenschaft einer Wand bezeichnet man
+als \textit{Schalldämmung}\index{Schalldämmung|{bld}}}
+\end{quote}
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:raumak}
+\end{itemize}
+\end{quote}
+
+\subsection{Beugung}\label{chap:beugung}
+Bei der Reflexion von Schall war die Voraussetzung, daß die reflektierende Fläche groß
+gegenüber der Wellenlänge ist. Ist die Wellenlänge hingegen in der gleichen Größenordnung
+wie die Fläche (resp. ihre kleinste Ausdehnung), so werden die Schallwellen nicht mehr
+reflektiert, sondern gebeugt.
+\textbf{Beugung}\index{Beugung|{bld}} bedeutet, daß die Schallwellen sich um das Hindernis \glqq
+herumbiegen\grqq. Ist das Hindernis also klein gegenüber der Wellenlänge, so treten also
+dahinter kaum Abschattungswirkungen auf, sondern die Schallwelle pflanzt sich hinter dem
+Hindernis fast genau wie vor dem Hindernis fort (s. Abb. \ref{fig:beugung}).
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/beugung}
+\caption[Beugung von Wellen hinter einem Hindernis]{Beugung von Wellen hinter einem Hindernis: (a) Hindernis groß im Vergleich zu der
+Wellenlänge, (b) Hindernis gleich groß wie die Wellenlänge (aus \cite{webers})}
+\label{fig:beugung}
+\end{center}
+\end{figure}
+
+\section{Zusammenfassung}\begin{sloppypar}
+Schall breitet sich als \textit{longitudinale Welle} aus. Die Luftteilchen schwingen um
+ihren Ruhepunkt mit der \textbf{Schallschnelle \textit{v}} und erzeugen durch ihre Bewegung
+Druckschwankungen, den \textbf{Schalldruck \textit{p}}. Beide Größen sind Wechselgrößen und werden
+zumeist nur mit ihrem \textit{Effektivwert} angegeben. Seltener werden in der
+Tonstudiotechnik für Berechnungen oder Angaben auch die \textbf{Schalleistung}
+$P_{ak}$ oder die
+\textbf{Schallintensität \textit{J}} verwendet.\\ Der Schalldruck nimmt bei Entfernung von der
+Schallquellen mit $1/r$ ab, dies besagt das sogenannte \textbf{$1/r$-Gesetz}. Im
+\textbf{Fernfeld} nimmt die Schallschnelle ebenfalls mit 1/r über der Entfernung ab. Im
+sogenannten \textbf{Nahfeld} nimmt sie hingegen mit $1/r^2$ ab und ist zum Schalldruck um
+maximal $90^\circ$  in der Phase verschoben. Der Übergang von Nah- zu Fernfeld ist abhängig von
+der Frequenz bzw. der Wellenlänge. Das Nahfeld ist für tiefe Frequenzen ausgedehnter als
+für hohe.\\
+Schallwellen werden an Gegenständen \textbf{reflektiert}, die groß im Vergleich zu ihrer
+Wellenlänge sind. Je nach Wandmaterial werden sie frequenzabhängig ge\-dämpft. Ist das
+Hindernis dagegen in der gleichen Größenordnung wie die Wellenlänge, so wird die Welle um
+das Hindernis herum \textbf{gebeugt}.
+\end{sloppypar}
+
+\section{Aufgaben}
+\begin{enumerate}
+\item  Berechne für folgende Frequenzen den Abstand, an welchem das Nahfeld in das Fernfeld übergeht
+\begin{itemize}
+\item $50H\!z$
+\item $200H\!z$
+\item $500H\!z$
+\item $1000H\!z$
+\item $4000H\!z$
+\end{itemize}
+\item  Um welchen Faktor verringert sich der Schalldruck, wenn man statt in 30cm Entfernung von
+der Schallquelle in 180cm Entfernung mißt?
+\item  Schallquelle und Zuhörer befinden sich im gleichen Abstand zu einer Wand, die $3m$ von beiden
+entfernt ist. Quelle und Hörer sind $5m$ voneinander entfernt. Wie viele Millisekunden nach
+dem Direktschall trifft die Reflexion von dieser Wand ein? Um welchen Faktor ist sie
+gegenüber dem Direktschall abgeschwächt, wenn die Wand verlustfrei reflektiert?
+\item	In kurzem Anstand vor dem Mikrophon befindet sich ein Pult der Abmessungen $30\times40cm$. Ab welcher Frequenz ist mit sehr deutlichem Pegelabfall zu rechnen?
+\end{enumerate}

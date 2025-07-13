@@ -1,0 +1,381 @@
+\chapter{Schwingungen und Wellen}\label{SchWellen}\index{Schwingungen|{bld}}
+\thispagestyle{empty}
+
+Ein Schallereignis entsteht, indem ein \emp{Schallsender} die Luft (oder Luftteilchen) in Schwingungen versetzt. Ein Schallsender kann der Sprachtrakt eines Menschen mit seinen schwingenden Stimmbändern genauso sein wie die gezupfte, geschlagene oder gestrichene Saite eines Musikinstruments, die schwingende Luftsäule eines Musikinstruments oder die schwingende Membran eines Lautsprechers. \\
+Die in Schwingung geratenen Luftteilchen regen wiederum ihre Nachbarteilchen zum Schwingen an; auf diese Art entsteht die \emp{Schallwelle}, die das akustische Ereignis \glqq transportiert\grqq.\\
+Ein Schallempfänger nimmt die Schwingungen der Luft auf und wandelt sie um, sei es im Mikrophon in elektrische Signale oder im Gehör über Trommelfell und andere Membrane in Nervenimpulse und anschließend in Informationen.
+
+Im ersten Kapitel werden zunächst die typischen Merkmale akustischer Schwingungen eingeführt und behandelt. Auch die Begriffe Ton, Klang und Klangfarbe werden kurz erläutert. Anschließend geht es um die Eigenschaften von Wellen und ihre Ausbreitung.
+
+\section{Schwingungen}
+\begin{sloppypar}
+Eine Schwingung ist die zeitliche Zu- und Abnahme einer physikalischen Größe. Es wird
+zwischen \textit{periodischen} und \textit{nichtperiodischen} Schwingungsvorgängen
+unterschieden, je nachdem, ob sich die einzelnen Schwingungszustände in regelmäßigen
+Abständen wiederholen oder nicht. Das gängigste Beispiel für eine Schwingung ist eine
+Sinusschwingung:
+\begin{figure}[!hbt]
+\begin{center}
+%\includegraphics[scale=0.5]{Graph/msinus}
+\includegraphics[scale=0.5]{Graph/n_schwingung}
+\caption[Periodendauer und Wellenlänge einer Schwingung]{Periodendauer und Wellenlänge einer Schwingung}
+\label{fig:sinus}
+\end{center}
+\end{figure}
+
+Die in Abb. \ref{fig:sinus} dargestellte Schwingung ist in dieser Form erst einmal
+nichtperiodisch, weil sie zeitlich begrenzt ist. Stellt man sich diese Schwingung aber auf
+die gleiche Art und Weise rechts und links dieser Abbildung fortgesetzt vor, so erhält man
+eine periodische Schwingung.
+\end{sloppypar}
+\bem{Sprache und Musik sind nichtperiodische Schwingungsvorgänge. Man kann solche Signale
+aber oft in kleine Abschnitte aufteilen, in denen die Schwingung periodisch erscheint; dann
+spricht man von einer quasiperiodischen Schwingung. \\ Die nachfolgenden Größen beziehen
+sich auf periodische Schwingungen. Ihr Bezug zu realen Signalen wie Sprache und Musik
+beruht auf der Quasiperiodizität dieser Signale.}
+\end{quote}
+Die Punkte, an denen eine Sinusschwingung den Maximalausschlag, ihre Scheitelwerte,
+erreicht, nennt man auch \textbf{Schwingungsbauch}\index{Schwingungsbauch|{bld}}. Nimmt sie
+hingegen den Wert an, um den sie pendelt, so bezeichnet man diesen als
+\textbf{Schwingungsknoten}\index{Schwingungsknoten|{bld}} (in Abb. \ref{fig:sinus} der Nulldurchgang).
+
+\section{Frequenz und Periodendauer}\label{chap:freq}
+Das Maß für die Häufigkeit, mit der sich eine periodische Schwingung wiederholt, ist die
+\textbf{Frequenz}\index{Frequenz|{bld}} f. Sie gibt die Anzahl der Schwingungsperioden pro Sekunde an.
+
+\begin{equation}\label{freq}
+f=\frac{Anzahl\: der\: Schwingungen}{s}
+\end{equation}
+
+Die Einheit für die Frequenz ist somit die reziproke Sekunde $\left[\frac{1}{s}\right]$ bzw. Hertz [$H\!z$].
+\\ Der
+für Menschen hörbare Frequenzbereich liegt in etwa zwischen $20H\!z$ und $20kH\!z$.
+Schwingungen mit niedriger Frequenz klingen tief, Schwingungen höherer Frequenz hoch.
+
+\bem{Das Tonhöhenempfinden ist \textit{nicht} dem Betrag einer Frequenzänderung
+proportional, sondern dem Verhältnis der Änderung. Zum Beispiel hört man bei einem Sprung
+von $220H\!z$ auf $440H\!z$ eine Oktave, während man beim Sprung von $440H\!z$ auf $660H\!z$ eine Quinte
+hört, obwohl beide Male $220H\!z$ zur unteren Frequenz addiert wurden. Ändert man aber die
+Frequenz von $440H\!z$ auf $880H\!z$, so erklingt eine Oktave. Man hört also gleiche Intervalle,
+wenn das Verhältnis $\frac{obere\: Frequenz}{untere\: Frequenz}$ gleich ist.}\end{quote}
+
+Die Tabelle \ref{tab:freq_tonh} gibt Anhaltspunkte über den Frequenzumfang einzelner
+Instrumente. Man erkennt, daß der hörbare Frequenzbereich um einiges über die von diesen
+Instrumenten erzeugten Grundschwingungen hinausgeht. Wir würden nur ein sehr dumpfes,
+unvollständiges Klangbild erleben, wenn wir beispielsweise nur bis $5kH\!z$ hörten. Dies
+hängt mit den von Instrumenten erzeugten Obertönen zusammen, die ein wesentlich weiteres
+Frequenzspektrum umfassen können (s. Abschnitt \ref{chap:ton_klang}).
+\begin{table}[h]
+\begin{center}
+\begin{footnotesize}{\begin{tabular}{l|l|l}  \rule[-2mm]{0mm}{7mm}
+\textbf{Frequenz} & \textbf{Note} & \textbf{Instrument} \\ \hline $16.5H\!z$ & $C_2$ & Taste
+C im $32'$ der Orgel\\ \hline $33H\!z$ & $C_1$ & C-Saite bei fünfseitigen Kontrabässen\\
+\hline $66H\!z$ & $C$ & C-Saite der Violoncelli\\ \hline $131H\!z$ & $c$ & C-Saite der
+Bratschen\\ \hline $262H\!z$ & $c'$ & tiefstes c der Geigen\\ \hline $524H\!z$ & $c''$ & hohes
+c der Tenöre\\ \hline $1047H\!z$ & $c'''$ & hohes c der Soprane\\ \hline $2093H\!z$ & $c^4$ &
+höchstes c der Geigen\\ \hline $4185H\!z$ & $c^5$ & höchstes c der Piccolo-Flöten\\ 
+\end{tabular}}\end{footnotesize}\caption[Zuordnung von Frequenzwerten zu musikalischen
+Tonbezeichnungen]{Überblick über die Zuordnung von Frequenzwerten zu musikalischen
+Tonbezeichnungen (aus \cite{meyer})}
+\end{center}\label{tab:freq_tonh}
+\end{table}
+
+Die Dauer einer Schwingungsperiode bezeichnet man als
+\textbf{Periodendauer}\index{Periodendauer|{bld}} $T_{p}$. Sie ist der Kehrwert der Frequenz.
+
+\begin{equation}\label{period}
+T_{p}=\frac{1}{f}
+\end{equation}
+Die Einheit für die Periodendauer $T_{p}$ ist damit die Sekunde [s].
+
+\bsp{Die Periodendauer der Schwingung einer Wasserwelle ist die Zeit, die ein Teilchen benötigt,
+das immer auf und ab schwingt, um von einem Wellental ins nächste zu gelangen.}
+\end{quote}
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:pitch}
+\end{itemize}
+\end{quote}
+
+
+\section{Amplitude}\label{chap:amplitude}
+Die \textbf{Amplitude}\index{Amplitude|{bld}} einer Schwingung ist der \glqq Scheitelwert\grqq$\:$
+einer Schwingung, also ihr maximaler Ausschlag. Dieser Begriff wird hauptsächlich für
+sinusförmige Schwingungen gebraucht.
+Im Zusammenhang mit andersförmigen Schwingungen wird allerdings oft für für einen beliebigen Ausschlag der Begriff Amplitudenwert verwendet. Dies geschieht dann meistens zur Differenzierung z.B. zu Pegelwerten (s. Abschnitt \ref{chap:pegel}).
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:lautstaerke}
+	\ifthenelse{\equal{\value{allchaps}}{1}}
+	{
+		\item Abschnitt \ref{chap:fader}
+	}{}
+\end{itemize}
+\end{quote}
+
+\section{Phasenverschiebung}\label{chap:phaseshift}
+Verschiebt man eine periodische Schwingung zu sich selber und vergleicht dann die
+ursprüngliche mit der verschobenen Schwingung, so sind diese beiden Schwingungen bis auf
+die zeitliche Verschiebung $\Delta t$ immer noch identisch. Für unterschiedliche Frequenzen
+liegen die beiden gleichen Schwingungen bei konstanter Verschiebung immer unterschiedlich
+zueinander. Aus diesem Grund gibt man die Verschiebung als Winkel an. Man setzt die
+Periodendauer gleich $360$° und kann nun einen Winkel in Abhängigkeit von der zeitlichen
+Verschiebung und der Frequenz bestimmen:
+\begin{equation}\label{eq:phase}
+\phi = \frac{\Delta t}{T_p}\cdot 360^\circ
+\end{equation}
+\begin{sloppypar}
+Diesen Winkel nennt man dann \textbf{Phasenverschiebung}\index{Phasenverschiebung|{bld}} bzw.
+\textbf{Phasendifferenz}\index{Phasendifferenz|{bld}} (s. Abb. \ref{fig:phase}), wenn man es ganz exakt ausdrücken will
+\textbf{Phasenwinkel}\index{Phasenwinkel|{bld}}. Dieser Wert ist abhängig von dem Verhältnis von Verschiebung und Periodendauer und
+wird in der Praxis häufig verwendet.
+\\ Um von einer Phasenverschiebung zu sprechen,
+benötigt man immer einen Vergleichs- bzw. einen Bezugspunkt. Es ergibt keinen Sinn, eine
+Schwingung phasenverschoben zu nennen, wenn keine zweite Schwingung angegeben wird, zu der
+diese phasenverschoben ist. Es ist jedoch korrekt, von einer Phasendifferenz zwischen zwei
+Schwingungen zu sprechen, oder diese beiden Schwingungen zueinander (um einen Winkel)
+phasenverschoben zu nennen.
+\end{sloppypar}
+\bem{Das Ohr ist nicht in der Lage, die absolute Phasenverschiebung
+einer Schwingung zu erkennen; es erkennt keinen Unterschied zwischen einer Schwingung und
+der zeitlich verschobenen Schwingung. Treten allerdings die ursprüngliche und die
+verschobene Schwingung gleichzeitig auf, so läßt sich durchaus ein deutlicher Unterschied
+wahrnehmen.}\end{quote}
+
+\begin{figure}[!hbt]
+\begin{center}
+%\includegraphics[scale=0.5]{Graph/mphase}
+\includegraphics[scale=0.5]{Graph/n_phaseshift}
+\caption[Phasenverschiebung um den Winkel $\phi$]{Phasenverschiebung um den Winkel $\phi$ bzw. um die Zeit $\Delta t$} \label{fig:phase}
+\end{center}
+\end{figure}
+
+Werden zwei oder mehrere Schallwellen gleicher Frequenz überlagert, so ergibt sich als
+resultierendes Signal je nach Phasenwinkel ein entweder verstärktes oder gedämpftes Signal gleicher Frequenz. Ein weiterer Spezialfall ist die Überlagerung von sinusförmigen Schwingungen leicht unterschiedlicher Frequenz. Diese führt zu einer sogenannten \bld{Schwebung}\index{Schwebung|{bld}} (vgl. Abb. \ref{fig:schwebung}) mit einer leicht verschobenen hörbaren Frequenz und einer von der Differenzfrequenz abhängigen periodischen Amplitudenänderung. Eine solche Schwebung kann man leicht beim Stimmen eines Instrumentes hören; je näher die beiden Frequenzen sind, desto langsamer wird die hörbare Schwebung.
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=0.5]{Graph/n_schwebung}
+\caption[Schwebung]{Schwebung aus der Addition (Überlagerung) zweier Schwingungen mit unterschiedlicher Frequenz} \label{fig:schwebung}
+\end{center}
+\end{figure}
+\herl{Die Addition zweier sinusförmiger Schwingungen $y(t) = x_1(t) + x_2(t)$ mit leicht unterschiedlicher Frequenz läßt sich beschreiben durch:
+\begin{equation}
+	y(t) = \sin\left(2\pi f t\right) + \sin\left(2\pi \left(f-\Delta f\right) t\right)
+\end{equation}
+Nach den Additionstheoremen für trigonometrische Funktionen ergibt sich nun
+\begin{eqnarray}
+	y(t) &=& \sin\left(\frac{2\pi \left(f+f-\Delta f\right) t}{2}\right) \cdot \cos\left(\frac{2\pi \left[f-(f-\Delta f)\right] t}{2}\right)\\\nonumber
+	&=& \sin\left(2\pi\frac{ f-\Delta f }{2}t\right) \cdot \cos\left(2\pi\frac{ \Delta f }{2}t\right)
+\end{eqnarray}
+}\end{quote}
+Eine Überlagerung von Schwingungen wird \bld{Interferenz}\index{Interferenz|{bld}} genannt.\\
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:leveladd}
+\end{itemize}
+\end{quote}
+
+\section{Töne, Klänge und Klangfarben}\label{chap:ton_klang}
+Tonmeister bzw. Musiker verwenden die Begriffe \textit{Ton}\index{Ton|{bld}} und
+\textit{Klang}\index{Klang|{bld}} anders als beispielsweise Akustiker. Um Verwirrungen vorzubeugen,
+soll hier kurz auf die beiden Begriffe eingegangen werden.
+\begin{figure}[!hbt]
+\begin{center}
+%\includegraphics[scale=.7]{Graph/oberschwing}
+\includegraphics[scale=.5]{Graph/n_sineharm}
+\caption[Sinusschwingung mit harmonischen Oberschwingungen]{Sinusschwingung und harmonische Oberschwingungen\index{Oberschwingung} im Zeitbereich (links) und im
+Frequenzbereich (rechts). Die unterste Darstellung zeigt die Addition der Einzelschwingungen ebenfalls
+im Zeit- und Frequenzbereich } \label{fig:schwingadd}
+\end{center}
+\end{figure}
+
+
+Im wissenschaftlichen Gebrauch\footnote{nach DIN1320\cite{din1320}} ist eine Sinusschwingung einer
+bestimmten Frequenz (im hörbaren Bereich) ein Ton. Ein einzelner Ton in der Musik ist (je
+nach Instrument) ein wesentlich komplexeres Gebilde, in jedem Fall aber ein Gemisch von
+mehreren oder vielen verschiedenen Frequenzen. Akustiker würden ein solches Frequenzgemisch wiederum Klang
+nennen. \\ 
+Ein einzelner Ton eines beliebigen Musikinstrumentes zeichnet sich allgemein
+durch sogenannte harmonische \textbf{Obertöne}\index{Oberton|{bld}} aus, deren Frequenz ein
+ganzzahliges Vielfaches der Grundfrequenz ist. Die Erhöhung der Frequenz jeweils um die Grundfrequenz führt dabei zu immer kleineren Intervallen. Aus der Obertonreihe lassen sich daher die Frequenzverhältnisse der Intervalle (genauer der \glqq reinen\grqq$\;$ Intervalle) herleiten. Tabelle \ref{tab:intervals} zeigt die Frequenzverhältnisse für die ersten Intervalle.
+\begin{table}[!htb]
+\begin{footnotesize}
+	\begin{center}
+		\begin{tabular}{c|c}  \rule[-2mm]{0mm}{7mm}
+                \bld{Frequenzverhältnis $f/f_0$} & \bld{reines Intervall}\\[1mm]\hline
+					$1/1$			& Prime\\
+					$2/1$			& Oktave\\
+					$3/2$			& Quinte\\
+					$4/3$			& Quarte\\
+					$5/4$			& gr. Terz\\
+					$6/5$			& kl. Terz\\
+		\end{tabular}
+ 	\end{center}
+\end{footnotesize}
+			\caption[Frequenzverhältnisse reiner Intervalle]{Frequenzverhältnisse für reine Intervalle; die Frequenz einer reinen Quinte zur Grundfrequenz $f_0$ ist daher $\frac{3}{2}f_0$}
+			\label{tab:intervals}
+		\end{table}
+
+\bem{Harmonische Obertöne spielen beim Hören eine sehr wichtige Rolle: aus der Struktur der harmonischen Obertöne kann der Hörer
+sogar selbst dann noch die Grundfrequenz hören, wenn diese physikalisch nur leise oder gar
+nicht im Schallereignis vorhanden ist.}\end{quote}
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=.85]{Graph/formant}
+\caption[Frequenzlage der Formanten für die Vokale der deutschen Sprache]{Frequenzlage der Formanten für die Vokale der deutschen Sprache (aus \cite{meyer})}
+\label{fig:formanten}
+\end{center}
+\end{figure}
+
+Betrachtet man das Frequenzspektrum unterschiedlicher Instrumente, so erkennt man
+(unabhängig von dem gerade gespielten Ton) instrumentenspezifische Frequenzbereiche, die
+stärker angehoben sind als andere und erheblichen Einfluß auf die Klangfarbe eines
+Instrumentes haben. Solche Amplitudenmaxima innerhalb des Spektrums, deren Frequenz nicht
+von der gespielten Tonhöhe abhängt, nennt man \textbf{Formanten}\index{Formant|{bld}} oder
+\textbf{Formantbereiche}\index{Formant!-bereich}. Die Klangfarben unterschiedlicher
+Formanten lassen sich den Klangfarben von Vokalen zuordnen (s. Abb. \ref{fig:formanten}). So
+klingen beispielsweise Instrumente mit einem starken Formanten
+\textit{u} dunkel, während solche mit starkem Formanten \textit{i} hell und spitz klingen.
+
+Neben der Frequenzstruktur des Klanges darf aber auch die klangliche Wirkung des Zeitverlaufs nicht unterschätzt werden. Unterschiedliche Wirkungen verschiedener Musikinstrumente beruhen zu einem teilweise sehr hohen Maße auf der zeitlichen Struktur des Klanges. Einige wichtige Stichworte, die in späteren Abschnitten detaillierter erläutert werden sind z.B. die Hüllkurve\index{Hüllkurve} und der Einschwingvorgang\index{Einschwingvorgang} eines Klangereignisses.
+
+	\ifthenelse{\equal{\value{allchaps}}{1}}
+	{
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:timedesc}, \ref{chap:spectrumdesc}
+	\item Abschnitt \ref{chap:filter}
+	%\item Abschnitt \ref{chap:musak}
+\end{itemize}
+\end{quote}
+	}{}
+
+\section{Wellen}\label{chap:wellen}
+Nachdem weiter oben schon das Wort \textbf{Welle}\index{Welle|{bld}} gefallen ist, muß dieses
+noch richtig definiert werden. Innerhalb eines Mediums (Wasser, Luft, Metall etc.) lassen
+sich einzelne Moleküle zu Schwingungen anregen. Diese schwingenden Moleküle regen
+ihrerseits auch die benachbarten Moleküle zu Schwingungen an, die ihre Bewegung wiederum an
+die nächsten Teilchen weitergeben. Diese Art der Ausbreitung ist eine Welle.
+
+\section{Ausbreitungsgeschwindigkeit}
+Die Geschwindigkeit, mit der sich eine Welle in Ausbreitungsrichtung fortpflanzt, nennt
+sich \textbf{Ausbreitungsgeschwindigkeit}\index{Ausbreitungsgeschwindigkeit|{bld}} $c$. Wie jede
+Geschwindigkeit hat diese die Einheit [$\frac{m}{s}$].
+\bsp{Die Ausbreitungsgeschwindigkeit einer Wasserwelle ist die Geschwindigkeit, mit der
+sich ein Wellenkamm in Ausbreitungsrichtung fortbewegt.}
+\end{quote}
+
+Die Ausbreitungsgeschwindigkeit ist abhängig von dem Medium, in dem sich die Welle
+fortpflanzt. Für Schallwellen wird sie als
+\textbf{Schallgeschwindigkeit}\index{Schallgeschwindigkeit|{bld}} $c$ bezeichnet. In Luft ist die
+Schallgeschwindigkeit abhängig von Temperatur, Luftfeuchtigkeit, Luftdruck und
+Kohlendioxidgehalt. Sie ist \textit{nicht} abhängig von der Frequenz. Während jedoch die
+letztgenannten Größen (Luftfeuchtigkeit, Luftdruck und Kohlendioxidgehalt) zu
+vernachlässigen sind, hat die Temperatur einen entscheidenden Einfluß (z.B. auf die
+Stimmung von Instrumenten mit schwingender Luftsäule wie Blasinstrumente oder Orgeln). Die
+Schallgeschwindigkeit läßt sich abhängig von der Temperatur mit folgendem Ausdruck
+berechnen:
+
+\begin{equation}\label{eq:schallgeschw}
+c=331.4\frac{m}{s}\cdot\sqrt{\frac{\zeta+273}{273}}
+\end{equation}
+
+\begin{quote}
+\footnotesize{$\zeta$ ist die Temperatur in °C.}
+\end{quote}
+
+Für die meisten Überschlagsrechnungen wird ein Wert von $c = 340 m/s$ angenommen.
+
+\bem{Für Zimmertemperatur ist der Wert $c = 340 m/s$ etwas niedrig angesetzt. Nach
+Einsetzen in die Formel ergibt sich für eine Temperatur von 20°C $c = 343.3 m/s.$}
+\end{quote}
+
+\bem{Oft muß eingeschätzt werden, wie lange Schall braucht, um eine bestimmte Strecke
+zurückzulegen. Da man nicht immer einen Taschenrechner parat hat, ist es sinnvoll, sich zu
+merken, daß \textit{$1m$ ungefähr in $3ms$ zurückgelegt wird}.}\end{quote}
+
+\section{Wellenlänge}
+Bei der Ausbreitung einer periodischen Schwingung in einem Medium treten in bestimmten
+Abständen in Ausbreitungsrichtung immer dieselben Schwingungszustände auf. Den Abstand
+benachbarter gleicher Schwingungszustände bezeichnet man als \textbf{Wellenlänge
+$\lambda$}\index{Wellenlänge|{bld}} mit der Einheit [m]. Die Wellenlänge muß somit von der
+Frequenz f und der Ausbreitungsgeschwindigkeit, mit der sich eine Welle in einem Medium
+fortpflanzt, abhängen. Man erhält
+
+\begin{equation}\label{eq:lambda}
+\lambda=\frac{c}{f}
+\end{equation}
+
+Die Wellenlänge darf nicht mit der Periodendauer verwechselt werden; sie hängt zusätzlich
+noch von der Ausbreitungsgeschwindigkeit ab.
+\bsp{Die Ausbreitungsgeschwindigkeit einer Wasserwelle ist die Geschwindigkeit, mit der
+sich ein Wellenkamm in Ausbreitungsrichtung fortbewegt. Die Wellenlänge einer solchen Welle
+ist der Abstand zweier Wellenkämme in Ausbreitungsrichtung.}
+\end{quote}
+
+\section{Ausbreitung von Wellen}
+Bei der Form der Ausbreitung einer Welle kann man zwischen zwei Grenzfällen unterscheiden,
+der \textbf{Kugelwelle}\index{Welle!Kugel-|{bld}} und der \textbf{Ebenen
+Welle}\index{Welle!ebene|{bld}}. Bei der Kugelwelle befinden sich alle Teilchen mit dem gleichen
+Abstand zur Schallquelle im gleichen Schwingungszustand, bei der Ebenen Welle befinden sich
+alle Teilchen auf einer Linie im gleichen Schwingungszustand. Von einer Ebenen Welle
+spricht man auch, wenn man sich weit von einer Kugelschallquelle entfernt befindet, so daß
+die Teilchen im gleichen Schwingungszustand sich näherungsweise auf einer Linie befinden
+(das gilt natürlich nur für einen begrenzten Ausschnitt aus der Kugel).
+
+
+\bsp{Wasserwellen am Strand sind näherungsweise Ebene Wellen, weil sich die gesamte
+Wellenfront in einer Linie auf den Strand zu bewegt. Wenn man  in ruhiges Wasser einen
+Stein wirft, dann breiten sich kreisrunde Wellen aus. Hier könnte man von einer Kugelwelle
+sprechen.\\ 
+Dieses Beispiel \glqq hinkt\grqq$\;$ insofern, als es sich auf zwei Dimensionen
+beschränkt. Übertragen auf den Schall im Medium Luft muß man das ganze auf drei Dimensionen
+abstrahieren: aus Kreisen werden also Kugeln, die sich ausdehnen.}
+\end{quote}
+
+Die Wasserwelle, bei der sich ein bestimmtes Teilchen immer auf und ab bewegt, ist
+sicherlich ein anschauliches Beispiel einer Welle. Man sollte dieses Beispiel aber nicht
+überstrapazieren, da einige Eigenschaften der Wasserwellen nicht mit denen von Schallwellen
+übereinstimmen. Vor allem schwingen die Teilchen in der Luft nicht auf und ab, sondern in
+Ausbreitungsrichtung des Schalls, d.h. wenn der Schall sich beispielsweise nach rechts
+ausbreitet, so schwingen die Teilchen auch von rechts nach links und nicht von oben nach
+unten. Eine solche Welle, bei der die Teilchen in Ausbreitungsrichtung schwingen, wird
+allgemein \textit{longitudinale Welle} genannt.
+
+\section{Zusammenfassung}
+Eine Welle besteht aus Schwingungen einzelner Teilchen. Eine Schwingung wird gekennzeichnet
+durch die \textbf{Frequenz} $f$, welche die Anzahl an Schwingungen pro Sekunde angibt, bzw.
+die \textbf{Periodendauer} $T_{p}$, den Kehrwert von $f$ und die Amplitude ihrer einzelnen
+Schwingungszustände. Bei gegeneinander verschobenen Schwingungen kann man die
+\textbf{Phasendifferenz} bzw. den \textbf{Phasenwinkel} angeben. Eine Welle kann
+prinzipiell beschrieben werden durch die \textbf{Wellenlänge $\lambda$} und die
+\textbf{Ausbreitungsgeschwindigkeit}. Die Ausbreitungsgeschwindigkeit hängt vom Medium und
+seinen Eigenschaften ab, bei Luft insbesondere auch von der Temperatur. Die
+Ausbreitungsgeschwindigkeit von Schall heißt \textbf{Schallgeschwindigkeit} $c$. Bei der
+Ausbreitungsart einer (Schall-)Welle wird zwischen den beiden Grenzfällen
+\textbf{Kugelwelle} und \textbf{Ebene Welle} unterschieden.
+
+\section{Aufgaben}
+\begin{enumerate}
+ \item  In welcher Zeit legt Schall bei normaler Zimmertemperatur eine Strecke von $10 m$
+ zurück?
+ \item  Eine periodische Schwingung wird mit der gleichen um $180^\circ$ verschobenen
+ Schwingung addiert. Wie sieht das Ergebnis aus?
+ \item  Was ist der Unterschied zwischen Periodendauer $T_{p}$ und Wellenlänge $\lambda$?
+ \item  Berechne die Wellenlängen $\lambda$ für folgende Frequenzen bei $c = 340 m/s$.
+   \begin{itemize}
+   \item	$16H\!z$
+   \item	$100H\!z$
+   \item	$1000H\!z$
+   \item	$10000H\!z$
+   \item	$20000H\!z$
+   \end{itemize}
+ \item  Berechne die Frequenz des Tones a` für die angegebenen Temperaturen, wenn sie bei $14.35 ^\circ C$ $440H\!z$ beträgt und die Wellenlänge konstant bleibt.
+   \begin{itemize}
+   \item	$16^\circ C$
+   \item	$19^\circ C$
+   \item	$22^\circ C$
+   \end{itemize}
+ \item  Ist der oben berechnete Tonhöhenunterschied gravierend oder ver\-nach\-lässig\-bar?
+\end{enumerate}

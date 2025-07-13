@@ -1,0 +1,183 @@
+%\RequirePackage{fix-cm} 
+\documentclass[a4paper,12pt,english,german]{book}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ansinew]{inputenc}
+\usepackage{a4}
+\usepackage{babel}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{longtable}
+\usepackage[small,bf]{caption2}
+\usepackage{amsmath}
+\usepackage{ifthen}
+\usepackage{amsfonts}
+\usepackage[colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black]{hyperref}
+\usepackage{microtype}					% optical boundary
+\newcommand\chapbibname{Verwandte oder Weiterführende Literatur}
+%\usepackage[sectionbib]{mychapterbib}
+%\usepackage[sectionbib,square,comma,sort&compress]{natbib}
+
+\newcounter{allchaps}
+\setcounter{allchaps}{1}
+\newcommand{\bsp}{\begin{quote}\footnotesize \textbf{Beispiel}\\}
+\newcommand{\bem}{\begin{quote}\footnotesize \textbf{Bemerkung}\\}
+\newcommand{\herl}{\begin{quote}\footnotesize \textbf{Herleitung}\\}
+\newcommand{\chaplink}{\begin{quote}\footnotesize \textbf{Verwandte Themenbereiche}}
+
+\newcommand     {\emp}  {\textit}
+\newcommand {\bld}  {\textbf}
+\newcommand {\mat} {\mathbf}
+\newcommand     {\dt} {\mathcal}
+\newcommand     {\ld} {\mathrm{ld}}
+\renewcommand   {\vec} {\mathbf}
+
+\newenvironment{eq}{\begin{equation}}{\end{equation}}
+\newenvironment{eqa}{\begin{footnotesize}\begin{eqnarray}}{\end{eqnarray}\end{footnotesize}}
+
+\setlength{\unitlength}{1mm}
+\setcounter{secnumdepth}{3}
+
+\hfuzz2pt % Don't bother to report over-full boxes if over-edge is < 2pt
+
+% VERSION HISTORY
+%SIGNALVERABRIEUTNG 	.3
+%DIGITALTECHNIK 			.4
+%E-TECHNIK 						.5
+%SCHALLWANDLER 				.6
+%MUSIKALISCHE AKUSTIK .7
+%BILDER 							.8
+%SELBSTKORREKTUR 			.9
+%ENDKORREKTUR 				1.0
+
+\makeindex
+
+\author{Alexander Lerch}
+%\institute{Tonmeisterinstitut der Hochschule der Künste Berlin}
+\title{Unterlagen zum Tutorium in den ersten Semestern des Tonmeisterstudiums}
+\date{Version 0.3}
+
+\begin{document}
+	\maketitle
+	\pagestyle{plain}
+	\pagenumbering{Roman}
+	
+	\tableofcontents
+\index{Abtastfrequenz|see{Abtastrate}}
+\index{ADV|see{Amplitudendichteverteilung}}
+\index{Audiokompressionsverfahren|see{Audiocodierungsverfahren}}
+\index{Backward Masking|see{Vorverdeckung}}
+\index{Bitrate!Constant|see{Constant Bitrate}}
+\index{Bitrate!Variable|see{Variable Bitrate}}
+\index{CBR|see{Constant Bitrate}}
+\index{Codierung!Redundanz-|see{Redundanzcodierung}}
+\index{Codierung!Irrelevanz-|see{Irrelevanzcodierung}}
+\index{Convolution|see{Faltung}}
+\index{Fehler!Quantisierungs-|see{Quantisierungsfehler}}
+\index{FIR|see{Finite Impulse Response}}
+\index{Floating-Point-Format|see{Fließkommaformat}}
+\index{Forward Masking|see{Nachverdeckung}}
+\index{Gleitkommaformat|see{Fließkommaformat}}
+\index{IIR|see{Infinite Impulse Response}}
+\index{LSB|see{Least Significant Bit}}
+\index{MSB|see{Most Significant Bit}}
+\index{Fixed-Point-Format|see{Festkommaformat}}
+\index{Maskierung!Nach-|see{Nachverdeckung}}
+\index{Maskierung!Simultan-|see{Simultanmaskierung}}
+\index{Maskierung!Vor-|see{Vorverdeckung}}
+\index{PDF|see{Amplitudendichteverteilung}}
+\index{Postmasking|see{Nachverdeckung}}
+\index{Premasking|see{Vorverdeckung}}
+\index{Probability Density Function|see{Amplitudendichteverteilung}}
+\index{Rauschen!Braunes|see{Braunes Rauschen}}
+\index{Rauschen!Quantisierungs-|see{Quantisierungsrauschen}}
+\index{Rauschen!Rosa |see{Rosa Rauschen}}
+\index{Rauschen!Weißes|see{Weißes Rauschen}}
+\index{Sample Rate|see{Abtastrate}}
+\index{Signal-to-Noise Ratio|see{Signal-Rauschabstand}}
+\index{SNR|see{Signal-Rauschabstand}}
+\index{THD|see{Klirrfaktor}}
+\index{THD+N|see{Total Harmonic Distortion and Noise}}
+\index{Total Harmonic Distortion (THD)|see{Klirrfaktor}}
+\index{VBR|see{Variable Bitrate}}
+\index{Sampling|see{Abtastung}}
+\index{Filter!FIR|see{FIR-Filter}}
+\index{Filter!IIR|see{IIR-Filter}}
+\index{RMS|see{Effektivwert}}
+\index{Root Mean Square|see{Effektivwert}}
+\index{PZM|see{Grenzflächenmikrophon}}
+\index{Pressure Zone Mikrophone|see{Grenzflächenmikrophon}}
+\index{REE|see{Random Energy Efficiency}}
+\index{Abstandsfaktor|see{Vergrößerungsfaktor}}
+\index{DSF|see{Vergrößerungsfaktor}}
+\index{Distance Factor|see{Vergrößerungsfaktor}}
+\index{dB|see{Dezibel}}
+\index{Mikrophon!Dynamisches|see{Dynamisches Mikrophon}}
+\index{Mikrophon!Kondensator-|see{Kondensatormikrophon}}
+
+
+	\input{einleitg}
+
+	\newpage
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+%	\part{Technische und akustische Grundbegriffe}
+	         \pagestyle{headings}
+	\include{wellen}% mögliche Geräte: Sinusgenerator
+	\include{schall}
+	\include{pegel}% mögliche Geräte: Korr-messer, Goniometer, RTW, VU-meter
+	\include{raumak}% frequenzabhängige Nachhallzeit!, Tabelle mit verschiedenen Räumen, mögliche Geräte: Hall
+	\include{psychak}% mögliche Geräte: EQ, Pan; Aufgaben: -> Grundlagen der Mikrophonaufstellung
+	\ifthenelse{\equal{\value{allchaps}}{1}}
+	{
+	%\include{musak}% 
+	%\include{etechnik}%
+	\include{signalva}%
+	\include{miktech} %
+	\include{digtech} 
+	}
+	{}
+	
+%	\part{Studiotechnik}
+%	         \pagestyle{headings}
+%	\input{studio} %
+%	\input{studequip} %
+
+%	\part{Aufnahmetechnik}
+%	   \pagestyle{headings}
+
+%	\input{mikv} %
+%	\input{produktion} %
+	
+	
+	\ifthenelse{\equal{\value{allchaps}}{1}}
+{
+	\appendix
+	\thispagestyle{empty}
+	\addcontentsline{toc}{part}{Anhang}
+	\part*{Anhang}
+	
+	%\input{math} %
+	\input{loesg} %
+%	\input{stecker}
+}
+	\newpage	
+	\addcontentsline{toc}{chapter}{Verzeichnis der Abkürzungen und Formelzeichen}
+	\input{formelzeichen}
+	\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+	\listoffigures
+	\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+	\listoftables
+	\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+	
+	\bibliographystyle{alphadin}
+	\nocite{nollnue,nollsnt,wuttke,moeser,vorl_techak, eargle}
+	\bibliography{biblio}
+	
+	\cleardoublepage
+	\addcontentsline{toc}{chapter}{Index}
+	\printindex
+	
+	
+
+\end{document}

@@ -1,0 +1,349 @@
+\chapter{Pegel}\index{Pegel}\label{chap:pegel}
+\thispagestyle{empty}
+
+Bei der Arbeit im Tonstudio geht es kaum um die Größen Schalldruck oder gar Schallschnelle. Vielmehr taucht überall der Begriff Dezibel oder dB auf. Dieses Kapitel erklärt den Begriff Pegel in Dezibel und erläutert einige wichtige Grundsätze im Umgang mit Pegeln.
+
+\section{Das Weber-Fechnersche Gesetz}\label{chap:webfech}
+\thispagestyle{empty}
+Inzwischen sind zwar die grundlegenden Kenngrößen eines Schallfeldes bekannt, aber bisher
+wurde kaum darauf eingegangen, wie diese Größen überhaupt vom Menschen wahrgenommen werden.
+Das sogenannte \textbf{Weber-Fechnersche Gesetz}\index{Gesetz!Weber-Fechnersches} stellt
+einen Zusammenhang zwischen der Stärke eines Reizes (in unserem Fall beispielsweise der
+Schalldruck) und der Stärke der zugehörigen Sinnesempfindung (entsprechend: empfundene
+Lautstärke) her. Weber und Fechner stellten ganz allgemein für die Reizwahrnehmung des
+Menschen fest, daß der gerade wahrnehmbare Zuwachs $W$ von dem Verhältnis der Änderung
+eines Reizes $R$ zur Stärke des schon vorhandenen Reizes abhängig ist:
+\begin{equation}\label{eq:weber}
+	dW=const.\cdot\frac{dR}{R}
+\end{equation}
+Nach beidseitiger Integration dieser Differentialgleichung erhält man die Wahrnehmung als
+logarithmische Funktion irgendeines Reizes, d.h. - jetzt auf die Lautstärkeempfindung
+bezogen -, daß eine Verdoppelung des Schalldrucks \textbf{nicht} als eine Verdoppelung der
+Lautstärke wahrgenommen wird. Vielmehr müßte der Schalldruck exponentiell steigen, um eine
+lineare Erhöhung der empfundenen Lautstärke herbeizuführen. \bem{Leider stimmen die dem
+Gesetz zugrundegelegten Annahmen nicht ganz; in Wirklichkeit gilt dieses Gesetz nicht
+streng. Es stellt jedoch eine hinreichend gute Näherung an die Wirklichkeit dar.}
+\end{quote}
+\section{Schalldruckpegel \& Co.\label{chap:ss-pegel}}
+In Anlehnung an das Weber-Fechnersche Gesetz wurde eine Pseudoeinheit namens
+\textbf{Dezibel}\index{Dezibel}\footnote{dB ist keine richtige Einheit im
+physikalischen Sinn, da sich alle Einheiten bei der Rechnung herauskürzen}  [$\mathbf{dB}$]
+eingeführt, die ein logarithmisches Maß darstellt. Werte mit der Einheit dB werden Pegel
+genannt. Durch den Übergang von der Einheit [Pa] zur Pseudoeinheit [dB] ist eine mehr oder
+weniger gute Anpassung an das menschliche Hörvermögen möglich.
+\\ Eine sehr häufig gebrauchte Größe ist in diesem Zusammenhang der
+\textbf{Schalldruckpegel}\index{Schalldruckpegel}, der definiert ist mit
+\begin{equation}\label{eq:spl1}
+  L_{SPL}=10log\left(\frac{p_{eff}^2}{p_{0,eff}^2}\right).
+\end{equation}
+Die geläufigste Schreibweise ist
+\begin{equation}\label{eq:spl2}
+  L_{SPL}=20log\left(\frac{p_{eff}}{p_{0,eff}}\right).
+\end{equation}
+In dieser Gleichung taucht nicht nur der effektive Schalldruck $p_{eff}$ \footnote{Der
+Schalldruck ist eine Wechselgröße; da eine statische Größe zum Berechnen des Pegels
+eingesetzt werden muß, wird der quadrierte Effektivwert (= Leistung) gewählt. Zur
+Erinnerung: die Leistung $P=p_{eff}^2= \lim_{T \rightarrow \infty} \frac{1}{T}\int_{T}
+\left[x(t)\right]^2 \,dt$} auf, sondern auch der sogenannte
+\textit{Bezugsschalldruck}\index{Bezugsschalldruck} $p_{0,eff}$. Dieser stellt eine Normierung
+dieser Funktion dar ($L_{SPL}=0 dB$ für $p=p_{0}$), da der Logarithmus von $1$ $Null$
+ergibt. Für den absoluten Schalldruckpegel ist $p_{0,eff}=20\mu Pa$\footnote{Im folgenden
+wird, wie allgemein üblich, lediglich vom Schalldruckpegel gesprochen, wenn der absolute
+Schalldruckpegel gemeint ist.}. Dies entspricht ungefähr der sogenannten Hörschwelle, also
+dem Wert des Schalldrucks, den man (bei mittleren Frequenzen) gerade wahrnehmen kann.
+\\ Umgekehrt berechnet sich der effektive Schalldruck aus dem Pegel mit
+\begin{equation}\label{eq:spl2pressure}
+  p_{eff}=p_{0,eff}\cdot 10^{\frac{L_{SPL}}{20}},
+\end{equation}
+was sich durch Umstellen der Gleichung (\ref{eq:spl2}) zeigen läßt.
+\\ Natürlich lassen sich auch
+andere Größen (mit anderen Bezugswerten) genau wie der Schalldruck als Pegel ausdrücken.
+Gebräuchlich sind auch noch der
+\textbf{absolute Leistungspegel}\index{Schalleistungspegel}\index{Leistungspegel}, der
+definiert ist mit
+\begin{equation}\label{p-pegel}
+  L_{P}=10\log\left({\frac{P}{P_{0}}}\right)
+\end{equation}
+und der \textbf{absolute Spannungspegel}. Dieser ist definiert mit
+\begin{equation}\label{eq:sp-pegel1}
+  L_{U}=10\log\left({\frac{U_{eff}^2}{U_{0,eff}^2}}\right)
+\end{equation}
+beziehungsweise
+\begin{equation}\label{eq:sp-pegel2}
+  L_{U}=20\log\left({\frac{U_{eff}}{U_{0,eff}}}\right).
+\end{equation}
+\bem{Der Logarithmus in den oben angeführten Definitionen erscheint nach dem
+Weber-Fechner-Gesetz sinnvoll zu sein. Der Faktor $10$ ist allerdings auf Anhieb nicht ganz
+zu verstehen.\\ Die Pseudo-Einheit \textit{Bel} (nach dem Ingenieur Bell benannt) wurde
+festgelegt mit $\log{\frac{x}{x_{0}}}$. Als die Akustiker feststellten, daß das
+durchschnittliche subjektive Unterscheidungsvermögen bei ca. 1/10 dieses Wertes lag, wurde
+die heute gebräuchliche \glqq Einheit\grqq$\:$  Dezibel\index{Dezibel} (\textit{dB})
+eingeführt, die einem Zehntel \textit{Bel} entspricht.}
+\end{quote}
+\begin{sloppypar}
+Alle relativen Pegel (z.B. Differenzen zwischen zwei absoluten Pegeln) haben zwar keinen
+Bezugswert (wie z.B. $p_{0,eff}$), aber trotzdem die Einheit $dB$. Bei der Differenzbildung
+zweier Pegel (mit gleichen Bezugswerten) kürzt sich der Bezugswert weg.
+\end{sloppypar}
+\begin{table}
+\begin{footnotesize}{\begin{tabular}{|l|l|l|} \hline \rule[-2mm]{0mm}{7mm}
+\textbf{Kurzzeichen} & \textbf{Bezeichnung} & \textbf{Bezugswert} \\ 
+\hline 
+dB, dBSPL\index{Dezibel!dBSPL} &
+absoluter Schalldruckpegel\index{Schalldruckpegel} & $20\mu Pa$\\ dB & alle relativen Pegel & kein Bezugswert\\ dB,
+dBSIL\index{Dezibel!dBSIL} & absoluter Schallintensitätspegel\index{Schallintensitätspegel} & $10^{-12}\frac{W}{m^2}$\\ dB,dBSWL\index{Dezibel!dBSWL} & absoluter
+Schalleistungspegel\index{Schalleistungspegel} & $10^{-12}W$\\ dB,dBSVL\index{Dezibel!dBSVL} & absoluter Schallschnellepegel\index{Schallschnellepegel} &
+$5\cdot10^{-8}\frac{m}{s}$\\ dB(A)\index{Dezibel!dB(A)},dB(B)\index{Dezibel!dB(B)},dB(C)\index{Dezibel!dB(C)}& absoluter Schalldruckpegel mit Filterkurven
+bewertet\index{Schalldruckpegel!bewerteter} & $20\mu Pa$\\
+\hline dB & Funkhausnormpegel\index{Funkhausnormpegel} & $1.55V$\\ dBu\index{Dezibel!dBu} & absoluter Spannungspegel\index{Spannungspegel} & $0.775V$\\ dBv,
+dBV\index{Dezibel!dBV} & absoluter Spannungspegel\index{Spannungspegel} & $1V$\\ dBm\index{Dezibel!dBm} & absoluter Leistungspegel\index{Leistungspegel} & $1mW$\\ dbFs\index{Dezibel!dBFs} &
+Pegel bezogen auf Full Scale (digitale Geräte)\index{Full Scale} & full scale\\ \hline
+\end{tabular}}\end{footnotesize}\label{tab:pegelwerte}
+\caption[Beispiele für Pegel und Bezugswerte]{Übersicht über verschiedene Pegelwerte und deren Bezugswerte} \end{table}
+
+Anhand der Tabelle \ref{tab:pegelwerte}, die einige gebräuchliche Pegel aufführt, wird
+deutlich, daß fast beliebige Größen durch Pegel ausgedrückt werden können.
+
+\bem{Immer, wenn mit der  \glqq Einheit\grqq$\:$  dB gearbeitet und eine absolute Größe
+beschrieben wird, sollte man genau darauf achten, auf welchen Bezugswert diese sich
+bezieht. Für verschiedene Bezugswerte ergeben sich vollkommen unterschiedliche Pegel.}
+\end{quote}
+
+In Abb. \ref{fig:hoerflaeche} ist die typische \textbf{Hörfläche}\index{Hörfläche}
+abgebildet. Die Hörfläche ist die Fläche zwischen der
+\textit{Ruhehörschwelle}\index{Ruhehörschwelle} und der
+\textit{Schmerzgrenze}\index{Schmerzgrenze}. Die Ruhehörschwelle ist die Grenze, ab der man Schallereignisse
+geringeren Schalldruckpegels nicht mehr wahrnehmen kann und die Schmerzgrenze diejenige, ab
+der man lautere Schallereignisse nur noch unter Schmerzen wahrnehmen kann. Interessant ist
+in dieser Abbildung auch die unterschiedliche Empfindlichkeit des Ohres für verschiedene
+Frequenzen (s. dazu Abschnitt \ref{chap:lautstaerke}).
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics{Graph/hoerfl}
+\caption[Darstellung der Hörfläche]{Hörfläche, d.h. Fläche zwischen Ruhehörschwelle und Schmerzgrenze. Zusätzlich ist
+zur Orientierung die typische Fläche für Sprache und Musik skizziert (aus \cite{zwicker})}
+\label{fig:hoerflaeche}
+\end{center}
+\end{figure}
+\bem{Neben den oben genannten Größen ist in Abb. \ref{fig:hoerflaeche} auch die Risikogrenze für
+Gehörschäden angegeben. Diese Größe geht allerdings von einer dauerhaften Belastung ($8$
+Stunden am Tag, $5$ Tage die Woche) aus; der Schalldruckpegel kann etwas erhöht werden,
+wenn die Dauer der Belastung verkürzt wird. Wird das Ohr hohen Belastungen ausgesetzt, so
+kommt es zu einer vorübergehenden Verschiebung der Grenzen der Hörfläche zu höheren Pegeln.
+Geschieht dies aber öfters, so wird die temporäre Verschiebung zu einer permanenten, also
+einem Gehörschaden.}\end{quote}
+
+\chaplink
+\begin{itemize}
+	\item Abschnitt \ref{chap:amplitude}
+	\item Abschnitt \ref{chap:lautstaerke}
+\end{itemize}
+\end{quote}
+
+\section{Pegel bei der Addition von Signalen}\label{chap:leveladd}\begin{sloppypar}
+Bis jetzt wurde noch nicht be\-handelt, wie hoch der Pe\-gel ei\-nes Si\-gnals
+$u(t)=x(t)+y(t)$ ist, das die Summe zweier Signale darstellt. Wie in Abschnitt
+\ref{chap:ss-pegel} ausgeführt, steht im Argument des Logarithmus ein Effektivwert. Leider
+lassen sich Effektivwerte resp. Leistungen nicht so einfach addieren, wie man das
+vielleicht erwarten könnte. Es zeigt sich nämlich, daß es bei der Addition eine Rolle
+spielt, ob sich die Signale, welche addiert werden, \textit{ähnlich} sind oder nicht. \\
+\end{sloppypar}
+Zur Erläuterung müssen erst einige Begriffe eingeführt werden, die leider anschaulich
+schwer zu fassen sind.\footnote{Es kann sein, daß diese Begriffe an anderer Stelle anders
+eingeführt werden. Es wurde versucht, die Definition der beiden Begriffe Inkohärenz und
+Korrelation möglichst aus dem gängigen Gebrauch in der Aufnahmepraxis herzuleiten. Aus
+diesem Grund muß man sich bei der Lektüre verschiedener Literatur immer vergewissern, in
+welchem Sinn die Begriffe Kohärenz\index{Kohärenz} und Korrelation\index{Korrelation}
+benutzt werden.} Zwei Signale heißen kohärent\index{Kohärenz}, wenn ein Signal nur gegen
+sich selber verschoben und skaliert wurde, beispielsweise wenn sie von der gleichen Quelle
+kommen. Laufzeit- bzw. Pegelunterschiede spielen also keine Rolle.\\ Zwei Signale heißen
+hingegen inkohärent\index{Inkohärenz}, wenn sie einander zu keinem Zeitpunkt in irgendeiner
+Weise ähnlich sind.\\ Die Korrelation\index{Korrelation} gibt die Verwandtschaft zweier
+Signale zu einem bestimmten Zeitpunkt pegelunabhängig an. Signale sind also korreliert,
+wenn sie bis auf einen Skalierungsfaktor übereinstimmen. Der sogenannte
+Korrelationsgrad\index{Korrelationsgrad} zeigt die Ähnlichkeit auf einer Skala zwischen
+$[-1;1]$ an; dabei steht \glqq$1$\grqq$\:$  für Gleichheit,
+\glqq$-1$\grqq$\:$  für Gegenphasigkeit und \glqq$0$\grqq$\:$  für Unkorreliertheit.\\ Dies bedeutet
+einerseits, daß inkohärente Signale immer unkorreliert sind, andererseits korrelierte
+Signale immer kohärent sind. Umgekehrt trifft dies nicht allgemein zu.
+
+\bsp{Rauschen ist zu allen Signalen (außer zu sich selbst) inkohärent und damit auch
+unkorreliert.\\ Eine Sinus- und eine Cosinusschwingung sind zwar unkorreliert zueinander,
+aber kohärent.\\ Die Ausgangssignale zweier Mikrophone sind (wenn die Mikrophone nicht zu
+nah beieinander stehen) näherungsweise unkorreliert.}\end{quote}
+\bem{In der Technik und Mathematik wird oft der Begriff \textit{orthogonal} statt
+\textit{nicht korreliert} verwendet. Die Bedingung für Unkorreliertheit bzw. Orthogonalität zweier
+Signale $x(t),y(t)$ ist $\int x(t)\cdot y(t)\,dt=0$}\end{quote}
+
+Man stelle sich nun die zu addierenden Signale als Vektoren vor (s. Abb. \ref{fig:effadd}),
+deren Betrag ihr Effektivwert ist. Sind zwei Signale identisch, so haben die zugehörigen
+Vektoren den gleichen Betrag und die gleiche Orientierung. Sind sie hingegen unkorreliert,
+so stehen die Vektoren senkrecht aufeinander (90° Phasenverschiebung!). Das gewünschte
+Ergebnis, nämlich der Effektivwert des resultierenden Signals, ist der Betrag des aus der
+Addition resultierenden Vektors.
+
+\begin{figure}[!hbt]
+\begin{picture}(50,40)
+\put(15,30){$Addition\: gleicher\: Signale$} \multiput(35,3)(0,10){2}{\vector(0,1){10}}
+\put(36,3){\vector(0,1){20}} \put(25,8){$x_{eff,1}$} \put(25,18){$x_{eff,2}$}
+\put(38,11){$x_{eff,Ges}$}
+
+\put(70,30){$Addition\: unkorrelierter\: Signale$} \put(90,10){\vector(1,0){5}}
+\put(90,10){\vector(0,1){10}} \put(90,10){\vector(1,2){5}} \put(80,15){$x_{eff,2}$}
+\put(90,6){$x_{eff,1}$} \put(96,20){$x_{eff,Ges}$}
+
+\end{picture}
+\caption{Veranschaulichung der Addition von Effektivwerten}\label{fig:effadd}
+\end{figure}
+
+Für die Addition zweier gleicher Signale $x$ erhält man also
+\begin{equation}\label{vektoradd1}
+  u_{Ges,eff}=2\cdot x_{eff}
+\end{equation}
+Der Pegel des resultierenden Signals nimmt also um $\mathbf{20\log{2}=6\; [dB]}$ zu.\\ Bei
+der Addition zweier nicht korrelierter Signale $x$ und $y$ erhalten wir
+\begin{equation}\label{vektoradd2}
+  u_{Ges,eff}=\sqrt{x_{eff}^2+y_{eff}^2}
+\end{equation}
+Für $x_{eff}=y_{eff}$ erhält man hier eine Zunahme um $\mathbf{20\log{\sqrt{2}}=3\; [dB]}$!
+Bei der Addition von unkorrelierten Signalen \textit{gleichen} Pegels nimmt der Pegel also
+um $3 dB$ zu.
+\bsp{Das Rauschen
+zweier Tonbandspuren, die mit gleichem Pegel gemischt werden, ist um $3dB$ lauter als das
+einer Spur.}
+\end{quote}
+
+
+Werden nun mehrere nicht korrelierte Quellen \textit{gleichen} Pegels addiert, so erhält
+man analog dazu:
+\begin{equation}\label{eq:vektoradd3}
+  u_{Ges,eff}=\sqrt{u_{1,eff}^2+u_{2,eff}^2+\ldots+u_{n,eff}^2}
+\end{equation}
+und der Gesamtpegel nimmt dementsprechend um $20\log{\sqrt{n}}=10\log{n}\; [dB]$ zu.\\ Haben
+die Quellen nicht denselben Pegel, so muß man in die obigen Gleichungen die entsprechenden
+Effektivwerte einsetzen und hat etwas mehr Arbeit. Die Rechnung ist aber im Prinzip
+identisch.
+
+\bem{Es gibt natürlich beliebige Zwischenstufen zwischen \glqq unkorreliert\grqq$\;$ und \glqq identisch\grqq$\;$ (s. Abb\ref{fig:pegeladd}). In einem
+solchen Fall stehen die Vektoren dann nicht mehr senkrecht aufeinander und der
+resultierende Pegel wird bei der Addition von zwei Signalen zwischen $3$ und $6dB$ liegen.}
+\end{quote}
+\begin{figure}[!hbt]
+\begin{center}
+\includegraphics[scale=.5]{Graph/pegeldif}
+\caption[Addition zueinander verschobener Sinusignale]{Pegeländerung bei der Addition zweier zueinander verschobener Sinussignale. Für
+einen Phasenwinkel von 0° ergeben sich 6dB Pegelzunahme, während der Pegel des
+resultierenden Signals für einen Winkel von $180$° gegen $-\infty$ geht}
+\label{fig:pegeladd}
+\end{center}
+\end{figure}
+
+Für die Leser, die es etwas genauer wissen wollen, folgt eine etwas detailliertere
+Herleitung.
+\herl{Um die erhaltenen Resultate zu überprüfen, muß die Definition
+des Effektivwertes betrachtet werden, die ja lautete
+\begin{equation}\label{effektiv}
+  u_{eff}=\sqrt{\lim_{T \rightarrow \infty} \frac{1}{T}\int_{T} \left[u(t)\right]^2\,dt}.
+\end{equation}
+Dementsprechend gilt also für den Effektivwert, wenn $u(t)$ die Summe zweier Signale $x(t)
+$ und $ y(t)$ ist
+\begin{eqnarray}\label{effektiv2}
+  u_{eff} &=&\sqrt{ \lim_{T \rightarrow \infty} \frac{1}{T}\int_{T} \left[x(t)+ y(t)\right]^2\,dt}\nonumber\\
+  &=&\sqrt{ \lim_{T \rightarrow \infty} \frac{1}{T}\int_{T} \left[x(t)^2+y(t)^2+2x(t)y(t)\right]\,dt}.
+\end{eqnarray}
+Für den Fall, daß $x(t)=y(t)$ ist, erhält man
+\begin{eqnarray}\label{effektiv3}
+  u_{eff}&=&\sqrt{ \lim_{T \rightarrow \infty} \frac{1}{T}\int_{T} \left[2\cdot x(t)\right]^2\,dt}\nonumber\\
+   &=&2\cdot x_{eff},
+\end{eqnarray}
+also das Ergebnis, das nach Gleichung \ref{vektoradd1} schon erwartet werden konnte.\\
+
+Sind $x$ und $y$ nicht korreliert, so gilt für die Gleichung \ref{effektiv2}, daß das
+Integral über den gemischten Term gleich $0$ ist (dies gilt aufgrund der
+Ortho\-gonali\-täts\-eigen\-schaft, die als mathematische Definition der Unkorreliertheit gegeben
+wurde). Mit Hilfe der Orthogonalitätseigenschaft unkorrelierter Signale folgt also
+\begin{equation}
+  u_{eff} = \sqrt{x_{eff}^2+y_{eff}^2}
+ \end{equation}
+und damit Gleichung \ref{vektoradd2}.}
+\end{quote}
+
+Bisher ging es um die \textit{elektrische} Addition von Signalen. Sollen diese
+\textit{akustisch} addiert werden, so ergeben sich andere Pegelunterschiede. Im allgemeinen sind Schallwellen im Raum bei zwei Sendern nicht mehr korreliert, auch wenn die Sender selbst das gleiche Signal abstrahlen.
+Dementsprechend erhöht sich der Schalldruckpegel bei zwei Lautsprechern, welche das gleiche
+Signal abstrahlen, um $3dB$.
+\bsp{Zwei Lautsprecher, die mit dem gleichen Signal gespeist werden, erzeugen einen
+Schalldruckpegel, der um $3dB$ höher ist als der von einem einzigen Lautsprecher erzeugte
+Pegel.\\ Zwei gleiche und gleichlaute Musikinstrumente spielen unisono $3dB$ lauter als ein
+einzelnes.}\end{quote}
+
+\section{Zusammenfassung}
+Es wurde eine (Pseudo-)Einheit \textbf{Dezibel} eingeführt. Mit dieser Einheit lassen sich
+viele Größen dem menschlichen Empfindungsvermögen aufgrund des Weber-Fechnersche Gesetzes
+anpassen. \textit{Dezibel} ist keine richtige Einheit, sondern kann sowohl für
+Pegeldifferenzen (relative Pegel) als auch für absolute Größen (bezogen auf einen
+Bezugswert) stehen. Eine besonders wichtige Größe für Tonmeister ist der
+\textbf{Schalldruckpegel}. Dessen Bezugsgröße ist $2\cdot 10^{-5}Pa$.
+\\ Jeder absolute Pegel ist auf eine bestimmte Bezugsgröße normiert. Nur bei Kenntnis
+dieser Bezugsgröße ist eine Angabe eines beliebigen Wertes in $dB$ sinnvoll.
+\\ Der resultierende Pegel bei der Addition von Signalen ist \textit{nicht} die Summe der
+Einzelpegel. Um den resultierenden Pegel berechnen zu können, muß zuerst der resultierende
+Effektivwert errechnet werden, daraufhin kann auch der Pegel bestimmt werden. Bei der
+elektrischen Addition zweier Signale gleichen Pegels ergibt sich $6dB$, falls die Signale
+korreliert sind, und $3dB$ im unkorrelierten Fall. Bei der akustischen Addition zweier
+Signale ergibt sich hingegen i.a. eine Pegelerhöhung von $3dB$.
+
+\section{Aufgaben}
+Vor den Aufgaben eine kurze Wiederholung der wichtigsten Eigenschaften der
+Logarithmusrechnung:
+\begin{quote}\footnotesize
+\begin{itemize}
+         \item $\log{(a\cdot x)}=\log{a}+\log{x}$
+         \item $\log{x^{a}}=a\cdot \log{x}$
+         \item $x=10^{\log{x}}$
+         \item $\log{x}=\frac{\ln{x}}{\ln{10}}$
+         \item $\log\frac{1}{x}=-\log{x}$
+         \item Ableitung $\partial\frac{\log{x}}{\partial x}	= \frac{1}{x}$
+\end{itemize}
+\end{quote}
+
+\begin{enumerate}
+
+\item  Leite aus Gleichung \ref{eq:weber} das Weber-Fechner-Gesetz $W=const.\cdot ln(R)+C$ her.
+
+\item  Wie groß ist die Abnahme des Schalldrucks und des Schalldruckpegels bei
+einer Verdoppelung der Entfernung, wenn der Schalldruck proportional $1/r$ abnimmt?
+
+\item  Berechne für folgende Spannungsverhältnisse  die Pegeldifferenz in $dB$:
+\begin{itemize}
+	\item $1:1$
+	\item $1:\sqrt{2}$
+	\item $1:2$
+	\item $1:10$
+\end{itemize}
+
+\item  Berechne für folgende Pegeldifferenzen die Spannungsverhältnisse:
+\begin{itemize}
+	\item $3dB$
+	\item $6dB$
+	\item $10dB$
+	\item $20dB$
+	\item $100dB$
+\end{itemize}
+
+\item  Berechne die Pegelzunahme bei der Addition von $4$ bzw. $8$ unkorrelierten Quellen
+gleichen Pegels.
+
+\item  Welcher Pegelunterschied ergibt sich zwischen den Ausgangsspannungen zweier Mikrophone (Schalldruckempfängern), die 60cm und 180cm von der Schallquelle entfernt sind?
+
+\item  Um wieviel Dezibel nimmt der Pegel zu, wenn statt $2$ Lautsprechern $4$ von dem gleichen Signal angesteuert werden?
+
+\item  Um wieviel Dezibel nimmt der Pegel zu, wenn statt $5$ Geigen $10$ spielen?
+
+\item  Berechne sowohl für den korrelierten (\glqq gleichen\grqq) als auch für den unkorrelierten Fall die Pegelzunahme bei der Addition zweier Signale, deren Pegelunterschied
+\begin{itemize}
+	\item $6dB$
+	\item $10dB$ beträgt.
+\end{itemize}
+\end{enumerate}
+
